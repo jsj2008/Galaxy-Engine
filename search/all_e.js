@@ -2,7 +2,7 @@ var searchData=
 [
   ['plane',['Plane',['../struct_g_x_y_1_1_plane.html',1,'GXY']]],
   ['plane',['plane',['../struct_g_x_y_1_1_plane.html#a445d53241a99039b67ef786cf648405f',1,'GXY::Plane']]],
-  ['planes',['planes',['../struct_g_x_y_1_1_frustrum_uniform.html#aab6457c55aa1a7022245e2b303e9a763',1,'GXY::FrustrumUniform']]],
+  ['planesfrustrum',['planesFrustrum',['../struct_g_x_y_1_1_context.html#a66c76f8ff55f42fffe23883ece9d9827',1,'GXY::Context']]],
   ['position',['position',['../struct_g_x_y_1_1_vertex.html#ae4da58eb3b2f3856319b88716fe77aac',1,'GXY::Vertex::position()'],['../struct_g_x_y_1_1_sphere.html#afab00afe046024154d27abe268dda567',1,'GXY::Sphere::position()'],['../class_g_x_y_1_1_abstract_camera.html#ac358fcd85c95fce8608d4fca291401c0',1,'GXY::AbstractCamera::position()']]],
   ['powerof2',['powerOf2',['../namespace_g_x_y.html#ad68ad7966475b97b0f4a7559a5036d4e',1,'GXY']]],
   ['primcount',['primCount',['../struct_g_x_y_1_1_draw_element_command.html#a254e164331069541fc91a2dbb6cd2b1c',1,'GXY::DrawElementCommand']]],

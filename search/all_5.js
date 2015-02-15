@@ -9,9 +9,7 @@ var searchData=
   ['framebuffer',['FrameBuffer',['../class_g_x_y_1_1_frame_buffer.html',1,'GXY']]],
   ['framebuffer_2ecpp',['framebuffer.cpp',['../framebuffer_8cpp.html',1,'']]],
   ['framebuffer_2eh',['framebuffer.h',['../framebuffer_8h.html',1,'']]],
-  ['frustrum',['Frustrum',['../class_g_x_y_1_1_frustrum.html#a76eb7f0e50fa0ffaaa7db08d9bfc2892',1,'GXY::Frustrum::Frustrum()'],['../class_g_x_y_1_1_abstract_camera.html#afc124bbbbe04588d8ee131510d5c39a2',1,'GXY::AbstractCamera::frustrum()']]],
   ['frustrum',['Frustrum',['../class_g_x_y_1_1_frustrum.html',1,'GXY']]],
-  ['frustrumbuffer',['frustrumBuffer',['../struct_g_x_y_1_1_global.html#a640f0ce9b1da84051c1adbc34a04fc66',1,'GXY::Global']]],
-  ['frustrummatrix',['frustrumMatrix',['../struct_g_x_y_1_1_context.html#a297f92fc40c1ecd0af695b9110479301',1,'GXY::Context']]],
-  ['frustrumuniform',['FrustrumUniform',['../struct_g_x_y_1_1_frustrum_uniform.html',1,'GXY']]]
+  ['frustrum',['Frustrum',['../class_g_x_y_1_1_frustrum.html#a76eb7f0e50fa0ffaaa7db08d9bfc2892',1,'GXY::Frustrum::Frustrum()'],['../class_g_x_y_1_1_abstract_camera.html#afc124bbbbe04588d8ee131510d5c39a2',1,'GXY::AbstractCamera::frustrum()']]],
+  ['frustrummatrix',['frustrumMatrix',['../struct_g_x_y_1_1_context.html#a297f92fc40c1ecd0af695b9110479301',1,'GXY::Context']]]
 ];
