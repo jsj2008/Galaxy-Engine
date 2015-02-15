@@ -2,7 +2,6 @@
 
 // Uniform
 #define CONTEXT 0
-#define FRUSTRUM 1
 
 // Shader Storage
 #define COMMAND 0

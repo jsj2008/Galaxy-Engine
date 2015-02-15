@@ -2,7 +2,6 @@
 
 // Uniform
 #define CONTEXT 0
-#define FRUSTRUM 1
 
 // Shader Storage
 #define COMMAND 0
@@ -17,11 +16,7 @@ layout(binding = CONTEXT, shared) uniform ContextBuffer
 {
     mat4 frustrumMatrix; //!< Is the projectionMatrix product viewMatrix
     uvec4 mNumberMeshes; //!< NumberMeshed : .x
-};
-
-layout(binding = FRUSTRUM, shared) uniform FrustrumBuffer
-{
-    vec4 planes[6];
+    vec4 planesFrustrum[6];
 };
 
 struct DrawElementCommand
@@ -75,7 +70,7 @@ void main(void)
 
         for(uint j = 0; j < 8 && !isIn; ++j)
         {
-            if(dot(planes[i], newBox.coord[j]) > 0.0)
+            if(dot(planesFrustrum[i], newBox.coord[j]) > 0.0)
             {
                 isIn = true;
                 break;

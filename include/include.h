@@ -226,14 +226,7 @@ namespace GXY
     {
         glm::mat4 frustrumMatrix; //!< Is the projectionMatrix product viewMatrix
         glm::uvec4 mNumberMeshes; //!< NumberMeshed : .x
-    };
-
-    /**
-     * @brief Describe a Frustrum by 6 Plane for Shader
-     */
-    struct FrustrumUniform
-    {
-        glm::vec4 planes[6]; //!< The Frustrum is formed by 6 planes
+        glm::vec4 planesFrustrum[6]; //!< A frustrum is formed by 6 planes
     };
 }
 

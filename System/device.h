@@ -33,7 +33,6 @@ namespace GXY
         struct
         {
             std::shared_ptr<Buffer<Context>> contextBuffer; //!< A pointer on Buffer which manage Context
-            std::shared_ptr<Buffer<FrustrumUniform>> frustrumBuffer; //!< A pointer on Buffer which manage Frustrum for view Frustrum Culling
         }Uniform;
 
         struct

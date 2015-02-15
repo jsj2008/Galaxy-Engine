@@ -114,16 +114,12 @@ namespace GXY
     void createGlobalUniform(void)
     {
         global->Uniform.contextBuffer = make_shared<Buffer<Context>>();
-        global->Uniform.frustrumBuffer = make_shared<Buffer<FrustrumUniform>>();
 
         global->Uniform.contextBuffer->create();
-        global->Uniform.frustrumBuffer->create();
 
         global->Uniform.contextBuffer->allocate(1);
-        global->Uniform.frustrumBuffer->allocate(1);
 
         global->Uniform.contextBuffer->bindBase(UNIFORM, 0);
-        global->Uniform.frustrumBuffer->bindBase(UNIFORM, 1);
     }
 
     void createGlobal(Device *device)

@@ -53,7 +53,7 @@ namespace GXY
         global->Uniform.contextBuffer->map()->frustrumMatrix = mCamera->toClipSpace();
 
         for(u32 i = 0; i < 6; ++i)
-            global->Uniform.frustrumBuffer->map()->planes[i] = mCamera->frustrum().mPlanes[i].plane;
+            global->Uniform.contextBuffer->map()->planesFrustrum[i] = mCamera->frustrum().mPlanes[i].plane;
     }
 
     void SceneManager::renderModels()
