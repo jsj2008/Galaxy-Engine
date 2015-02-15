@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.6"/>
-<title>Galaxy: Galaxy Engine Documentation</title>
+<title>Galaxy: BufferAndVertexArray</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -38,7 +38,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </script>
   <div id="navrow1" class="tabs">
     <ul class="tablist">
-      <li class="current"><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="index.html"><span>Main&#160;Page</span></a></li>
       <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
@@ -79,37 +79,38 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <div class="header">
   <div class="headertitle">
-<div class="title">Galaxy Engine Documentation </div>  </div>
+<div class="title">BufferAndVertexArray</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><h1><a class="anchor" id="Introduction"></a>
-Introduction</h1>
-<p>It's a Graphic Engine Created by Antoine MORRIER, student in Télécom SudParis.</p>
-<p>This Engine will be able to render global illumination on real time using OpenGL 4.4+ currently.</p>
-<h1><a class="anchor" id="Features"></a>
-Features</h1>
-<h2><a class="anchor" id="Sceneries"></a>
-Sceneries</h2>
-<p>This Engine works with Nodes, so all members depend on one other member, for example, glasses in a storage cupboard depend of this storage cupboard.</p>
-<h2><a class="anchor" id="Ambient"></a>
-Occlusion</h2>
-<p>Ambient Occlusion is in development</p>
-<h2><a class="anchor" id="Lighting"></a>
-Lighting</h2>
-<p>Direct Lighting is in development</p>
-<h2><a class="anchor" id="Shadows"></a>
-Shadows</h2>
-<p>Shadows are in develoment</p>
-<h2><a class="anchor" id="Global"></a>
-Illumination</h2>
-<p>Global Illumination is in development</p>
-<h2><a class="anchor" id="EnvironmentMap"></a>
-EnvironmentMap</h2>
-<p>Reflections, Refractions, Caustics are in development </p>
-</div></div><!-- contents -->
+<p>bufferExample.cpp </p>
+<div class="fragment"><div class="line"><a name="_a0"></a><a class="code" href="class_g_x_y_1_1_buffer.html">GXY::Buffer&lt;glm::vec2&gt;</a> buffer;</div>
+<div class="line"><a class="code" href="class_g_x_y_1_1_buffer.html">GXY::Buffer&lt;u32&gt;</a> indexBuffer;</div>
+<div class="line"><a name="_a1"></a><a class="code" href="class_g_x_y_1_1_vertex_array.html">GXY::VertexArray</a> vertexArray;</div>
+<div class="line"></div>
+<div class="line">buffer.<a name="a2"></a><a class="code" href="class_g_x_y_1_1_buffer.html#a1b0cd5636ffcdba3407274ef56fc85b5">create</a>();</div>
+<div class="line">indexBuffer.<a name="a3"></a><a class="code" href="class_g_x_y_1_1_buffer.html#a1b0cd5636ffcdba3407274ef56fc85b5">create</a>();</div>
+<div class="line">vertexArray.<a name="a4"></a><a class="code" href="class_g_x_y_1_1_vertex_array.html#ae0fcc5cc4839194b0dda5f20f4e03a2b">create</a>();</div>
+<div class="line"></div>
+<div class="line">buffer.<a name="a5"></a><a class="code" href="class_g_x_y_1_1_buffer.html#a1f632a9f180f20c2cae05e6d78a177e0">allocate</a>(3);</div>
+<div class="line">indexBuffer.<a name="a6"></a><a class="code" href="class_g_x_y_1_1_buffer.html#a1f632a9f180f20c2cae05e6d78a177e0">allocate</a>(3);</div>
+<div class="line"></div>
+<div class="line">buffer[0] = glm::vec2(-1.0, -1.0);</div>
+<div class="line">buffer[1] = glm::vec2(1.0, -1.0);</div>
+<div class="line">buffer[2] = glm::vec2(0.0, 1.0);</div>
+<div class="line">indexBuffer.<a name="a7"></a><a class="code" href="class_g_x_y_1_1_buffer.html#a7576f24d7aa4c915e377166ed9954f35">push</a>(0);</div>
+<div class="line">indexBuffer.<a class="code" href="class_g_x_y_1_1_buffer.html#a7576f24d7aa4c915e377166ed9954f35">push</a>(1);</div>
+<div class="line">indexBuffer.<a class="code" href="class_g_x_y_1_1_buffer.html#a7576f24d7aa4c915e377166ed9954f35">push</a>(2);</div>
+<div class="line"></div>
+<div class="line">vertexArray.<a name="a8"></a><a class="code" href="class_g_x_y_1_1_vertex_array.html#a536595751b988eebc09fc5d96fedb045">configure</a>(buffer);</div>
+<div class="line">vertexArray.<a name="a9"></a><a class="code" href="class_g_x_y_1_1_vertex_array.html#a6f99cc7e2c79161fa79801d7678c8da2">bindElementBuffer</a>(indexBuffer);</div>
+<div class="line"></div>
+<div class="line">vertexArray.<a name="a10"></a><a class="code" href="class_g_x_y_1_1_vertex_array.html#a421331ad4b60608a5f947846efad45b1">bind</a>();</div>
+<div class="line">glDrawElements(GL_TRIANGLES, 3, GL_UNSIGNED_INT, <span class="keyword">nullptr</span>);</div>
+<div class="line"><a name="a11"></a><a class="code" href="namespace_g_x_y.html#afef391c03b447dfaed20bbc87efc3294">GXY::synchronize</a>(); <span class="comment">// Flush</span></div>
+</div><!-- fragment --><div class="fragment"></div><!-- fragment --> </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Feb 15 2015 16:53:01 for Galaxy by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Feb 15 2015 16:53:00 for Galaxy by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

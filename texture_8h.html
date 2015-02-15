@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.6"/>
-<title>Galaxy: Galaxy Engine Documentation</title>
+<title>Galaxy: System/texture.h File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -38,11 +38,11 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </script>
   <div id="navrow1" class="tabs">
     <ul class="tablist">
-      <li class="current"><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="index.html"><span>Main&#160;Page</span></a></li>
       <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
-      <li><a href="files.html"><span>Files</span></a></li>
+      <li class="current"><a href="files.html"><span>Files</span></a></li>
       <li><a href="examples.html"><span>Examples</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
@@ -62,7 +62,12 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       </li>
     </ul>
   </div>
-</div><!-- top -->
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="files.html"><span>File&#160;List</span></a></li>
+      <li><a href="globals.html"><span>File&#160;Members</span></a></li>
+    </ul>
+  </div>
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -77,39 +82,50 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_9af51e3826d4f9e80d9103b2de543e84.html">System</a></li>  </ul>
+</div>
+</div><!-- top -->
 <div class="header">
+  <div class="summary">
+<a href="#nested-classes">Classes</a> &#124;
+<a href="#namespaces">Namespaces</a>  </div>
   <div class="headertitle">
-<div class="title">Galaxy Engine Documentation </div>  </div>
+<div class="title">texture.h File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><h1><a class="anchor" id="Introduction"></a>
-Introduction</h1>
-<p>It's a Graphic Engine Created by Antoine MORRIER, student in Télécom SudParis.</p>
-<p>This Engine will be able to render global illumination on real time using OpenGL 4.4+ currently.</p>
-<h1><a class="anchor" id="Features"></a>
-Features</h1>
-<h2><a class="anchor" id="Sceneries"></a>
-Sceneries</h2>
-<p>This Engine works with Nodes, so all members depend on one other member, for example, glasses in a storage cupboard depend of this storage cupboard.</p>
-<h2><a class="anchor" id="Ambient"></a>
-Occlusion</h2>
-<p>Ambient Occlusion is in development</p>
-<h2><a class="anchor" id="Lighting"></a>
-Lighting</h2>
-<p>Direct Lighting is in development</p>
-<h2><a class="anchor" id="Shadows"></a>
-Shadows</h2>
-<p>Shadows are in develoment</p>
-<h2><a class="anchor" id="Global"></a>
-Illumination</h2>
-<p>Global Illumination is in development</p>
-<h2><a class="anchor" id="EnvironmentMap"></a>
-EnvironmentMap</h2>
-<p>Reflections, Refractions, Caustics are in development </p>
+
+<p>Let to create empty texture or load images.  
+<a href="#details">More...</a></p>
+<div class="textblock"><code>#include &quot;<a class="el" href="include_8h_source.html">../include/include.h</a>&quot;</code><br/>
+<code>#include &quot;<a class="el" href="constant_8h_source.html">../include/constant.h</a>&quot;</code><br/>
+<code>#include &quot;<a class="el" href="debug_8h_source.html">../Debug/debug.h</a>&quot;</code><br/>
+</div>
+<p><a href="texture_8h_source.html">Go to the source code of this file.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_g_x_y_1_1_texture.html">GXY::Texture</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Provide an array of <a class="el" href="class_g_x_y_1_1_texture.html" title="Provide an array of Texture, they can be empty or loaded from images. ">Texture</a>, they can be empty or loaded from images.  <a href="class_g_x_y_1_1_texture.html#details">More...</a><br/></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="namespaces"></a>
+Namespaces</h2></td></tr>
+<tr class="memitem:namespace_g_x_y"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_g_x_y.html">GXY</a></td></tr>
+<tr class="memdesc:namespace_g_x_y"><td class="mdescLeft">&#160;</td><td class="mdescRight">Namespace for Galaxy Engine. <br/></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Let to create empty texture or load images. </p>
+<dl class="section author"><dt>Author</dt><dd>Antoine MORRIER </dd></dl>
+<dl class="section version"><dt>Version</dt><dd>1.0 </dd></dl>
+
+<p>Definition in file <a class="el" href="texture_8h_source.html">texture.h</a>.</p>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Feb 15 2015 16:53:01 for Galaxy by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Feb 15 2015 16:53:00 for Galaxy by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

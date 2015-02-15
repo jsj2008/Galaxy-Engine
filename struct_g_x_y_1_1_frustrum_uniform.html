@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.6"/>
-<title>Galaxy: Galaxy Engine Documentation</title>
+<title>Galaxy: GXY::FrustrumUniform Struct Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -38,10 +38,10 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </script>
   <div id="navrow1" class="tabs">
     <ul class="tablist">
-      <li class="current"><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="index.html"><span>Main&#160;Page</span></a></li>
       <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li><a href="namespaces.html"><span>Namespaces</span></a></li>
-      <li><a href="annotated.html"><span>Classes</span></a></li>
+      <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li><a href="examples.html"><span>Examples</span></a></li>
       <li>
@@ -62,7 +62,14 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       </li>
     </ul>
   </div>
-</div><!-- top -->
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="annotated.html"><span>Class&#160;List</span></a></li>
+      <li><a href="classes.html"><span>Class&#160;Index</span></a></li>
+      <li><a href="hierarchy.html"><span>Class&#160;Hierarchy</span></a></li>
+      <li><a href="functions.html"><span>Class&#160;Members</span></a></li>
+    </ul>
+  </div>
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -77,36 +84,56 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="namespace_g_x_y.html">GXY</a></li><li class="navelem"><a class="el" href="struct_g_x_y_1_1_frustrum_uniform.html">FrustrumUniform</a></li>  </ul>
+</div>
+</div><!-- top -->
 <div class="header">
+  <div class="summary">
+<a href="#pub-attribs">Public Attributes</a> &#124;
+<a href="struct_g_x_y_1_1_frustrum_uniform-members.html">List of all members</a>  </div>
   <div class="headertitle">
-<div class="title">Galaxy Engine Documentation </div>  </div>
+<div class="title">GXY::FrustrumUniform Struct Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><h1><a class="anchor" id="Introduction"></a>
-Introduction</h1>
-<p>It's a Graphic Engine Created by Antoine MORRIER, student in Télécom SudParis.</p>
-<p>This Engine will be able to render global illumination on real time using OpenGL 4.4+ currently.</p>
-<h1><a class="anchor" id="Features"></a>
-Features</h1>
-<h2><a class="anchor" id="Sceneries"></a>
-Sceneries</h2>
-<p>This Engine works with Nodes, so all members depend on one other member, for example, glasses in a storage cupboard depend of this storage cupboard.</p>
-<h2><a class="anchor" id="Ambient"></a>
-Occlusion</h2>
-<p>Ambient Occlusion is in development</p>
-<h2><a class="anchor" id="Lighting"></a>
-Lighting</h2>
-<p>Direct Lighting is in development</p>
-<h2><a class="anchor" id="Shadows"></a>
-Shadows</h2>
-<p>Shadows are in develoment</p>
-<h2><a class="anchor" id="Global"></a>
-Illumination</h2>
-<p>Global Illumination is in development</p>
-<h2><a class="anchor" id="EnvironmentMap"></a>
-EnvironmentMap</h2>
-<p>Reflections, Refractions, Caustics are in development </p>
-</div></div><!-- contents -->
+
+<p>Describe a <a class="el" href="class_g_x_y_1_1_frustrum.html" title="The Frustrum class. ">Frustrum</a> by 6 <a class="el" href="struct_g_x_y_1_1_plane.html" title="Describe a plane by its equation. ">Plane</a> for <a class="el" href="class_g_x_y_1_1_shader.html" title="Provide a Shader Interface. ">Shader</a>.  
+ <a href="struct_g_x_y_1_1_frustrum_uniform.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="include_8h_source.html">include.h</a>&gt;</code></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
+Public Attributes</h2></td></tr>
+<tr class="memitem:aab6457c55aa1a7022245e2b303e9a763"><td class="memItemLeft" align="right" valign="top">glm::vec4&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_g_x_y_1_1_frustrum_uniform.html#aab6457c55aa1a7022245e2b303e9a763">planes</a> [6]</td></tr>
+<tr class="memdesc:aab6457c55aa1a7022245e2b303e9a763"><td class="mdescLeft">&#160;</td><td class="mdescRight">The <a class="el" href="class_g_x_y_1_1_frustrum.html" title="The Frustrum class. ">Frustrum</a> is formed by 6 planes.  <a href="#aab6457c55aa1a7022245e2b303e9a763">More...</a><br/></td></tr>
+<tr class="separator:aab6457c55aa1a7022245e2b303e9a763"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Describe a <a class="el" href="class_g_x_y_1_1_frustrum.html" title="The Frustrum class. ">Frustrum</a> by 6 <a class="el" href="struct_g_x_y_1_1_plane.html" title="Describe a plane by its equation. ">Plane</a> for <a class="el" href="class_g_x_y_1_1_shader.html" title="Provide a Shader Interface. ">Shader</a>. </p>
+
+<p>Definition at line <a class="el" href="include_8h_source.html#l00234">234</a> of file <a class="el" href="include_8h_source.html">include.h</a>.</p>
+</div><h2 class="groupheader">Member Data Documentation</h2>
+<a class="anchor" id="aab6457c55aa1a7022245e2b303e9a763"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">glm::vec4 GXY::FrustrumUniform::planes[6]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>The <a class="el" href="class_g_x_y_1_1_frustrum.html" title="The Frustrum class. ">Frustrum</a> is formed by 6 planes. </p>
+
+<p>Definition at line <a class="el" href="include_8h_source.html#l00236">236</a> of file <a class="el" href="include_8h_source.html">include.h</a>.</p>
+
+</div>
+</div>
+<hr/>The documentation for this struct was generated from the following file:<ul>
+<li>include/<a class="el" href="include_8h_source.html">include.h</a></li>
+</ul>
+</div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated on Sun Feb 15 2015 16:53:01 for Galaxy by &#160;<a href="http://www.doxygen.org/index.html">

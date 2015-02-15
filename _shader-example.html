@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.6"/>
-<title>Galaxy: Galaxy Engine Documentation</title>
+<title>Galaxy: Shader</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -38,7 +38,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </script>
   <div id="navrow1" class="tabs">
     <ul class="tablist">
-      <li class="current"><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="index.html"><span>Main&#160;Page</span></a></li>
       <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
@@ -79,37 +79,20 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <div class="header">
   <div class="headertitle">
-<div class="title">Galaxy Engine Documentation </div>  </div>
+<div class="title">Shader</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><h1><a class="anchor" id="Introduction"></a>
-Introduction</h1>
-<p>It's a Graphic Engine Created by Antoine MORRIER, student in Télécom SudParis.</p>
-<p>This Engine will be able to render global illumination on real time using OpenGL 4.4+ currently.</p>
-<h1><a class="anchor" id="Features"></a>
-Features</h1>
-<h2><a class="anchor" id="Sceneries"></a>
-Sceneries</h2>
-<p>This Engine works with Nodes, so all members depend on one other member, for example, glasses in a storage cupboard depend of this storage cupboard.</p>
-<h2><a class="anchor" id="Ambient"></a>
-Occlusion</h2>
-<p>Ambient Occlusion is in development</p>
-<h2><a class="anchor" id="Lighting"></a>
-Lighting</h2>
-<p>Direct Lighting is in development</p>
-<h2><a class="anchor" id="Shadows"></a>
-Shadows</h2>
-<p>Shadows are in develoment</p>
-<h2><a class="anchor" id="Global"></a>
-Illumination</h2>
-<p>Global Illumination is in development</p>
-<h2><a class="anchor" id="EnvironmentMap"></a>
-EnvironmentMap</h2>
-<p>Reflections, Refractions, Caustics are in development </p>
-</div></div><!-- contents -->
+<p>shaderExample.cpp</p>
+<div class="fragment"><div class="line"><a name="_a0"></a><a class="code" href="class_g_x_y_1_1_shader.html">GXY::Shader</a> shader(<span class="stringliteral">&quot;file.vert&quot;</span>, <span class="stringliteral">&quot;file.frag&quot;</span>);</div>
+<div class="line">....</div>
+<div class="line"></div>
+<div class="line">vao.bind();</div>
+<div class="line">shader.use();</div>
+<div class="line">Draw...();</div>
+</div><!-- fragment --><div class="fragment"></div><!-- fragment --> </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Feb 15 2015 16:53:01 for Galaxy by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Feb 15 2015 16:53:00 for Galaxy by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>
