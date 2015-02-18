@@ -47,7 +47,7 @@ namespace GXY
         glBindVertexArray(mId);
     }
 
-    void VertexArray::configure(const Buffer<vec2> &buffer)
+    void VertexArray::configure(Buffer<vec2> const &buffer)
     {
         if(mId == 0)
             throw Except("Vertex Array is not initialize");
@@ -59,7 +59,7 @@ namespace GXY
             glBindVertexBuffer(0, buffer.mId, 0, sizeof(vec2));
     }
 
-    void VertexArray::configure(const Buffer<vec3> &buffer)
+    void VertexArray::configure(Buffer<vec3> const &buffer)
     {
         if(mId == 0)
             throw Except("Vertex Array is not initialize");
@@ -71,7 +71,7 @@ namespace GXY
             glBindVertexBuffer(0, buffer.mId, 0, sizeof(vec3));
     }
 
-    void VertexArray::configure(const Buffer<vec4> &buffer)
+    void VertexArray::configure(Buffer<vec4> const &buffer)
     {
         if(mId == 0)
             throw Except("Vertex Array is not initialize");
@@ -83,7 +83,7 @@ namespace GXY
             glBindVertexBuffer(0, buffer.mId, 0, sizeof(vec4));
     }
 
-    void VertexArray::configure(const Buffer<Vertex> &buffer)
+    void VertexArray::configure(Buffer<Vertex> const &buffer)
     {
         if(mId == 0)
             throw Except("Vertex Array is not initialize");
@@ -107,7 +107,7 @@ namespace GXY
             glBindVertexBuffer(0, buffer.mId, 0, sizeof(Vertex));
     }
 
-    void VertexArray::bindElementBuffer(const Buffer<u32> &buffer)
+    void VertexArray::bindElementBuffer(Buffer<u32> const &buffer)
     {
         if(mId == 0)
             throw Except("Vertex Array is not initialize");
