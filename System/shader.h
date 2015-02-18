@@ -172,8 +172,8 @@ namespace GXY
 
         /**
          * @brief Get file localised in path and copy it into src
-         * @param path : In : path of file
-         * @param src : out : source to compile
+         * @param[in] path : path of file
+         * @param[out] src : source to compile
          */
         void mGetSourceInFile(std::string const &path, std::string &src);
 

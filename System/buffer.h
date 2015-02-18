@@ -190,8 +190,8 @@ namespace GXY
 
         /**
          * @brief Push one element in the buffer
-         * @param elem : In : Elem which will add on the buffer
-         * @param isReallocate : Out : If is reallocate : put it to true, else don't change
+         * @param[in] elem : Elem which will add on the buffer
+         * @param[out] isReallocate : If is reallocate : put it to true, else don't change
          */
         inline void push(T const &elem, bool &isReallocate)
         {

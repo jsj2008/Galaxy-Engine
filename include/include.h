@@ -172,10 +172,10 @@ namespace GXY
 
     /**
      * @brief Create one plane from three points
-     * @param plane : out : plane created
-     * @param p0 : in : first Point
-     * @param p1 : in : second Point
-     * @param p2 : in : third Point
+     * @param[out] plane : plane created
+     * @param[in] p0 : first Point
+     * @param[in] p1 : second Point
+     * @param[in] p2 : third Point
      */
     inline void setPlane(Plane &plane, glm::vec3 const &p0, glm::vec3 const &p1, glm::vec3 const &p2)
     {
