@@ -1,1 +1,9 @@
+*.tmp
 html/
+*.png
+latex/
+
+*.user
+Doxyfile
+*.pdf
+*.dia
