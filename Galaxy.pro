@@ -50,5 +50,8 @@ DISTFILES += \
     Shaders/model.vert \
     Shaders/model.frag \
     Shaders/matrixculling.glsl \
-    Shaders/depth.vert
+    Shaders/depth.vert \
+    Shaders/ambientocclusion.glsl \
+    Shaders/blurV.glsl \
+    Shaders/blurH.glsl
 
