@@ -17,6 +17,7 @@ layout(binding = CONTEXT, shared) uniform ContextBuffer
     mat4 frustrumMatrix; //!< Is the projectionMatrix product viewMatrix
     uvec4 mNumberMeshes; //!< NumberMeshed : .x
     vec4 planesFrustrum[6];
+    vec4 inverseSizeFrameBufferAO; //!< .xy = 1 / sizeScreen, .zw = 1 / sizeAO;
 };
 
 struct DrawElementCommand
