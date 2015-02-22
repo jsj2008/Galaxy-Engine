@@ -13,10 +13,11 @@
 in vec2 texCoord;
 
 layout(binding = 0) uniform sampler2D diffuseSampler;
+layout(binding = 1) uniform sampler2D aoSampler;
 
 out vec3 color;
 
 void main(void)
 {
-    color = texture(diffuseSampler, texCoord).xyz;
+    color = texture(aoSampler, texCoord).xxx;
 }

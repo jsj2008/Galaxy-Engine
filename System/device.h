@@ -72,6 +72,9 @@ namespace GXY
             std::shared_ptr<Shader> matrixCulling; //!< A pointer on the Shader used to compute Matrix ClipSpace and perform frustrum culling
             std::shared_ptr<Shader> depth; //!< A pointer on The Shader used to depth pass.
             std::shared_ptr<Shader> model; //!< A pointer on the Shader used to render Model
+            std::shared_ptr<Shader> ambientOcclusion; //!< A pointer on the Shaser used to compute Ambient Occlusion
+            std::shared_ptr<Shader> blurHorizontalPass; //!< A pointer on the Shader used for Gaussian blur : Horizontal pass
+            std::shared_ptr<Shader> blurVerticalPass; //!< A pointer on the Shader used for Gaussian blur : Vertical pass
             std::shared_ptr<Shader> final; //!< A pointer on the Shader used to render final Quad
         }Shaders;
     };

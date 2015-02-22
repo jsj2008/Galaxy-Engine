@@ -100,15 +100,24 @@ namespace GXY
     void createGlobalShader(void)
     {
         global->Shaders.matrixCulling = make_shared<Shader>();
+        global->Shaders.ambientOcclusion = make_shared<Shader>();
+        global->Shaders.blurHorizontalPass = make_shared<Shader>();
+        global->Shaders.blurVerticalPass = make_shared<Shader>();
         global->Shaders.depth = make_shared<Shader>();
         global->Shaders.model = make_shared<Shader>("Shaders/model.vert", "Shaders/model.frag");
         global->Shaders.final = make_shared<Shader>("Shaders/final.vert", "Shaders/final.frag");
 
         global->Shaders.matrixCulling->compileFile("Shaders/matrixculling.glsl", COMPUTE);
+        global->Shaders.ambientOcclusion->compileFile("Shaders/ambientocclusion.glsl", COMPUTE);
+        global->Shaders.blurHorizontalPass->compileFile("Shaders/blurH.glsl", COMPUTE);
+        global->Shaders.blurVerticalPass->compileFile("Shaders/blurV.glsl", COMPUTE);
         global->Shaders.depth->compileFile("Shaders/depth.vert", VERTEX);
 
         global->Shaders.matrixCulling->link();
         global->Shaders.depth->link();
+        global->Shaders.ambientOcclusion->link();
+        global->Shaders.blurHorizontalPass->link();
+        global->Shaders.blurVerticalPass->link();
     }
 
     void createGlobalUniform(void)
