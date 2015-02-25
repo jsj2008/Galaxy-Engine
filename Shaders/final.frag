@@ -19,5 +19,9 @@ out vec3 color;
 
 void main(void)
 {
-    color = texture(aoSampler, texCoord).xxx;
+    float ao = texture(aoSampler, texCoord).x;
+    vec3 diffuseColor = texture(diffuseSampler, texCoord).xyz;
+
+    color = diffuseColor * ao;
+    //color = vec3(ao);
 }

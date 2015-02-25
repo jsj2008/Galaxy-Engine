@@ -15,7 +15,7 @@ layout(local_size_x = 128) in;
 layout(binding = CONTEXT, shared) uniform ContextBuffer
 {
     mat4 frustrumMatrix; //!< Is the projectionMatrix product viewMatrix
-    uvec4 mNumberMeshes; //!< NumberMeshed : .x
+    uvec4 numberMeshes; //!< NumberMeshed : .x
     vec4 planesFrustrum[6];
     vec4 inverseSizeFrameBufferAO; //!< .xy = 1 / sizeScreen, .zw = 1 / sizeAO;
 };
@@ -57,7 +57,7 @@ layout(binding = AABB, shared) buffer AABBBuffer
 void main(void)
 {
     AABB3D newBox;
-    if(gl_GlobalInvocationID.x < mNumberMeshes.x)
+    if(gl_GlobalInvocationID.x < numberMeshes.x)
     {
         toClipSpace[gl_GlobalInvocationID.x] = frustrumMatrix * toWorldSpace[gl_GlobalInvocationID.x];
 

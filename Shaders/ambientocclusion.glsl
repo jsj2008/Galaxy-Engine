@@ -15,7 +15,7 @@ layout(local_size_x = 8, local_size_y = 8) in;
 layout(binding = CONTEXT, shared) uniform ContextBuffer
 {
     mat4 frustrumMatrix; //!< Is the projectionMatrix product viewMatrix
-    uvec4 mNumberMeshes; //!< NumberMeshed : .x
+    uvec4 numberMeshes; //!< NumberMeshed : .x
     vec4 planesFrustrum[6];
     vec4 inverseSizeFrameBufferAO; //!< .xy = 1 / sizeScreen, .zw = 1 / sizeAO;
 };
@@ -54,7 +54,7 @@ void main(void)
     const vec3 positionAO = texture(samplerPosition, posSampler).xyz;
     const vec3 N = texture(samplerNormal, posSampler).xyz;
 
-    const vec2 radius = vec2(4.0 * invSize.xy); // 4 pixels
+    const vec2 radius = vec2(4.0 * invSize); // 4 pixels
     float total = 0.0;
     float ao = 0.0;
 
@@ -74,5 +74,5 @@ void main(void)
         }
     }
 
-    imageStore(AOImage, pos, vec4(1.0 - ao / (2.0 * total + 0.01)));
+    imageStore(AOImage, pos, vec4(1.0 - ao / (2.0 * total + 0.1)));
 }

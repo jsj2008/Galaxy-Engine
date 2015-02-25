@@ -225,9 +225,19 @@ namespace GXY
     struct Context
     {
         glm::mat4 frustrumMatrix; //!< Is the projectionMatrix product viewMatrix
-        glm::uvec4 mNumberMeshes; //!< NumberMeshed : .x
+        glm::uvec4 numberMeshes; //!< NumberMeshed : .x
         glm::vec4 planesFrustrum[6]; //!< A frustrum is formed by 6 planes
         glm::vec4 inverseSizeFrameBufferAO; //!< .xy = 1 / sizeScreen, .zw = 1 / sizeAO;
+    };
+
+    /**
+     * @brief Describe some informations to give at Shader for PointLight lighting
+     */
+    struct PointLight
+    {
+        glm::vec4 positionRadius; //!< .xyz = position, w = radius
+        glm::vec4 colorIntensity; //!< .rgb = color, a = intensity
+        glm::ivec4 shadowInformation; //!< .x = index of Cube Shadow Map
     };
 }
 

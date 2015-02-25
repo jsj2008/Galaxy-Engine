@@ -19,12 +19,12 @@ namespace GXY
 
         mGeometryFrameBuffer->create();
         mGeometryFrameBuffer->createTexture(powerOf2(global->device->width()), powerOf2(global->device->height()),
-                                            {RGB8_UNORM, RGB32F, RGB16F, RG16F}, true, false);
+                                            {RGB8_UNORM, RGB32F, RGB32F, RG16F}, true, false);
 
         mImageAmbientOcclusion = make_shared<Texture>(3);
 
         for(u32 i = 0; i < 3; ++i)
-            mImageAmbientOcclusion->emptyTexture(i, powerOf2(global->device->width()) / 2, powerOf2(global->device->height()) / 2, R16F);
+            mImageAmbientOcclusion->emptyTexture(i, powerOf2(global->device->width()), powerOf2(global->device->height()), R32F);
     }
 
     void SceneManager::createCameraStatic(const vec3 &pos, const vec3 &look)
@@ -62,7 +62,7 @@ namespace GXY
             global->Uniform.contextBuffer->map()->planesFrustrum[i] = mCamera->frustrum().mPlanes[i].plane;
 
         global->Uniform.contextBuffer->map()->inverseSizeFrameBufferAO = vec4(1.0f) / vec4(powerOf2(global->device->width()), powerOf2(global->device->height()),
-                                                                                           powerOf2(global->device->width()) / 2, powerOf2(global->device->height()) / 2);
+                                                                                           powerOf2(global->device->width()), powerOf2(global->device->height()));
     }
 
     void SceneManager::renderModels()
@@ -71,7 +71,7 @@ namespace GXY
             global->device->clearDepthColorBuffer();
 
             mRootNode->pushModelsInPipeline(mCamera->frustrum());
-            global->Uniform.contextBuffer->map()->mNumberMeshes.x = global->Model.command->numElements();
+            global->Uniform.contextBuffer->map()->numberMeshes.x = global->Model.command->numElements();
 
             // Compute Matrix and Culling pass
             global->Shaders.matrixCulling->use();
@@ -105,22 +105,38 @@ namespace GXY
         mGeometryFrameBuffer->bindTextures(1, 0, 2);
         global->Shaders.ambientOcclusion->use();
 
-        synchronize();
+            synchronize();
+            glMemoryBarrier(GL_TEXTURE_FETCH_BARRIER_BIT);
+            glDispatchCompute(powerOf2(global->device->width()) / 8, powerOf2(global->device->height()) / 8, 1);
 
-        time(glDispatchCompute, powerOf2(global->device->width()) / 2 / 8, powerOf2(global->device->height()) / 2 / 8, 1);
+        mImageAmbientOcclusion->bindImages(1, 0, 1);
+        mImageAmbientOcclusion->bindTextures(0, 0, 1);
+        global->Shaders.blurHorizontalPass->use();
+
+            synchronize();
+            glMemoryBarrier(GL_TEXTURE_FETCH_BARRIER_BIT);
+            glDispatchCompute(powerOf2(global->device->width()) / 64, powerOf2(global->device->height()), 1);
+
+        mImageAmbientOcclusion->bindImages(2, 0, 1);
+        mImageAmbientOcclusion->bindTextures(1, 0, 1);
+        global->Shaders.blurVerticalPass->use();
+            synchronize();
+            glMemoryBarrier(GL_TEXTURE_FETCH_BARRIER_BIT);
+            glDispatchCompute(powerOf2(global->device->width()), powerOf2(global->device->height()) / 64, 1);
     }
 
     void SceneManager::renderFinal()
     {
+        glBindFramebuffer(GL_DRAW_FRAMEBUFFER, 0);
         global->Shaders.final->use();
         global->Quad.vao->bind();
 
-        synchronize();
-        glMemoryBarrier(GL_TEXTURE_FETCH_BARRIER_BIT);
-        glBindFramebuffer(GL_DRAW_FRAMEBUFFER, 0);
         mGeometryFrameBuffer->bindTextures(0, 0, 1);
-        mImageAmbientOcclusion->bindTextures(0, 1, 1);
+        mImageAmbientOcclusion->bindTextures(2, 1, 1);
         global->device->setViewPort();
+
+            synchronize();
+            glMemoryBarrier(GL_TEXTURE_FETCH_BARRIER_BIT);
             glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
     }
 }

@@ -25,7 +25,8 @@ SOURCES += main.cpp \
     SceneManager/scenemanager.cpp \
     SceneManager/node.cpp \
     System/model.cpp \
-    SceneManager/modelnode.cpp
+    SceneManager/modelnode.cpp \
+    SceneManager/pointlightnode.cpp
 
 HEADERS += \
     System/buffer.h \
@@ -42,7 +43,8 @@ HEADERS += \
     SceneManager/scenemanager.h \
     SceneManager/node.h \
     System/model.h \
-    SceneManager/modelnode.h
+    SceneManager/modelnode.h \
+    SceneManager/pointlightnode.h
 
 DISTFILES += \
     Shaders/final.frag \
