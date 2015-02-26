@@ -51,4 +51,5 @@ void main(void)
     outPosition = position;
     outNormal = normalize(normal);
     outShininessAlbedo = material[materialIndex].shininessAlbedo.xy;
+    outShininessAlbedo.x += 1.0;// to avoid bug, but I don't know why.
 }

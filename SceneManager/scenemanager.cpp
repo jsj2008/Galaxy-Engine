@@ -22,9 +22,9 @@ namespace GXY
         mDirectLightFrameBuffer->create();
 
         mGeometryFrameBuffer->createTexture(powerOf2(global->device->width()), powerOf2(global->device->height()),
-                                            {RGB8_UNORM, RGB32F, RGB32F, RG16F}, true, false);
+                                            {RGB8_UNORM, RGB32F, RGB32F, RG32F}, true, false);
 
-        mDirectLightFrameBuffer->createTexture(powerOf2(global->device->width()), powerOf2(global->device->height()), {RGB8_UNORM}, false, false);
+        mDirectLightFrameBuffer->createTexture(powerOf2(global->device->width()), powerOf2(global->device->height()), {RGB16F}, false, false);
 
         mImageAmbientOcclusion = make_shared<Texture>(3);
 
@@ -69,7 +69,7 @@ namespace GXY
         global->Model.toWorldSpace->setToZeroElement();
 
         global->Uniform.frustrumBuffer->map()->frustrumMatrix = mCamera->toClipSpace();
-
+        global->Uniform.frustrumBuffer->map()->posCamera = vec4(mCamera->position(), 0.0);
         for(u32 i = 0; i < 6; ++i)
             global->Uniform.frustrumBuffer->map()->planesFrustrum[i] = mCamera->frustrum().mPlanes[i].plane;
 
@@ -129,6 +129,8 @@ namespace GXY
             global->Shaders.computePointLights->use();
             global->Lighting.vaoPointLight->bind();
             global->Lighting.commandPointLights->bind(DRAW_INDIRECT);
+            mGeometryFrameBuffer->bindTextures(1, 0, 2);
+            mGeometryFrameBuffer->bindTextures(3, 2, 1);
 
             synchronize();
             glMemoryBarrier(GL_SHADER_STORAGE_BARRIER_BIT | GL_VERTEX_ATTRIB_ARRAY_BARRIER_BIT | GL_COMMAND_BARRIER_BIT);

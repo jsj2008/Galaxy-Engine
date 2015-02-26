@@ -18,7 +18,12 @@
 
 layout(location = 0) in vec2 inPos;
 
+flat out int ID;
+out vec2 texCoord;
+
 void main(void)
 {
+    ID = gl_DrawIDARB;
+    texCoord = inPos * 0.5 + 0.5;
     gl_Position = vec4(inPos, 1.0, 1.0);
 }

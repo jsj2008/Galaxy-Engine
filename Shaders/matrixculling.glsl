@@ -20,6 +20,7 @@ layout(local_size_x = 64) in;
 layout(binding = FRUSTRUM, shared) uniform FrustrumBuffer
 {
     mat4 frustrumMatrix; //!< Is the projectionMatrix product viewMatrix
+    vec4 posCamera; //!< .xyz = posCamera or PosLight for shadowMaps for example
     vec4 planesFrustrum[6];
     uvec4 numberMeshesPointLights; //!< NumberMeshed : .x, .y = NumberPointLights
 };

@@ -31,12 +31,12 @@ int main(int argc, char *argv[])
 
         light1->setColor(vec3(1.0, 1.0, 1.0));
         light1->setPosition(vec3(0.0, 500.0, 0.0));
-        light1->setRadius(50);
+        light1->setRadius(2000);
         light1->setIntensity(1.0);
 
         light2->setColor(vec3(1.0, 0.0, 0.0));
         light2->setPosition(vec3(500, 100, 500));
-        light2->setRadius(50);
+        light2->setRadius(500);
         light2->setIntensity(1.0);
 
         while(device.run())
@@ -47,7 +47,6 @@ int main(int argc, char *argv[])
 
             device.end(); // Swap Buffer
         }
-
     }
 
     catch(Except &exc)

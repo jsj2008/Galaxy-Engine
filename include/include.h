@@ -230,6 +230,7 @@ namespace GXY
     struct FrustrumUniform
     {
         glm::mat4 frustrumMatrix; //!< Is the projectionMatrix product viewMatrix
+        glm::vec4 posCamera; //!< .xyz = posCamera or PosLight for shadowMaps for example
         glm::vec4 planesFrustrum[6]; //!< A frustrum is formed by 6 planes
         glm::uvec4 numberMeshesPointLights; //!< NumberMeshed : .x, numberPointLights.y
     };
