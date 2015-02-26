@@ -2,6 +2,7 @@
 
 // Uniform
 #define CONTEXT 0
+#define FRUSTRUM 1
 
 // Shader Storage
 #define COMMAND 0
@@ -9,15 +10,18 @@
 #define WORLD 2
 #define AABB 3
 #define MATERIAL 4
+#define PROJECT_LIGHT 5
+#define POINT_LIGHT 6
+#define WORLD_POINT_LIGHT 7
+#define COMMAND_POINT_LIGHT 8
 
-layout(local_size_x = 128) in;
+layout(local_size_x = 64) in;
 
-layout(binding = CONTEXT, shared) uniform ContextBuffer
+layout(binding = FRUSTRUM, shared) uniform FrustrumBuffer
 {
     mat4 frustrumMatrix; //!< Is the projectionMatrix product viewMatrix
-    uvec4 numberMeshes; //!< NumberMeshed : .x
     vec4 planesFrustrum[6];
-    vec4 inverseSizeFrameBufferAO; //!< .xy = 1 / sizeScreen, .zw = 1 / sizeAO;
+    uvec4 numberMeshesPointLights; //!< NumberMeshed : .x, .y = NumberPointLights
 };
 
 struct DrawElementCommand
@@ -56,34 +60,35 @@ layout(binding = AABB, shared) buffer AABBBuffer
 
 void main(void)
 {
-    AABB3D newBox;
-    if(gl_GlobalInvocationID.x < numberMeshes.x)
+    if(gl_GlobalInvocationID.x < numberMeshesPointLights.x)
     {
+        AABB3D newBox;
+
         toClipSpace[gl_GlobalInvocationID.x] = frustrumMatrix * toWorldSpace[gl_GlobalInvocationID.x];
 
         for(uint i = 0; i < 8; ++i)
             newBox.coord[i] = toWorldSpace[gl_GlobalInvocationID.x] * box[gl_GlobalInvocationID.x].coord[i];
-    }
 
-    for(uint i = 0; i < 6; ++i)
-    {
-        bool isIn = false;
-
-        for(uint j = 0; j < 8 && !isIn; ++j)
+        for(uint i = 0; i < 6; ++i)
         {
-            if(dot(planesFrustrum[i], newBox.coord[j]) > 0.0)
+            bool isIn = false;
+
+            for(uint j = 0; j < 8 && !isIn; ++j)
             {
-                isIn = true;
-                break;
+                if(dot(planesFrustrum[i], newBox.coord[j]) > 0.0)
+                {
+                    isIn = true;
+                    break;
+                }
+            }
+
+            if(!isIn)
+            {
+                command[gl_GlobalInvocationID.x].primCount = 0;
+                return;
             }
         }
 
-        if(!isIn)
-        {
-            command[gl_GlobalInvocationID.x].primCount = 0;
-            return;
-        }
+        command[gl_GlobalInvocationID.x].primCount = 1;
     }
-
-    command[gl_GlobalInvocationID.x].primCount = 1;
 }

@@ -2,6 +2,7 @@
 
 // Uniform
 #define CONTEXT 0
+#define FRUSTRUM 1
 
 // Shader Storage
 #define COMMAND 0
@@ -9,14 +10,15 @@
 #define WORLD 2
 #define AABB 3
 #define MATERIAL 4
+#define PROJECT_LIGHT 5
+#define POINT_LIGHT 6
+#define WORLD_POINT_LIGHT 7
+#define COMMAND_POINT_LIGHT 8
 
 layout(local_size_y = 64) in;
 
 layout(binding = CONTEXT, shared) uniform ContextBuffer
 {
-    mat4 frustrumMatrix; //!< Is the projectionMatrix product viewMatrix
-    uvec4 numberMeshes; //!< NumberMeshed : .x
-    vec4 planesFrustrum[6];
     vec4 inverseSizeFrameBufferAO; //!< .xy = 1 / sizeScreen, .zw = 1 / sizeAO;
 };
 

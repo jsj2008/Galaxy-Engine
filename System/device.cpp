@@ -46,8 +46,6 @@ namespace GXY
         global->Cube.index = make_shared<Buffer<u32>>();
         global->Cube.vertex = make_shared<Buffer<vec3>>();
 
-        global->Cube.index->create();
-        global->Cube.vertex->create();
         global->Cube.vao->create();
 
         global->Cube.index->allocate(36);
@@ -65,7 +63,6 @@ namespace GXY
         global->Quad.vertex = make_shared<Buffer<vec2>>();
 
         global->Quad.vao->create();
-        global->Quad.vertex->create();
 
         global->Quad.vertex->allocate(4);
 
@@ -86,49 +83,62 @@ namespace GXY
 
         global->Model.vao = make_shared<VertexArray>();
         global->Model.vaoDepth = make_shared<VertexArray>();
+    }
 
-        global->Model.aabb3D->create();
-        global->Model.command->create();
-        global->Model.index->create();
-        global->Model.material->create();
-        global->Model.toClipSpace->create();
-        global->Model.toWorldSpace->create();
-        global->Model.vertex->create();
-        global->Model.vertexDepth->create();
+    void createGlobalLighting(void)
+    {
+        global->Lighting.commandPointLights = make_shared<Buffer<DrawArrayCommand>>();
+        global->Lighting.pointLight = make_shared<Buffer<PointLight>>();
+        global->Lighting.quadsPointLights = make_shared<Buffer<vec2>>();
+        global->Lighting.toWorldSpace = make_shared<Buffer<mat4>>();
+
+        global->Lighting.vaoPointLight = make_shared<VertexArray>();
     }
 
     void createGlobalShader(void)
     {
         global->Shaders.matrixCulling = make_shared<Shader>();
+        global->Shaders.depth = make_shared<Shader>();
+        global->Shaders.model = make_shared<Shader>("Shaders/model.vert", "Shaders/model.frag");
+
         global->Shaders.ambientOcclusion = make_shared<Shader>();
         global->Shaders.blurHorizontalPass = make_shared<Shader>();
         global->Shaders.blurVerticalPass = make_shared<Shader>();
-        global->Shaders.depth = make_shared<Shader>();
-        global->Shaders.model = make_shared<Shader>("Shaders/model.vert", "Shaders/model.frag");
+
+        global->Shaders.projectPointLights = make_shared<Shader>();
+        global->Shaders.computePointLights = make_shared<Shader>("Shaders/computepointlight.vert", "Shaders/computepointlight.frag");
+
         global->Shaders.final = make_shared<Shader>("Shaders/final.vert", "Shaders/final.frag");
 
         global->Shaders.matrixCulling->compileFile("Shaders/matrixculling.glsl", COMPUTE);
+        global->Shaders.depth->compileFile("Shaders/depth.vert", VERTEX);
+
         global->Shaders.ambientOcclusion->compileFile("Shaders/ambientocclusion.glsl", COMPUTE);
         global->Shaders.blurHorizontalPass->compileFile("Shaders/blurH.glsl", COMPUTE);
         global->Shaders.blurVerticalPass->compileFile("Shaders/blurV.glsl", COMPUTE);
-        global->Shaders.depth->compileFile("Shaders/depth.vert", VERTEX);
+
+        global->Shaders.projectPointLights->compileFile("Shaders/projectpointlight.glsl", COMPUTE);
 
         global->Shaders.matrixCulling->link();
         global->Shaders.depth->link();
+
         global->Shaders.ambientOcclusion->link();
         global->Shaders.blurHorizontalPass->link();
         global->Shaders.blurVerticalPass->link();
+
+        global->Shaders.projectPointLights->link();
     }
 
     void createGlobalUniform(void)
     {
         global->Uniform.contextBuffer = make_shared<Buffer<Context>>();
-
-        global->Uniform.contextBuffer->create();
+        global->Uniform.frustrumBuffer = make_shared<Buffer<FrustrumUniform>>();
 
         global->Uniform.contextBuffer->allocate(1);
+        global->Uniform.frustrumBuffer->allocate(1);
 
         global->Uniform.contextBuffer->bindBase(UNIFORM, 0);
+        global->Uniform.frustrumBuffer->bindBase(UNIFORM, 1);
     }
 
     void createGlobal(Device *device)
@@ -139,6 +149,7 @@ namespace GXY
         createGlobalQuad();
         createGlobalCube();
         createGlobalModel();
+        createGlobalLighting();
         createGlobalShader();
         createGlobalUniform();
     }

@@ -33,6 +33,7 @@ namespace GXY
         struct
         {
             std::shared_ptr<Buffer<Context>> contextBuffer; //!< A pointer on Buffer which manage Context
+            std::shared_ptr<Buffer<FrustrumUniform>> frustrumBuffer; //!< A pointer on Buffer which manage Frustrum
         }Uniform;
 
         struct
@@ -56,6 +57,17 @@ namespace GXY
 
         struct
         {
+            std::shared_ptr<VertexArray> vaoPointLight; //!< A pointer on the VertexArray for render "Quads Lights"
+
+            std::shared_ptr<Buffer<glm::vec2>> quadsPointLights; //!< A pointer on the Buffer which contains Quads Lights
+            std::shared_ptr<Buffer<DrawArrayCommand>> commandPointLights; //!< A Pointer on the Buffer which contains Commands for PointLight
+            std::shared_ptr<Buffer<PointLight>> pointLight; //!< A Pointer on the PointLight Buffer
+
+            std::shared_ptr<Buffer<glm::mat4>> toWorldSpace; //!< A pointer on matrixWorldSpace buffer
+        }Lighting;
+
+        struct
+        {
             std::shared_ptr<VertexArray> vao; //!< A pointer on the VertexArray for Quad
             std::shared_ptr<Buffer<glm::vec2>> vertex; //!< A pointer on the Buffer which own vec2 for Quad
         }Quad;
@@ -72,9 +84,14 @@ namespace GXY
             std::shared_ptr<Shader> matrixCulling; //!< A pointer on the Shader used to compute Matrix ClipSpace and perform frustrum culling
             std::shared_ptr<Shader> depth; //!< A pointer on The Shader used to depth pass.
             std::shared_ptr<Shader> model; //!< A pointer on the Shader used to render Model
+
             std::shared_ptr<Shader> ambientOcclusion; //!< A pointer on the Shaser used to compute Ambient Occlusion
             std::shared_ptr<Shader> blurHorizontalPass; //!< A pointer on the Shader used for Gaussian blur : Horizontal pass
             std::shared_ptr<Shader> blurVerticalPass; //!< A pointer on the Shader used for Gaussian blur : Vertical pass
+
+            std::shared_ptr<Shader> projectPointLights;
+            std::shared_ptr<Shader> computePointLights;
+
             std::shared_ptr<Shader> final; //!< A pointer on the Shader used to render final Quad
         }Shaders;
     };

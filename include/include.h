@@ -224,10 +224,14 @@ namespace GXY
      */
     struct Context
     {
-        glm::mat4 frustrumMatrix; //!< Is the projectionMatrix product viewMatrix
-        glm::uvec4 numberMeshes; //!< NumberMeshed : .x
-        glm::vec4 planesFrustrum[6]; //!< A frustrum is formed by 6 planes
         glm::vec4 inverseSizeFrameBufferAO; //!< .xy = 1 / sizeScreen, .zw = 1 / sizeAO;
+    };
+
+    struct FrustrumUniform
+    {
+        glm::mat4 frustrumMatrix; //!< Is the projectionMatrix product viewMatrix
+        glm::vec4 planesFrustrum[6]; //!< A frustrum is formed by 6 planes
+        glm::uvec4 numberMeshesPointLights; //!< NumberMeshed : .x, numberPointLights.y
     };
 
     /**

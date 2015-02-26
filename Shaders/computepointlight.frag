@@ -1,5 +1,4 @@
 #version 440 core
-#extension GL_ARB_shader_draw_parameters : enable
 
 // Uniform
 #define CONTEXT 0
@@ -16,14 +15,9 @@
 #define WORLD_POINT_LIGHT 7
 #define COMMAND_POINT_LIGHT 8
 
-layout(location = 0) in vec3 inPos;
-
-layout(binding = CLIP, shared) readonly buffer ClipSpaceBuffer
-{
-    mat4 toClipSpace[];
-};
+out vec3 color;
 
 void main(void)
 {
-    gl_Position = toClipSpace[gl_DrawIDARB] * vec4(inPos, 1.0);
+    color = vec3(1.0 ,1.0, 1.0);
 }

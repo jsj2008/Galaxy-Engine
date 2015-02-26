@@ -16,6 +16,7 @@
 namespace GXY
 {
     class ModelNode;
+    class PointLightNode;
 
     /**
      * @brief The Node class
@@ -29,7 +30,7 @@ namespace GXY
          * @param parent
          * @return A pointer on this Node
          */
-        friend std::shared_ptr<Node> addNode(std::shared_ptr<Node> parent);
+        friend std::shared_ptr<Node> addNode(std::shared_ptr<Node> const &parent);
 
         /**
          * @brief Add one Model in the Node
@@ -37,8 +38,12 @@ namespace GXY
          * @param path : Path to find Asset
          * @return
          */
-        friend std::shared_ptr<ModelNode> addModel(std::shared_ptr<Node> parent, std::string const &path);
+        friend std::shared_ptr<ModelNode> addModel(std::shared_ptr<Node> const &parent, std::string const &path);
+
+        friend std::shared_ptr<PointLightNode> addPointLight(const std::shared_ptr<Node> &parent);
+
         friend ModelNode;
+        friend PointLightNode;
 
     public:
         /**
@@ -77,6 +82,8 @@ namespace GXY
          */
         void pushModelsInPipeline(Frustrum const &frustrum);
 
+        void pushPointLightsInPipeline(void);
+
     private:
         std::shared_ptr<Node> mParent; //!< Parent Node
         glm::mat4 mGlobalMatrix; //!< GlobalMatrix : Depend of Parent Node
@@ -86,6 +93,7 @@ namespace GXY
 
         std::vector<std::shared_ptr<Node>> mChildren; //!< Children Node
         std::vector<std::shared_ptr<ModelNode>> mModels; //!< Model owned by Node
+        std::vector<std::shared_ptr<PointLightNode>> mPointLights; //!< PointLight owned by Node
 
         /**
          * @brief Apply scale Factor to all tree
@@ -110,8 +118,9 @@ namespace GXY
         void mBuildAABB();
     };
 
-    std::shared_ptr<Node> addNode(std::shared_ptr<Node> parent);
-    std::shared_ptr<ModelNode> addModel(std::shared_ptr<Node> parent, std::string const &path);
+    std::shared_ptr<Node> addNode(std::shared_ptr<Node> const &parent);
+    std::shared_ptr<ModelNode> addModel(std::shared_ptr<Node> const &parent, std::string const &path);
+    std::shared_ptr<PointLightNode> addPointLight(std::shared_ptr<Node> const &parent);
 }
 
 

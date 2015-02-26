@@ -55,5 +55,8 @@ DISTFILES += \
     Shaders/depth.vert \
     Shaders/ambientocclusion.glsl \
     Shaders/blurV.glsl \
-    Shaders/blurH.glsl
+    Shaders/blurH.glsl \
+    Shaders/projectpointlight.glsl \
+    Shaders/computepointlight.vert \
+    Shaders/computepointlight.frag
 

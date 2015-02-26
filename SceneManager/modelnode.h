@@ -28,7 +28,7 @@ namespace GXY
          * @param path : Path to find Asset
          * @param parent : Node Parent
          */
-        ModelNode(std::string const &path, std::shared_ptr<Node> parent);
+        ModelNode(std::string const &path, std::shared_ptr<Node> const &parent);
 
         /**
          * @brief Perform a rotation of a Model inside a Node
@@ -69,7 +69,7 @@ namespace GXY
         /**
          * @brief Push in a command Buffer news value to be render
          */
-        void pushInPipeline();
+        void pushInPipeline(void);
 
     private:
         std::shared_ptr<Node> mParent; //!< Node Parent

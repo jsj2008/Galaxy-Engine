@@ -1,7 +1,8 @@
 #include "include/include.h"
 #include "SceneManager/scenemanager.h"
 #include "Debug/debug.h"
-
+#include "SceneManager/modelnode.h"
+#include "SceneManager/pointlightnode.h"
 
 using namespace std;
 using namespace glm;
@@ -23,7 +24,20 @@ int main(int argc, char *argv[])
 
         shared_ptr<Node> rootNode = sceneManager.getRootNode(); // Get the Root Node
 
+        shared_ptr<PointLightNode> light1 = addPointLight(rootNode);
+        shared_ptr<PointLightNode> light2 = addPointLight(rootNode);
+
         shared_ptr<ModelNode> model = addModel(rootNode, "models/OBJ/crytek-sponza/sponza.obj"); // Add a Model Sponza Atrium
+
+        light1->setColor(vec3(1.0, 1.0, 1.0));
+        light1->setPosition(vec3(0.0, 500.0, 0.0));
+        light1->setRadius(50);
+        light1->setIntensity(1.0);
+
+        light2->setColor(vec3(1.0, 0.0, 0.0));
+        light2->setPosition(vec3(500, 100, 500));
+        light2->setRadius(50);
+        light2->setIntensity(1.0);
 
         while(device.run())
         {

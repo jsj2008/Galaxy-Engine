@@ -52,6 +52,11 @@ namespace  GXY
         void renderAmbientOcclusion(void);
 
         /**
+         * @brief renderPointLights
+         */
+        void renderPointLights(void);
+
+        /**
          * @brief Render the Quad with Post Processing
          */
         void renderFinal(void);
@@ -82,6 +87,7 @@ namespace  GXY
         std::shared_ptr<AbstractCamera> mCamera; //*< The Camera
 
         std::shared_ptr<FrameBuffer> mGeometryFrameBuffer; //*< The FrameBuffer used to render Geometry
+        std::shared_ptr<FrameBuffer> mDirectLightFrameBuffer; //*< The FrameBuffer used to render DirectLighting
         std::shared_ptr<Texture> mImageAmbientOcclusion; //*< AO, Horizontal Pass, Vertical Pass
     };
 }

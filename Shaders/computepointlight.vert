@@ -16,14 +16,9 @@
 #define WORLD_POINT_LIGHT 7
 #define COMMAND_POINT_LIGHT 8
 
-layout(location = 0) in vec3 inPos;
-
-layout(binding = CLIP, shared) readonly buffer ClipSpaceBuffer
-{
-    mat4 toClipSpace[];
-};
+layout(location = 0) in vec2 inPos;
 
 void main(void)
 {
-    gl_Position = toClipSpace[gl_DrawIDARB] * vec4(inPos, 1.0);
+    gl_Position = vec4(inPos, 1.0, 1.0);
 }

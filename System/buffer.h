@@ -113,20 +113,14 @@ namespace GXY
         Buffer<T> &operator=(Buffer<T> const &buffer) = delete;
 
         /**
-         * @brief Create one and only one Buffer
-         */
-        inline void create(void)
-        {
-            destroy();
-            glGenBuffers(1, &mId);
-        }
-
-        /**
          * @brief Allocate nElements in video Memory
          * @param nElements : Number of elements
          */
         inline void allocate(size_t nElements)
         {
+            destroy();
+            glGenBuffers(1, &mId);
+
             u32 flags = GL_MAP_PERSISTENT_BIT | GL_MAP_WRITE_BIT;
 
             glNamedBufferStorageEXT(mId, nElements * sizeof(T), nullptr, flags);
@@ -142,19 +136,21 @@ namespace GXY
             u32 flags = GL_MAP_PERSISTENT_BIT | GL_MAP_WRITE_BIT;
             u32 newBuffer;
 
-            // Allocate a new Buffer, copy actually in new buffer, delete actualy
             if(mNumElementsMax == 0)
-                mNumElementsMax = 1;
+                allocate(1);
 
+            // Allocate a new Buffer, copy actually in new buffer, delete actualy
             else
+            {
                 mNumElementsMax *= 2;
 
-            glGenBuffers(1, &newBuffer);
-            glNamedBufferStorageEXT(newBuffer, mNumElementsMax * sizeof(T), nullptr, flags);
-            mPtr = (T*)glMapNamedBufferRangeEXT(newBuffer, 0, mNumElementsMax * sizeof(T), flags);
-            glNamedCopyBufferSubDataEXT(mId, newBuffer, 0, 0, (mNumElementsMax / 2) * sizeof(T));
-            glDeleteBuffers(1, &mId);
-            mId = newBuffer;
+                glGenBuffers(1, &newBuffer);
+                glNamedBufferStorageEXT(newBuffer, mNumElementsMax * sizeof(T), nullptr, flags);
+                mPtr = (T*)glMapNamedBufferRangeEXT(newBuffer, 0, mNumElementsMax * sizeof(T), flags);
+                glNamedCopyBufferSubDataEXT(mId, newBuffer, 0, 0, (mNumElementsMax / 2) * sizeof(T));
+                glDeleteBuffers(1, &mId);
+                mId = newBuffer;
+            }
         }
 
         /**

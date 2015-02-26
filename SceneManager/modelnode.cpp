@@ -7,7 +7,7 @@ using namespace std;
 
 namespace GXY
 {
-    ModelNode::ModelNode(std::string const &path, std::shared_ptr<Node> parent) :
+    ModelNode::ModelNode(std::string const &path, std::shared_ptr<Node> const &parent) :
         mParent(parent), mModel(global->ressourceManager->getModel(path)), mMatrix(mat4(1.0f))
     {
         mAABB = computeAABB3D(mModel->AABB(), mParent->mGlobalMatrix);

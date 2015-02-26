@@ -16,10 +16,15 @@ namespace GXY
         mRootNode = make_shared<Node>(mat4(1.0f));
 
         mGeometryFrameBuffer = make_shared<FrameBuffer>();
+        mDirectLightFrameBuffer = make_shared<FrameBuffer>();
 
         mGeometryFrameBuffer->create();
+        mDirectLightFrameBuffer->create();
+
         mGeometryFrameBuffer->createTexture(powerOf2(global->device->width()), powerOf2(global->device->height()),
                                             {RGB8_UNORM, RGB32F, RGB32F, RG16F}, true, false);
+
+        mDirectLightFrameBuffer->createTexture(powerOf2(global->device->width()), powerOf2(global->device->height()), {RGB8_UNORM}, false, false);
 
         mImageAmbientOcclusion = make_shared<Texture>(3);
 
@@ -45,6 +50,7 @@ namespace GXY
 
         renderModels();
         renderAmbientOcclusion();
+        renderPointLights();
 
         renderFinal();
     }
@@ -53,30 +59,30 @@ namespace GXY
     {
         mCamera->update();
 
-        global->Model.command->setToZeroElement();
-        global->Model.toWorldSpace->setToZeroElement();
-
-        global->Uniform.contextBuffer->map()->frustrumMatrix = mCamera->toClipSpace();
-
-        for(u32 i = 0; i < 6; ++i)
-            global->Uniform.contextBuffer->map()->planesFrustrum[i] = mCamera->frustrum().mPlanes[i].plane;
-
         global->Uniform.contextBuffer->map()->inverseSizeFrameBufferAO = vec4(1.0f) / vec4(powerOf2(global->device->width()), powerOf2(global->device->height()),
                                                                                            powerOf2(global->device->width()), powerOf2(global->device->height()));
     }
 
     void SceneManager::renderModels()
     {
-        mGeometryFrameBuffer->bind();
+        global->Model.command->setToZeroElement();
+        global->Model.toWorldSpace->setToZeroElement();
+
+        global->Uniform.frustrumBuffer->map()->frustrumMatrix = mCamera->toClipSpace();
+
+        for(u32 i = 0; i < 6; ++i)
+            global->Uniform.frustrumBuffer->map()->planesFrustrum[i] = mCamera->frustrum().mPlanes[i].plane;
+
+        mGeometryFrameBuffer->bind();   
             global->device->clearDepthColorBuffer();
 
             mRootNode->pushModelsInPipeline(mCamera->frustrum());
-            global->Uniform.contextBuffer->map()->numberMeshes.x = global->Model.command->numElements();
+            global->Uniform.frustrumBuffer->map()->numberMeshesPointLights.x = global->Model.command->numElements();
 
             // Compute Matrix and Culling pass
             global->Shaders.matrixCulling->use();
                 glMemoryBarrier(GL_SHADER_STORAGE_BARRIER_BIT | GL_UNIFORM_BARRIER_BIT | GL_COMMAND_BARRIER_BIT);
-                glDispatchCompute(global->Model.command->numElements() / 128 + 1, 1, 1);
+                glDispatchCompute(global->Model.command->numElements() / 64 + 1, 1, 1);
 
             //Depth Pass
             global->Model.command->bind(DRAW_INDIRECT);
@@ -97,6 +103,38 @@ namespace GXY
                 glMultiDrawElementsIndirect(GL_TRIANGLES, GL_UNSIGNED_INT, nullptr, global->Model.command->numElements(), 0);
             glDepthFunc(GL_LESS);
             glDepthMask(GL_TRUE);
+    }
+
+    void SceneManager::renderPointLights()
+    {
+        global->Lighting.commandPointLights->setToZeroElement();
+        global->Lighting.pointLight->setToZeroElement();
+        global->Lighting.toWorldSpace->setToZeroElement();
+
+        mDirectLightFrameBuffer->bind();
+            global->device->clearColorBuffer();
+
+            glEnable(GL_BLEND);
+            glBlendEquation(GL_FUNC_ADD);
+            glBlendFunc(GL_ONE, GL_ONE);
+
+            mRootNode->pushPointLightsInPipeline();
+            global->Uniform.frustrumBuffer->map()->numberMeshesPointLights.y = global->Lighting.commandPointLights->numElements();
+
+            global->Shaders.projectPointLights->use();
+            glMemoryBarrier(GL_SHADER_STORAGE_BARRIER_BIT | GL_UNIFORM_BARRIER_BIT);
+
+            glDispatchCompute(global->Lighting.commandPointLights->numElements() / 64 + 1, 1, 1);
+
+            global->Shaders.computePointLights->use();
+            global->Lighting.vaoPointLight->bind();
+            global->Lighting.commandPointLights->bind(DRAW_INDIRECT);
+
+            synchronize();
+            glMemoryBarrier(GL_SHADER_STORAGE_BARRIER_BIT | GL_VERTEX_ATTRIB_ARRAY_BARRIER_BIT | GL_COMMAND_BARRIER_BIT);
+            glMultiDrawArraysIndirect(GL_TRIANGLE_STRIP, nullptr, global->Lighting.commandPointLights->numElements(), 0);
+
+            glDisable(GL_BLEND);
     }
 
     void SceneManager::renderAmbientOcclusion()
@@ -133,6 +171,7 @@ namespace GXY
 
         mGeometryFrameBuffer->bindTextures(0, 0, 1);
         mImageAmbientOcclusion->bindTextures(2, 1, 1);
+        mDirectLightFrameBuffer->bindTextures(0, 2, 1);
         global->device->setViewPort();
 
             synchronize();

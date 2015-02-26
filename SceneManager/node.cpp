@@ -8,6 +8,7 @@
 #include "node.h"
 #include "../System/device.h"
 #include "modelnode.h"
+#include "pointlightnode.h"
 
 using namespace glm;
 using namespace std;
@@ -73,6 +74,9 @@ namespace GXY
         for(auto model : mModels)
             model->updateAABB();
 
+        for(auto pointLight : mPointLights)
+            pointLight->updateMatrix();
+
         for(auto child : mChildren)
             child->mApplyMatrixToChildrenAndModels(matrix);
     }
@@ -125,7 +129,7 @@ namespace GXY
         mBuildAABB();
     }
 
-    shared_ptr<Node> addNode(shared_ptr<Node> parent)
+    shared_ptr<Node> addNode(shared_ptr<Node> const &parent)
     {
         shared_ptr<Node> newNode = make_shared<Node>(parent->mGlobalMatrix);
 
@@ -137,13 +141,22 @@ namespace GXY
         return newNode;
     }
 
-    shared_ptr<ModelNode> addModel(shared_ptr<Node> parent, std::string const &path)
+    shared_ptr<ModelNode> addModel(shared_ptr<Node> const &parent, std::string const &path)
     {
         std::shared_ptr<ModelNode> toPush = make_shared<ModelNode>(path, parent);
 
         parent->mModels.push_back(toPush);
 
         parent->mActualizeBoundingBoxes();
+
+        return toPush;
+    }
+
+    shared_ptr<PointLightNode> addPointLight(const std::shared_ptr<Node> &parent)
+    {
+        std::shared_ptr<PointLightNode> toPush = make_shared<PointLightNode>(parent);
+
+        parent->mPointLights.push_back(toPush);
 
         return toPush;
     }
@@ -158,5 +171,14 @@ namespace GXY
 
         for(auto child : mChildren)
             child->pushModelsInPipeline(frustrum);
+    }
+
+    void Node::pushPointLightsInPipeline(void)
+    {
+        for(auto pointLight : mPointLights)
+            pointLight->pushInPipeline();
+
+        for(auto child : mChildren)
+            child->pushPointLightsInPipeline();
     }
 }
