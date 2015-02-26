@@ -41,8 +41,12 @@ namespace  GXY
          */
         void initialize(void);
 
+        void pushModelsInPipeline(std::shared_ptr<AbstractCamera> const &camera);
+
+        void renderDepthPass(void);
+
         /**
-         * @brief Render all Models
+         * @brief Render all Models on equal Depth
          */
         void renderModels(void);
 

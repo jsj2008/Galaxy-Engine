@@ -48,9 +48,21 @@ namespace GXY
     {
         initialize();
 
-        renderModels();
+        mGeometryFrameBuffer->bind();
+        global->device->clearDepthColorBuffer();
+            pushModelsInPipeline(mCamera);
+            renderDepthPass();
+            renderModels();
+
         renderAmbientOcclusion();
-        renderPointLights();
+
+        mDirectLightFrameBuffer->bind();
+        global->device->clearColorBuffer();
+        glEnable(GL_BLEND);
+        glBlendEquation(GL_FUNC_ADD);
+        glBlendFunc(GL_ONE, GL_ONE);
+            renderPointLights();
+        glDisable(GL_BLEND);
 
         renderFinal();
     }
@@ -63,7 +75,7 @@ namespace GXY
                                                                                            powerOf2(global->device->width()), powerOf2(global->device->height()));
     }
 
-    void SceneManager::renderModels()
+    void SceneManager::pushModelsInPipeline(shared_ptr<AbstractCamera> const &camera)
     {
         global->Model.command->setToZeroElement();
         global->Model.toWorldSpace->setToZeroElement();
@@ -73,9 +85,6 @@ namespace GXY
         for(u32 i = 0; i < 6; ++i)
             global->Uniform.frustrumBuffer->map()->planesFrustrum[i] = mCamera->frustrum().mPlanes[i].plane;
 
-        mGeometryFrameBuffer->bind();   
-            global->device->clearDepthColorBuffer();
-
             mRootNode->pushModelsInPipeline(mCamera->frustrum());
             global->Uniform.frustrumBuffer->map()->numberMeshesPointLights.x = global->Model.command->numElements();
 
@@ -83,26 +92,33 @@ namespace GXY
             global->Shaders.matrixCulling->use();
                 glMemoryBarrier(GL_SHADER_STORAGE_BARRIER_BIT | GL_UNIFORM_BARRIER_BIT | GL_COMMAND_BARRIER_BIT);
                 glDispatchCompute(global->Model.command->numElements() / 64 + 1, 1, 1);
+    }
 
-            //Depth Pass
-            global->Model.command->bind(DRAW_INDIRECT);
-            global->Shaders.depth->use();
-            global->Model.vaoDepth->bind();
-            glColorMask(GL_FALSE, GL_FALSE, GL_FALSE, GL_FALSE);
+    void SceneManager::renderDepthPass()
+    {
+        //Depth Pass
+        global->Model.command->bind(DRAW_INDIRECT);
+        global->Shaders.depth->use();
+        global->Model.vaoDepth->bind();
+        glColorMask(GL_FALSE, GL_FALSE, GL_FALSE, GL_FALSE);
 
-                synchronize(); // clear and dispatch
-                glMemoryBarrier(GL_COMMAND_BARRIER_BIT | GL_SHADER_STORAGE_BARRIER_BIT);
-                glMultiDrawElementsIndirect(GL_TRIANGLES, GL_UNSIGNED_INT, nullptr, global->Model.command->numElements(), 0);
+            synchronize(); // clear and dispatch
+            glMemoryBarrier(GL_COMMAND_BARRIER_BIT | GL_SHADER_STORAGE_BARRIER_BIT);
+            glMultiDrawElementsIndirect(GL_TRIANGLES, GL_UNSIGNED_INT, nullptr, global->Model.command->numElements(), 0);
+    }
 
-            // Rendering pass
-            global->Shaders.model->use();
-            global->Model.vao->bind();
-            glColorMask(GL_TRUE, GL_TRUE, GL_TRUE, GL_TRUE);
-            glDepthFunc(GL_EQUAL);
-            glDepthMask(GL_FALSE);
-                glMultiDrawElementsIndirect(GL_TRIANGLES, GL_UNSIGNED_INT, nullptr, global->Model.command->numElements(), 0);
-            glDepthFunc(GL_LESS);
-            glDepthMask(GL_TRUE);
+    void SceneManager::renderModels()
+    {
+        // Rendering pass
+        global->Shaders.model->use();
+        global->Model.vao->bind();
+        synchronize();
+        glColorMask(GL_TRUE, GL_TRUE, GL_TRUE, GL_TRUE);
+        glDepthFunc(GL_EQUAL);
+        glDepthMask(GL_FALSE);
+            glMultiDrawElementsIndirect(GL_TRIANGLES, GL_UNSIGNED_INT, nullptr, global->Model.command->numElements(), 0);
+        glDepthFunc(GL_LESS);
+        glDepthMask(GL_TRUE);
     }
 
     void SceneManager::renderPointLights()
@@ -111,32 +127,23 @@ namespace GXY
         global->Lighting.pointLight->setToZeroElement();
         global->Lighting.toWorldSpace->setToZeroElement();
 
-        mDirectLightFrameBuffer->bind();
-            global->device->clearColorBuffer();
+        mRootNode->pushPointLightsInPipeline();
+        global->Uniform.frustrumBuffer->map()->numberMeshesPointLights.y = global->Lighting.commandPointLights->numElements();
 
-            glEnable(GL_BLEND);
-            glBlendEquation(GL_FUNC_ADD);
-            glBlendFunc(GL_ONE, GL_ONE);
+        global->Shaders.projectPointLights->use();
+        glMemoryBarrier(GL_SHADER_STORAGE_BARRIER_BIT | GL_UNIFORM_BARRIER_BIT);
 
-            mRootNode->pushPointLightsInPipeline();
-            global->Uniform.frustrumBuffer->map()->numberMeshesPointLights.y = global->Lighting.commandPointLights->numElements();
+        glDispatchCompute(global->Lighting.commandPointLights->numElements() / 64 + 1, 1, 1);
 
-            global->Shaders.projectPointLights->use();
-            glMemoryBarrier(GL_SHADER_STORAGE_BARRIER_BIT | GL_UNIFORM_BARRIER_BIT);
+        global->Shaders.computePointLights->use();
+        global->Lighting.vaoPointLight->bind();
+        global->Lighting.commandPointLights->bind(DRAW_INDIRECT);
+        mGeometryFrameBuffer->bindTextures(1, 0, 2);
+        mGeometryFrameBuffer->bindTextures(3, 2, 1);
 
-            glDispatchCompute(global->Lighting.commandPointLights->numElements() / 64 + 1, 1, 1);
-
-            global->Shaders.computePointLights->use();
-            global->Lighting.vaoPointLight->bind();
-            global->Lighting.commandPointLights->bind(DRAW_INDIRECT);
-            mGeometryFrameBuffer->bindTextures(1, 0, 2);
-            mGeometryFrameBuffer->bindTextures(3, 2, 1);
-
-            synchronize();
-            glMemoryBarrier(GL_SHADER_STORAGE_BARRIER_BIT | GL_VERTEX_ATTRIB_ARRAY_BARRIER_BIT | GL_COMMAND_BARRIER_BIT);
-            glMultiDrawArraysIndirect(GL_TRIANGLE_STRIP, nullptr, global->Lighting.commandPointLights->numElements(), 0);
-
-            glDisable(GL_BLEND);
+        synchronize();
+        glMemoryBarrier(GL_SHADER_STORAGE_BARRIER_BIT | GL_VERTEX_ATTRIB_ARRAY_BARRIER_BIT | GL_COMMAND_BARRIER_BIT);
+        glMultiDrawArraysIndirect(GL_TRIANGLE_STRIP, nullptr, global->Lighting.commandPointLights->numElements(), 0);
     }
 
     void SceneManager::renderAmbientOcclusion()
