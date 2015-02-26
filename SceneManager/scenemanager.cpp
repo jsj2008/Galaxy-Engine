@@ -80,12 +80,12 @@ namespace GXY
         global->Model.command->setToZeroElement();
         global->Model.toWorldSpace->setToZeroElement();
 
-        global->Uniform.frustrumBuffer->map()->frustrumMatrix = mCamera->toClipSpace();
-        global->Uniform.frustrumBuffer->map()->posCamera = vec4(mCamera->position(), 0.0);
+        global->Uniform.frustrumBuffer->map()->frustrumMatrix = camera->toClipSpace();
+        global->Uniform.frustrumBuffer->map()->posCamera = vec4(camera->position(), 0.0);
         for(u32 i = 0; i < 6; ++i)
-            global->Uniform.frustrumBuffer->map()->planesFrustrum[i] = mCamera->frustrum().mPlanes[i].plane;
+            global->Uniform.frustrumBuffer->map()->planesFrustrum[i] = camera->frustrum().mPlanes[i].plane;
 
-            mRootNode->pushModelsInPipeline(mCamera->frustrum());
+            mRootNode->pushModelsInPipeline(camera->frustrum());
             global->Uniform.frustrumBuffer->map()->numberMeshesPointLights.x = global->Model.command->numElements();
 
             // Compute Matrix and Culling pass
