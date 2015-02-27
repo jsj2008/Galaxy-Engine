@@ -69,21 +69,19 @@ namespace GXY
          * @param h : Height of each Texture
          * @param internalFormat : vector of FormatType for each ColorAttachment
          * @param depth : add a depth Texture (aka depthBuffer)
-         * @param stencil : add a stencil Texture (aka stencil Buffer)
          */
         void createTexture(u32 w, u32 h,
                            std::vector<FormatType> const &internalFormat,
-                           bool depth, bool stencil);
+                           bool depth);
 
         /**
          * @brief Create one or several empty Cube Map Textures
          * @param w : Width of each Texture in CubeMap
          * @param h : Height of each Texture in CubeMap
          * @param internalFormat : vector of FormatType for each ColorAttachment
-         * @param depth : Add a depth Texture (only one)
-         * @param stencil : Add a stencil Texture (only one)
+         * @param depth : Add a depth Texture
          */
-        void createCubeMapTexture(u32 w, u32 h, std::vector<FormatType> const &internalFormat, bool depth, bool stencil);
+        void createCubeMapTexture(u32 w, u32 h, std::vector<FormatType> const &internalFormat, bool depth);
         
         /**
          * @brief Let to attach the Good Texture (6 faces) at the FrameBuffer
@@ -145,7 +143,7 @@ namespace GXY
         u32 mId; //!< ID OpenGL for FrameBuffer
         u32 mNumber; //!< Number Color Buffer
         u32 mW, mH; //!< Size of Textures
-        Texture mColorBuffer, mDepthBuffer, mStencilBuffer; //!< Textures
+        Texture mColorBuffer, mDepthBuffer; //!< Textures
     };
 }
 

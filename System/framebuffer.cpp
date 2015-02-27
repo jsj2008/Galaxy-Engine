@@ -42,12 +42,10 @@ static GLenum attachments[] = {GL_COLOR_ATTACHMENT0,
         mNumber = std::move(frameBuffer.mNumber);
         mColorBuffer = std::move(frameBuffer.mColorBuffer);
         mDepthBuffer = std::move(frameBuffer.mDepthBuffer);
-        mStencilBuffer = std::move(frameBuffer.mStencilBuffer);
 
         frameBuffer.mId = frameBuffer.mH = frameBuffer.mW = frameBuffer.mNumber = 0;
         frameBuffer.mColorBuffer.destroy();
         frameBuffer.mDepthBuffer.destroy();
-        frameBuffer.mStencilBuffer.destroy();
     }
 
     FrameBuffer &FrameBuffer::operator=(FrameBuffer &&frameBuffer)
@@ -58,12 +56,10 @@ static GLenum attachments[] = {GL_COLOR_ATTACHMENT0,
         mNumber = std::move(frameBuffer.mNumber);
         mColorBuffer = std::move(frameBuffer.mColorBuffer);
         mDepthBuffer = std::move(frameBuffer.mDepthBuffer);
-        mStencilBuffer = std::move(frameBuffer.mStencilBuffer);
 
         frameBuffer.mId = frameBuffer.mH = frameBuffer.mW = frameBuffer.mNumber = 0;
         frameBuffer.mColorBuffer.destroy();
         frameBuffer.mDepthBuffer.destroy();
-        frameBuffer.mStencilBuffer.destroy();
 
         return *this;
     }
@@ -76,7 +72,7 @@ static GLenum attachments[] = {GL_COLOR_ATTACHMENT0,
 
     void FrameBuffer::createTexture(u32 w, u32 h,
                                     vector<FormatType> const &internalFormat,
-                                    bool depth, bool stencil)
+                                    bool depth)
     {
         if(mId == 0)
             throw Except("FrameBuffer is not create");
@@ -102,24 +98,16 @@ static GLenum attachments[] = {GL_COLOR_ATTACHMENT0,
                                            mDepthBuffer.mId[0], 0);
         }
 
-        if(stencil == true)
-        {
-            mStencilBuffer.create(1);
-            mStencilBuffer.emptyStencilTexture(0, w, h);
-            glNamedFramebufferTexture2DEXT(mId, GL_STENCIL_ATTACHMENT, GL_TEXTURE_2D,
-                                           mStencilBuffer.mId[0], 0);
-        }
-
         // Les textures ont la même taille
         mW = w;
         mH = h;
 
-        glFramebufferDrawBuffersEXT(mId, internalFormat.size(), attachments);
+        glFramebufferDrawBuffersEXT(mId, mNumber, attachments);
     }
 
     void FrameBuffer::createCubeMapTexture(u32 w, u32 h,
                                            vector<FormatType> const &internalFormat,
-                                           bool depth, bool stencil)
+                                           bool depth)
     {
         if(mId == 0)
             throw Except("FrameBuffer is not create");
@@ -140,14 +128,6 @@ static GLenum attachments[] = {GL_COLOR_ATTACHMENT0,
                                            mDepthBuffer.mId[0], 0);
         }
 
-        if(stencil == true)
-        {
-            mStencilBuffer.create(1);
-            mStencilBuffer.emptyStencilTexture(0, w, h);
-            glNamedFramebufferTexture2DEXT(mId, GL_STENCIL_ATTACHMENT, GL_TEXTURE_2D,
-                                           mStencilBuffer.mId[0], 0);
-        }
-
         // Les textures ont la même taille
         mW = w;
         mH = h;
@@ -162,9 +142,6 @@ static GLenum attachments[] = {GL_COLOR_ATTACHMENT0,
 
         if(mDepthBuffer.isCreate())
             glNamedFramebufferTexture2DEXT(mId, GL_DEPTH_ATTACHMENT, target, mDepthBuffer.mId[0], 0);
-
-        if(mStencilBuffer.isCreate())
-            glNamedFramebufferTexture2DEXT(mId, GL_STENCIL_ATTACHMENT, target, mStencilBuffer.mId[0], 0);
     }
 
     void FrameBuffer::attachTextureArray(u32 index)
@@ -174,9 +151,6 @@ static GLenum attachments[] = {GL_COLOR_ATTACHMENT0,
 
         if(mDepthBuffer.isCreate())
             glNamedFramebufferTextureLayerEXT(mId, GL_DEPTH_ATTACHMENT, mDepthBuffer.mId[0], 0, index);
-
-        if(mStencilBuffer.isCreate())
-            glNamedFramebufferTextureLayerEXT(mId, GL_STENCIL_ATTACHMENT, mStencilBuffer.mId[0], 0, index);
     }
 
     void FrameBuffer::attachCubeMapArray(CubeMap target, u32 index)
@@ -187,9 +161,6 @@ static GLenum attachments[] = {GL_COLOR_ATTACHMENT0,
 
         if(mDepthBuffer.isCreate())
             glNamedFramebufferTextureLayerEXT(mId, GL_DEPTH_ATTACHMENT, mDepthBuffer.mId[0], 0, index * 6 + indexFace);
-
-        if(mStencilBuffer.isCreate())
-            glNamedFramebufferTextureLayerEXT(mId, GL_STENCIL_ATTACHMENT, mStencilBuffer.mId[0], 0, index * 6 + indexFace);
     }
 
     void FrameBuffer::bind(void)
@@ -220,7 +191,6 @@ static GLenum attachments[] = {GL_COLOR_ATTACHMENT0,
             glDeleteFramebuffers(1, &mId);
             mColorBuffer.destroy();
             mDepthBuffer.destroy();
-            mStencilBuffer.destroy();
             mId = 0;
             mW = 0;
             mH = 0;

@@ -22,9 +22,9 @@ namespace GXY
         mDirectLightFrameBuffer->create();
 
         mGeometryFrameBuffer->createTexture(powerOf2(global->device->width()), powerOf2(global->device->height()),
-                                            {RGB8_UNORM, RGB32F, RGB32F, RG32F}, true, false);
+                                            {RGB8_UNORM, RGB32F, RGB32F, RG32F}, true);
 
-        mDirectLightFrameBuffer->createTexture(powerOf2(global->device->width()), powerOf2(global->device->height()), {RGB16F}, false, false);
+        mDirectLightFrameBuffer->createTexture(powerOf2(global->device->width()), powerOf2(global->device->height()), {RGB16F}, false);
 
         mImageAmbientOcclusion = make_shared<Texture>(3);
 

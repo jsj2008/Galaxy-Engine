@@ -87,6 +87,14 @@ namespace GXY
         void emptyTexture(u32 index, u32 w, u32 h, FormatType internalFormat);
 
         /**
+         * @brief Create one depth Texture
+         * @param index : Index of this Texture
+         * @param w : Width of this Texture
+         * @param h : Height of this Texture
+         */
+        void emptyDepthTexture(u32 index, u32 w, u32 h);
+
+        /**
          * @brief Create one empty CubeMap
          * @param index : Index of this CubeMap
          * @param w : Width of each side of this CubeMap
@@ -95,21 +103,15 @@ namespace GXY
          */
         void emptyCubeMap(u32 index, u32 w, u32 h, FormatType internalFormat);
 
-        /**
-         * @brief Create one stencil Texture
-         * @param index : Index of this Texture
-         * @param w : Width of this Texture
-         * @param h : Height of this Texture
-         */
-        void emptyStencilTexture(u32 index, u32 w, u32 h);
+        void emptyDepthCubeMap(u32 index, u32 w, u32 h);
 
-        /**
-         * @brief Create one depth Texture
-         * @param index : Index of this Texture
-         * @param w : Width of this Texture
-         * @param h : Height of this Texture
-         */
-        void emptyDepthTexture(u32 index, u32 w, u32 h);
+        void emptyTextureArray(u32 index, u32 number, u32 w, u32 h, FormatType internalFormat);
+
+        void emptyDepthTextureArray(u32 index, u32 number, u32 w, u32 h);
+
+        void emptyCubeMapArray(u32 number, u32 index, u32 w, u32 h, FormatType internalFormat);
+
+        void emptyDepthCubeMapArray(u32 number, u32 index, u32 w, u32 h);
 
         /**
          * @brief Load image (path)
