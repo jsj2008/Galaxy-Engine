@@ -67,7 +67,7 @@ namespace GXY
          * @brief Create one or several empty Texture (color, depth, and stencil)
          * @param w : Width of each Texture
          * @param h : Height of each Texture
-         * @param internalFormat : vector of FormatType for each Texture
+         * @param internalFormat : vector of FormatType for each ColorAttachment
          * @param depth : add a depth Texture (aka depthBuffer)
          * @param stencil : add a stencil Texture (aka stencil Buffer)
          */
@@ -79,7 +79,7 @@ namespace GXY
          * @brief Create one or several empty Cube Map Textures
          * @param w : Width of each Texture in CubeMap
          * @param h : Height of each Texture in CubeMap
-         * @param internalFormat : vector of FormatType each Texture
+         * @param internalFormat : vector of FormatType for each ColorAttachment
          * @param depth : Add a depth Texture (only one)
          * @param stencil : Add a stencil Texture (only one)
          */
@@ -89,7 +89,20 @@ namespace GXY
          * @brief Let to attach the Good Texture (6 faces) at the FrameBuffer
          * @param target : X Positive to Z Negative
          */
-        void attachCubeMapLayer(GLenum target);
+        void attachCubeMap(CubeMap target);
+
+        /**
+         * @brief Let to attache the good Texture on the Array at the FrameBuffer
+         * @param index : Index of Array
+         */
+        void attachTextureArray(u32 index);
+
+        /**
+         * @brief Fusion of attachCubeMap and attachTextureArray for CubeMapArray
+         * @param target : X Positive to Z Negative
+         * @param index : Index of Array
+         */
+        void attachCubeMapArray(CubeMap target, u32 index);
 
         /**
          * @brief Bind the FrameBuffer to draw inside it
@@ -103,6 +116,12 @@ namespace GXY
          * @param count : Number of textures to bind
          */
         void bindTextures(u32 indexFirstTexture, u32 firstUnit, u32 count);
+
+        /**
+         * @brief Bind Texture DepthBuffer on FrameBuffer to OpenGL Sampler
+         * @param firstUnit : first Sampler unit binding
+         */
+        void bindDepthBufferTexture(u32 firstUnit);
         
         /**
          * @brief Bind images on FrameBuffer to OpenGL Image
@@ -124,9 +143,9 @@ namespace GXY
 
     private:
         u32 mId; //!< ID OpenGL for FrameBuffer
-        u32 mNumber; //!< Number Textures
+        u32 mNumber; //!< Number Color Buffer
         u32 mW, mH; //!< Size of Textures
-        Texture mTexture; //!< Texture
+        Texture mColorBuffer, mDepthBuffer, mStencilBuffer; //!< Textures
     };
 }
 

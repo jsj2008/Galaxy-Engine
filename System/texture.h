@@ -72,6 +72,11 @@ namespace GXY
          */
         void create(u32 number);
 
+        bool isCreate(void)
+        {
+            return mId.size() != 0;
+        }
+
         /**
          * @brief Create one empty texture 2D
          * @param index : Index of this texture

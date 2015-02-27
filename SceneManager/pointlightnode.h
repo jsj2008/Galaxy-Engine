@@ -31,4 +31,5 @@ namespace GXY
         float mIntensity;
     };
 }
+
 #endif // POINTLIGHTNODE_H

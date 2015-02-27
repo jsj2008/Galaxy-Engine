@@ -10,6 +10,23 @@
 
 namespace GXY
 {
+static GLenum attachments[] = {GL_COLOR_ATTACHMENT0,
+                               GL_COLOR_ATTACHMENT1,
+                               GL_COLOR_ATTACHMENT2,
+                               GL_COLOR_ATTACHMENT3,
+                               GL_COLOR_ATTACHMENT4,
+                               GL_COLOR_ATTACHMENT5,
+                               GL_COLOR_ATTACHMENT6,
+                               GL_COLOR_ATTACHMENT7,
+                               GL_COLOR_ATTACHMENT8,
+                               GL_COLOR_ATTACHMENT9,
+                               GL_COLOR_ATTACHMENT10,
+                               GL_COLOR_ATTACHMENT11,
+                               GL_COLOR_ATTACHMENT12,
+                               GL_COLOR_ATTACHMENT13,
+                               GL_COLOR_ATTACHMENT14,
+                               GL_COLOR_ATTACHMENT15
+                              };
     using namespace std;
 
     FrameBuffer::FrameBuffer(void) : mId(0), mNumber(0), mW(0), mH(0)
@@ -23,10 +40,14 @@ namespace GXY
         mH = std::move(frameBuffer.mH);
         mW = std::move(frameBuffer.mW);
         mNumber = std::move(frameBuffer.mNumber);
-        mTexture = std::move(frameBuffer.mTexture);
+        mColorBuffer = std::move(frameBuffer.mColorBuffer);
+        mDepthBuffer = std::move(frameBuffer.mDepthBuffer);
+        mStencilBuffer = std::move(frameBuffer.mStencilBuffer);
 
         frameBuffer.mId = frameBuffer.mH = frameBuffer.mW = frameBuffer.mNumber = 0;
-        frameBuffer.mTexture.destroy();
+        frameBuffer.mColorBuffer.destroy();
+        frameBuffer.mDepthBuffer.destroy();
+        frameBuffer.mStencilBuffer.destroy();
     }
 
     FrameBuffer &FrameBuffer::operator=(FrameBuffer &&frameBuffer)
@@ -35,10 +56,14 @@ namespace GXY
         mH = std::move(frameBuffer.mH);
         mW = std::move(frameBuffer.mW);
         mNumber = std::move(frameBuffer.mNumber);
-        mTexture = std::move(frameBuffer.mTexture);
+        mColorBuffer = std::move(frameBuffer.mColorBuffer);
+        mDepthBuffer = std::move(frameBuffer.mDepthBuffer);
+        mStencilBuffer = std::move(frameBuffer.mStencilBuffer);
 
         frameBuffer.mId = frameBuffer.mH = frameBuffer.mW = frameBuffer.mNumber = 0;
-        frameBuffer.mTexture.destroy();
+        frameBuffer.mColorBuffer.destroy();
+        frameBuffer.mDepthBuffer.destroy();
+        frameBuffer.mStencilBuffer.destroy();
 
         return *this;
     }
@@ -56,61 +81,40 @@ namespace GXY
         if(mId == 0)
             throw Except("FrameBuffer is not create");
 
-        static GLenum buf[] = {GL_COLOR_ATTACHMENT0,
-                               GL_COLOR_ATTACHMENT1,
-                               GL_COLOR_ATTACHMENT2,
-                               GL_COLOR_ATTACHMENT3,
-                               GL_COLOR_ATTACHMENT4,
-                               GL_COLOR_ATTACHMENT5,
-                               GL_COLOR_ATTACHMENT6,
-                               GL_COLOR_ATTACHMENT7,
-                               GL_COLOR_ATTACHMENT8,
-                               GL_COLOR_ATTACHMENT9,
-                               GL_COLOR_ATTACHMENT10,
-                               GL_COLOR_ATTACHMENT11,
-                               GL_COLOR_ATTACHMENT12,
-                               GL_COLOR_ATTACHMENT13,
-                               GL_COLOR_ATTACHMENT14,
-                               GL_COLOR_ATTACHMENT15
-                              };
-
         mNumber = internalFormat.size();
 
-        if(depth == true)
-            ++mNumber;
+        mColorBuffer.create(mNumber);
 
-        if(stencil == true)
-            ++mNumber;
-
-        mTexture.create(mNumber);
-
-        for(u32 i = 0; i < internalFormat.size(); ++i)
+        for(u32 i = 0; i < mNumber; ++i)
         {
-            mTexture.emptyTexture(i, w, h, internalFormat[i]);
+            mColorBuffer.emptyTexture(i, w, h, internalFormat[i]);
             glNamedFramebufferTexture2DEXT(mId, GL_COLOR_ATTACHMENT0 + i, GL_TEXTURE_2D,
-                                           mTexture.mId[i], 0);
+                                           mColorBuffer.mId[i], 0);
         }
 
         if(depth == true)
         {
-            mTexture.emptyDepthTexture(internalFormat.size(), w, h);
+            mDepthBuffer.create(1);
+
+            mDepthBuffer.emptyDepthTexture(0, w, h);
 
             glNamedFramebufferTexture2DEXT(mId, GL_DEPTH_ATTACHMENT, GL_TEXTURE_2D,
-                                           mTexture.mId[internalFormat.size()], 0);
+                                           mDepthBuffer.mId[0], 0);
         }
 
         if(stencil == true)
         {
-            mTexture.emptyStencilTexture(internalFormat.size(), w, h);
+            mStencilBuffer.create(1);
+            mStencilBuffer.emptyStencilTexture(0, w, h);
             glNamedFramebufferTexture2DEXT(mId, GL_STENCIL_ATTACHMENT, GL_TEXTURE_2D,
-                                           mTexture.mId[internalFormat.size()], 0);
+                                           mStencilBuffer.mId[0], 0);
         }
-
-        glFramebufferDrawBuffersEXT(mId, internalFormat.size(), buf);
 
         // Les textures ont la même taille
         mW = w;
         mH = h;
+
+        glFramebufferDrawBuffersEXT(mId, internalFormat.size(), attachments);
     }
 
     void FrameBuffer::createCubeMapTexture(u32 w, u32 h,
@@ -122,61 +126,70 @@ namespace GXY
 
         mNumber = internalFormat.size();
 
-        if(depth == true)
-            ++mNumber;
+        mColorBuffer.create(mNumber);
 
-        if(stencil == true)
-            ++mNumber;
-
-        mTexture.create(mNumber);
-
-        for(u32 i = 0; i < internalFormat.size(); ++i)
-            mTexture.emptyCubeMap(i, w, h, internalFormat[i]);
+        for(u32 i = 0; i < mNumber; ++i)
+            mColorBuffer.emptyCubeMap(i, w, h, internalFormat[i]);
 
         if(depth == true)
         {
-            mTexture.emptyDepthTexture(internalFormat.size(), w, h);
+            mDepthBuffer.create(1);
+            mDepthBuffer.emptyDepthTexture(0, w, h);
 
             glNamedFramebufferTexture2DEXT(mId, GL_DEPTH_ATTACHMENT, GL_TEXTURE_2D,
-                                           mTexture.mId[internalFormat.size()], 0);
+                                           mDepthBuffer.mId[0], 0);
         }
 
         if(stencil == true)
         {
-            mTexture.emptyStencilTexture(internalFormat.size(), w, h);
+            mStencilBuffer.create(1);
+            mStencilBuffer.emptyStencilTexture(0, w, h);
             glNamedFramebufferTexture2DEXT(mId, GL_STENCIL_ATTACHMENT, GL_TEXTURE_2D,
-                                           mTexture.mId[internalFormat.size()], 0);
+                                           mStencilBuffer.mId[0], 0);
         }
 
         // Les textures ont la même taille
         mW = w;
         mH = h;
+
+        glFramebufferDrawBuffersEXT(mId, mNumber, attachments);
     }
 
-    void FrameBuffer::attachCubeMapLayer(GLenum target)
+    void FrameBuffer::attachCubeMap(CubeMap target)
     {
-        static GLenum buf[] = {GL_COLOR_ATTACHMENT0,
-                               GL_COLOR_ATTACHMENT1,
-                               GL_COLOR_ATTACHMENT2,
-                               GL_COLOR_ATTACHMENT3,
-                               GL_COLOR_ATTACHMENT4,
-                               GL_COLOR_ATTACHMENT5,
-                               GL_COLOR_ATTACHMENT6,
-                               GL_COLOR_ATTACHMENT7,
-                               GL_COLOR_ATTACHMENT8,
-                               GL_COLOR_ATTACHMENT9,
-                               GL_COLOR_ATTACHMENT10,
-                               GL_COLOR_ATTACHMENT11,
-                               GL_COLOR_ATTACHMENT12,
-                               GL_COLOR_ATTACHMENT13,
-                               GL_COLOR_ATTACHMENT14,
-                               GL_COLOR_ATTACHMENT15
-                              };
-
         for(u32 i = 0; i < mNumber; ++i)
-            glNamedFramebufferTexture2DEXT(mId, GL_COLOR_ATTACHMENT0 + i, target, mTexture.mId[i], 0);
+            glNamedFramebufferTexture2DEXT(mId, GL_COLOR_ATTACHMENT0 + i, target, mColorBuffer.mId[i], 0);
 
-        glFramebufferDrawBuffersEXT(mId, mNumber, buf);
+        if(mDepthBuffer.isCreate())
+            glNamedFramebufferTexture2DEXT(mId, GL_DEPTH_ATTACHMENT, target, mDepthBuffer.mId[0], 0);
+
+        if(mStencilBuffer.isCreate())
+            glNamedFramebufferTexture2DEXT(mId, GL_STENCIL_ATTACHMENT, target, mStencilBuffer.mId[0], 0);
+    }
+
+    void FrameBuffer::attachTextureArray(u32 index)
+    {
+        for(u32 i = 0; i < mNumber; ++i)
+            glNamedFramebufferTextureLayerEXT(mId, GL_COLOR_ATTACHMENT0 + i, mColorBuffer.mId[i], 0, index);
+
+        if(mDepthBuffer.isCreate())
+            glNamedFramebufferTextureLayerEXT(mId, GL_DEPTH_ATTACHMENT, mDepthBuffer.mId[0], 0, index);
+
+        if(mStencilBuffer.isCreate())
+            glNamedFramebufferTextureLayerEXT(mId, GL_STENCIL_ATTACHMENT, mStencilBuffer.mId[0], 0, index);
+    }
+
+    void FrameBuffer::attachCubeMapArray(CubeMap target, u32 index)
+    {
+        u32 indexFace = target - POS_X;
+        for(u32 i = 0; i < mNumber; ++i)
+            glNamedFramebufferTextureLayerEXT(mId, GL_COLOR_ATTACHMENT0 + i, mColorBuffer.mId[i], 0, index * 6 + indexFace);
+
+        if(mDepthBuffer.isCreate())
+            glNamedFramebufferTextureLayerEXT(mId, GL_DEPTH_ATTACHMENT, mDepthBuffer.mId[0], 0, index * 6 + indexFace);
+
+        if(mStencilBuffer.isCreate())
+            glNamedFramebufferTextureLayerEXT(mId, GL_STENCIL_ATTACHMENT, mStencilBuffer.mId[0], 0, index * 6 + indexFace);
     }
 
     void FrameBuffer::bind(void)
@@ -187,12 +200,17 @@ namespace GXY
 
     void FrameBuffer::bindTextures(u32 indexFirstTexture, u32 firstUnit, u32 count)
     {
-        mTexture.bindTextures(indexFirstTexture, firstUnit, count);
+        mColorBuffer.bindTextures(indexFirstTexture, firstUnit, count);
     }
 
     void FrameBuffer::bindImages(u32 indexFirstImage, u32 firstUnit, u32 count)
     {
-        mTexture.bindImages(indexFirstImage, firstUnit, count);
+        mColorBuffer.bindImages(indexFirstImage, firstUnit, count);
+    }
+
+    void FrameBuffer::bindDepthBufferTexture(u32 firstUnit)
+    {
+        mDepthBuffer.bindTextures(0, firstUnit, 1);
     }
 
     void FrameBuffer::destroy(void)
@@ -200,7 +218,9 @@ namespace GXY
         if(mId != 0)
         {
             glDeleteFramebuffers(1, &mId);
-            mTexture.destroy();
+            mColorBuffer.destroy();
+            mDepthBuffer.destroy();
+            mStencilBuffer.destroy();
             mId = 0;
             mW = 0;
             mH = 0;

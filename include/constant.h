@@ -55,6 +55,14 @@ namespace GXY
                     SHADER_STORAGE = GL_SHADER_STORAGE_BUFFER //!< Shader Storage Buffer : Global Memory
                    };
 
+    enum CubeMap{POS_X = GL_TEXTURE_CUBE_MAP_POSITIVE_X, //!< Right Side
+                 NEG_X = GL_TEXTURE_CUBE_MAP_NEGATIVE_X, //!< Left Side
+                 POS_Y = GL_TEXTURE_CUBE_MAP_POSITIVE_Y, //!< Up side
+                 NEG_Y = GL_TEXTURE_CUBE_MAP_NEGATIVE_Y, //!< Down Side
+                 POS_Z = GL_TEXTURE_CUBE_MAP_POSITIVE_Z, //!< Backward Side
+                 NEG_Z = GL_TEXTURE_CUBE_MAP_NEGATIVE_Z  //!< Forward Side
+                };
+
     /**
      * @brief Forgive some constants for Shader
      */
