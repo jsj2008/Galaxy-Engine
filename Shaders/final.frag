@@ -29,7 +29,7 @@ void main(void)
     vec3 diffuseColor = texture(diffuseSampler, texCoord).xyz;
     vec3 directLightColor = texture(directLightSampler, texCoord).xyz;
 
-    color = diffuseColor;
+    //color = diffuseColor;
     //color = vec3(ao);
-    color = ao * diffuseColor * (directLightColor);
+    color = ao * diffuseColor * (directLightColor + 0.2);
 }

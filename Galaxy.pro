@@ -58,5 +58,7 @@ DISTFILES += \
     Shaders/blurH.glsl \
     Shaders/projectpointlight.glsl \
     Shaders/computepointlight.vert \
-    Shaders/computepointlight.frag
+    Shaders/computepointlight.frag \
+    Shaders/pointlightdepth.vert \
+    Shaders/pointlightdepth.frag
 

@@ -77,7 +77,7 @@ namespace GXY
     }
 
     AbstractCamera::AbstractCamera(vec3 const &pos, vec3 const &look, CameraUp up, float angle, float ratio, float near, float far) :
-        mPos(pos), mLook(look), mUpType(up), mAngle(angle), mRatio(ratio), mNear(near), mFar(far)
+        mPos(pos, far), mLook(look), mUpType(up), mAngle(angle), mRatio(ratio), mNear(near), mFar(far)
     {
         mGetUp(up);
         mComputeToClipSpace();
@@ -95,12 +95,21 @@ namespace GXY
 
         else if(mUpType == CameraUp::CAM_UP_Z)
             mUp = vec3(0.0f, 0.0f, 1.0f);
+
+        else if(mUpType == CameraUp::CAM_DOWN_X)
+            mUp = vec3(-1.0, 0.0, 0.0);
+
+        else if(mUpType == CameraUp::CAM_DOWN_Y)
+            mUp = vec3(0.0, -1.0, 0.0);
+
+        else if(mUpType == CameraUp::CAM_DOWN_Z)
+            mUp = vec3(0.0, 0.0, -1.0);
     }
 
     void AbstractCamera::mComputeToClipSpace(void)
     {
-        mToClipSpace = perspective(mAngle, mRatio, mNear, mFar) * lookAt(mPos, mLook, mUp);
-        mFrustrum.extractPlane(mAngle, mRatio, mNear, mFar, mPos, mLook, mUp);
+        mToClipSpace = perspective(mAngle, mRatio, mNear, mFar) * lookAt(mPos.xyz(), mLook, mUp);
+        mFrustrum.extractPlane(mAngle, mRatio, mNear, mFar, mPos.xyz(), mLook, mUp);
     }
 
     CameraFPS::CameraFPS(vec3 const &pos, CameraUp up,
@@ -171,20 +180,20 @@ namespace GXY
         float speed = mSpeed / (float) global->device->getFPS();
 
         if(global->device->keyBoard()->key(mKeyMap[CameraKeyMap::CAM_FORWARD]) == true)
-            mPos += mForward * speed;
+            mPos += vec4(mForward * speed, 0.0);
 
         if(global->device->keyBoard()->key(mKeyMap[CameraKeyMap::CAM_BACKWARD]) == true)
-            mPos -= mForward * speed;
+            mPos -= vec4(mForward * speed, 0.0);
 
         if(global->device->keyBoard()->key(mKeyMap[CameraKeyMap::CAM_LEFT]) == true)
-            mPos += mLeft * speed;
+            mPos += vec4(mLeft * speed, 0.0);
 
         if(global->device->keyBoard()->key(mKeyMap[CameraKeyMap::CAM_RIGHT]) == true)
-            mPos -= mLeft * speed;
+            mPos -= vec4(mLeft * speed, 0.0);
 
         mLeft = cross(mUp, mForward);
 
-        mLook = mPos + mForward;
+        mLook = mPos.xyz() + mForward;
 
         mComputeToClipSpace();
     }

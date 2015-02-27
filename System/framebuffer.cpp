@@ -200,12 +200,12 @@ static GLenum attachments[] = {GL_COLOR_ATTACHMENT0,
 
     void FrameBuffer::attachCubeMapArray(CubeMap target, u32 index)
     {
-        u32 indexFace = target - POS_X;
+        u32 indexFace = target - POS_X + index * 6;
         for(u32 i = 0; i < mNumber; ++i)
-            glNamedFramebufferTextureLayerEXT(mId, GL_COLOR_ATTACHMENT0 + i, mColorBuffer.mId[i], 0, index * 6 + indexFace);
+            glNamedFramebufferTextureLayerEXT(mId, GL_COLOR_ATTACHMENT0 + i, mColorBuffer.mId[i], 0, indexFace);
 
         if(mDepthBuffer.isCreate())
-            glNamedFramebufferTextureLayerEXT(mId, GL_DEPTH_ATTACHMENT, mDepthBuffer.mId[0], 0, index * 6 + indexFace);
+            glNamedFramebufferTextureLayerEXT(mId, GL_DEPTH_ATTACHMENT, mDepthBuffer.mId[0], 0, indexFace);
     }
 
     void FrameBuffer::bind(void)

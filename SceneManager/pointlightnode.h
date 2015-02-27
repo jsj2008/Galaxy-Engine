@@ -20,6 +20,8 @@ namespace GXY
 
         void pushInPipeline(void);
 
+        void enableShadow(void){mShadowMap = 0;}
+
         ~PointLightNode(void);
 
     private:
@@ -29,6 +31,8 @@ namespace GXY
         float mRadius;
         glm::vec3 mColor;
         float mIntensity;
+        s32 mShadowMap;
+        std::shared_ptr<CameraStatic> mPov[6];
     };
 }
 

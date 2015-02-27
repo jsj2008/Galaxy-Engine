@@ -91,8 +91,6 @@ void main(void)
         vec2 mini = vec2(2, 2);
         vec2 maxi = vec2(-2, -2);
 
-        pointLights[gl_GlobalInvocationID.x].positionRadius.xyz = (worldMatrix[gl_GlobalInvocationID.x] * vec4(0.0, 0.0, 0.0, 1.0)).xyz;
-
         /** If light doesn't appear on the screen **/
         for(uint i = 0; i < 6; ++i)
         {

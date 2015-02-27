@@ -67,6 +67,8 @@ namespace GXY
         AbstractCamera(glm::vec3 const &pos, glm::vec3 const &look, CameraUp up,
                        float angle, float ratio, float near, float far);
 
+        AbstractCamera(void){}
+
         /**
          * @brief Get Projection * View Matrix
          * @return Perspective * View Matrix
@@ -77,7 +79,7 @@ namespace GXY
          * @brief Get Position of Camera
          * @return Position
          */
-        inline glm::vec3 const &position(void) {return mPos;}
+        inline glm::vec4 const &position(void) {return mPos;}
 
         /**
          * @brief Get point looked by Camera
@@ -109,7 +111,8 @@ namespace GXY
 
     protected :
         glm::mat4 mToClipSpace; //!< Matrix
-        glm::vec3 mPos, mLook, mUp; //!< lookAt
+        glm::vec4 mPos;
+        glm::vec3 mLook, mUp; //!< lookAt
         CameraUp mUpType; //!< Up Type
         float mAngle, mRatio, mNear, mFar; //!< Data for Perspective
         Frustrum mFrustrum; //!< The Frustrum
@@ -140,6 +143,13 @@ namespace GXY
         CameraStatic(glm::vec3 const &pos, glm::vec3 const &look, CameraUp up,
                      float angle, float ratio, float near, float far) :
             AbstractCamera(pos, look, up, angle, ratio, near, far){}
+
+        CameraStatic(void){}
+
+        void set(glm::vec3 const &pos, glm::vec3 const &look, CameraUp up,
+                 float angle, float ratio, float near, float far){
+            *this = CameraStatic(pos, look, up, angle, ratio, near, far);
+        }
 
         /* useless update because it's static */
         inline virtual void update(void) {}

@@ -30,8 +30,9 @@ int main(int argc, char *argv[])
 
         light1->setColor(vec3(1.0, 1.0, 1.0));
         light1->setPosition(vec3(0.0, 500.0, 0.0));
-        light1->setRadius(2000);
+        light1->setRadius(5000);
         light1->setIntensity(1.0);
+        light1->enableShadow();
 
         while(device.run())
         {

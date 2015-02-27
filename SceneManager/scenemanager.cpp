@@ -13,6 +13,7 @@ namespace GXY
 {
     SceneManager::SceneManager(void)
     {
+        global->sceneManager = this;
         mRootNode = make_shared<Node>(mat4(1.0f));
 
         mGeometryFrameBuffer = make_shared<FrameBuffer>();
@@ -51,16 +52,14 @@ namespace GXY
         mGeometryFrameBuffer->bind();
         global->device->clearDepthColorBuffer();
             pushModelsInPipeline(mCamera);
-            renderDepthPass();
-            renderModels();
+
+            global->Shaders.depth->use();
+                renderDepthPass();
+            global->Shaders.model->use();
+                renderModels();
 
         renderAmbientOcclusion();
 
-        mDirectLightFrameBuffer->bind();
-        global->device->clearColorBuffer();
-        glEnable(GL_BLEND);
-        glBlendEquation(GL_FUNC_ADD);
-        glBlendFunc(GL_ONE, GL_ONE);
             renderPointLights();
         glDisable(GL_BLEND);
 
@@ -81,7 +80,7 @@ namespace GXY
         global->Model.toWorldSpace->setToZeroElement();
 
         global->Uniform.frustrumBuffer->map()->frustrumMatrix = camera->toClipSpace();
-        global->Uniform.frustrumBuffer->map()->posCamera = vec4(camera->position(), 0.0);
+        global->Uniform.frustrumBuffer->map()->posCamera = camera->position();
         for(u32 i = 0; i < 6; ++i)
             global->Uniform.frustrumBuffer->map()->planesFrustrum[i] = camera->frustrum().mPlanes[i].plane;
 
@@ -98,7 +97,6 @@ namespace GXY
     {
         //Depth Pass
         global->Model.command->bind(DRAW_INDIRECT);
-        global->Shaders.depth->use();
         global->Model.vaoDepth->bind();
         glColorMask(GL_FALSE, GL_FALSE, GL_FALSE, GL_FALSE);
 
@@ -110,7 +108,6 @@ namespace GXY
     void SceneManager::renderModels()
     {
         // Rendering pass
-        global->Shaders.model->use();
         global->Model.vao->bind();
         synchronize();
         glColorMask(GL_TRUE, GL_TRUE, GL_TRUE, GL_TRUE);
@@ -128,6 +125,12 @@ namespace GXY
         global->Lighting.toWorldSpace->setToZeroElement();
 
         mRootNode->pushPointLightsInPipeline();
+
+        global->Uniform.frustrumBuffer->map()->frustrumMatrix = mCamera->toClipSpace();
+        global->Uniform.frustrumBuffer->map()->posCamera = mCamera->position();
+        for(u32 i = 0; i < 6; ++i)
+            global->Uniform.frustrumBuffer->map()->planesFrustrum[i] = mCamera->frustrum().mPlanes[i].plane;
+
         global->Uniform.frustrumBuffer->map()->numberMeshesPointLights.y = global->Lighting.commandPointLights->numElements();
 
         global->Shaders.projectPointLights->use();
@@ -140,6 +143,13 @@ namespace GXY
         global->Lighting.commandPointLights->bind(DRAW_INDIRECT);
         mGeometryFrameBuffer->bindTextures(1, 0, 2);
         mGeometryFrameBuffer->bindTextures(3, 2, 1);
+        global->Lighting.pointLightShadowMaps->bindTextures(0, 3, 1);
+
+        mDirectLightFrameBuffer->bind();
+        global->device->clearColorBuffer();
+        glEnable(GL_BLEND);
+        glBlendEquation(GL_FUNC_ADD);
+        glBlendFunc(GL_ONE, GL_ONE);
 
         synchronize();
         glMemoryBarrier(GL_SHADER_STORAGE_BARRIER_BIT | GL_VERTEX_ATTRIB_ARRAY_BARRIER_BIT | GL_COMMAND_BARRIER_BIT);

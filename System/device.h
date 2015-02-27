@@ -18,6 +18,7 @@ namespace GXY
     class Device;
     class VertexArray;
     class Shader;
+    class SceneManager;
 
     /**
      * @brief The Global struct
@@ -29,6 +30,7 @@ namespace GXY
     {
         Device *device; //!< A pointer on current Device
         std::shared_ptr<RessourceManager> ressourceManager; //!< A pointer on RessourceManager
+        SceneManager *sceneManager; //!< A pointer on SceneManager
 
         struct
         {
@@ -64,6 +66,8 @@ namespace GXY
             std::shared_ptr<Buffer<PointLight>> pointLight; //!< A Pointer on the PointLight Buffer
 
             std::shared_ptr<Buffer<glm::mat4>> toWorldSpace; //!< A pointer on matrixWorldSpace buffer
+
+            std::shared_ptr<FrameBuffer> pointLightShadowMaps; //!< A Pointer on FrameBuffer which contains Cube_Map_Array
         }Lighting;
 
         struct
@@ -91,6 +95,7 @@ namespace GXY
 
             std::shared_ptr<Shader> projectPointLights;
             std::shared_ptr<Shader> computePointLights;
+            std::shared_ptr<Shader> depthPointLight;
 
             std::shared_ptr<Shader> final; //!< A pointer on the Shader used to render final Quad
         }Shaders;

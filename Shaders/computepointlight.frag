@@ -22,6 +22,8 @@ layout(binding = 0) uniform sampler2D samplerPosition;
 layout(binding = 1) uniform sampler2D samplerNormal;
 layout(binding = 2) uniform sampler2D samplerShininessAlbedo;
 
+layout(binding = 3) uniform samplerCubeArray samplerPointLightShadowMaps;
+
 /**
  * @brief Describe some informations to give at Shader for PointLight lighting
  */
@@ -55,6 +57,7 @@ void main(void)
 
     vec4 positionLightRadius = pointLights[ID].positionRadius;
     vec4 colorIntensity = pointLights[ID].colorIntensity;
+    int shadowMap = pointLights[ID].shadowInformation.x;
     float radiusSquare = positionLightRadius.w * positionLightRadius.w;
 
     vec3 vertexToLight = positionLightRadius.xyz - position;
@@ -73,6 +76,14 @@ void main(void)
 
         float shine = max(0.0, pow(dot(dirEye, reflect(-vertexToLightNormalized, normal)), shininess));
         color = attenuation * colorIntensity.xyz * (shine + lambertCoeff);
+
+        if(shadowMap > -1)
+        {
+            float z = texture(samplerPointLightShadowMaps, vec4(-vertexToLight, shadowMap)).x;
+            float d = sqrt(distanceLightVertexSquare) / positionLightRadius.w;
+
+            color *= min(0.5 + exp(-100.0 * (d - z)), 1.0);
+        }
     }
 
     else

@@ -9,6 +9,7 @@
 #include "vertexarray.h"
 #include "buffer.h"
 #include "shader.h"
+#include "framebuffer.h"
 
 namespace GXY
 {
@@ -93,6 +94,12 @@ namespace GXY
         global->Lighting.toWorldSpace = make_shared<Buffer<mat4>>();
 
         global->Lighting.vaoPointLight = make_shared<VertexArray>();
+
+        global->Lighting.pointLightShadowMaps = make_shared<FrameBuffer>();
+
+        u32 size = powerOf2(std::max(global->device->width(), global->device->height())) / 2;
+        global->Lighting.pointLightShadowMaps->create();
+        global->Lighting.pointLightShadowMaps->createCubeMapArray(1, size, size, {R32F}, true);
     }
 
     void createGlobalShader(void)
@@ -107,6 +114,7 @@ namespace GXY
 
         global->Shaders.projectPointLights = make_shared<Shader>();
         global->Shaders.computePointLights = make_shared<Shader>("Shaders/computepointlight.vert", "Shaders/computepointlight.frag");
+        global->Shaders.depthPointLight = make_shared<Shader>("Shaders/pointlightdepth.vert", "Shaders/pointlightdepth.frag");
 
         global->Shaders.final = make_shared<Shader>("Shaders/final.vert", "Shaders/final.frag");
 
