@@ -244,7 +244,7 @@ namespace GXY
         mH[index] = h;
     }
 
-    void Texture::emptyCubeMapArray(u32 number, u32 index, u32 w, u32 h, FormatType internalFormat)
+    void Texture::emptyCubeMapArray(u32 index, u32 number, u32 w, u32 h, FormatType internalFormat)
     {
         if(index >= mId.size())
             throw Except("Texture : Index out of rang");
@@ -284,7 +284,7 @@ namespace GXY
         mH[index] = h;
     }
 
-    void Texture::emptyDepthCubeMapArray(u32 number, u32 index, u32 w, u32 h)
+    void Texture::emptyDepthCubeMapArray(u32 index, u32 number, u32 w, u32 h)
     {
         if(index >= mId.size())
             throw Except("Texture : Index out of rang");

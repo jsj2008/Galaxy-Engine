@@ -70,9 +70,9 @@ namespace GXY
          * @param internalFormat : vector of FormatType for each ColorAttachment
          * @param depth : add a depth Texture (aka depthBuffer)
          */
-        void createTexture(u32 w, u32 h,
-                           std::vector<FormatType> const &internalFormat,
-                           bool depth);
+        void createTexture(u32 w, u32 h, std::vector<FormatType> const &internalFormat, bool depth);
+
+        void createTextureArray(u32 number, u32 w, u32 h, std::vector<FormatType> const &internalFormat, bool depth);
 
         /**
          * @brief Create one or several empty Cube Map Textures
@@ -81,7 +81,9 @@ namespace GXY
          * @param internalFormat : vector of FormatType for each ColorAttachment
          * @param depth : Add a depth Texture
          */
-        void createCubeMapTexture(u32 w, u32 h, std::vector<FormatType> const &internalFormat, bool depth);
+        void createCubeMap(u32 w, u32 h, std::vector<FormatType> const &internalFormat, bool depth);
+
+        void createCubeMapArray(u32 number, u32 w, u32 h, std::vector<FormatType> const &internalFormat, bool depth);
         
         /**
          * @brief Let to attach the Good Texture (6 faces) at the FrameBuffer

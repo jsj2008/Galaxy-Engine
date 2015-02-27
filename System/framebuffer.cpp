@@ -105,9 +105,32 @@ static GLenum attachments[] = {GL_COLOR_ATTACHMENT0,
         glFramebufferDrawBuffersEXT(mId, mNumber, attachments);
     }
 
-    void FrameBuffer::createCubeMapTexture(u32 w, u32 h,
-                                           vector<FormatType> const &internalFormat,
-                                           bool depth)
+    void FrameBuffer::createTextureArray(u32 number, u32 w, u32 h, const std::vector<FormatType> &internalFormat, bool depth)
+    {
+        if(mId == 0)
+            throw Except("FrameBuffer is not create");
+
+        mNumber = internalFormat.size();
+
+        mColorBuffer.create(mNumber);
+
+        for(u32 i = 0; i < mNumber; ++i)
+            mColorBuffer.emptyTextureArray(i, number, w, h, internalFormat[i]);
+
+        if(depth == true)
+        {
+            mDepthBuffer.create(1);
+            mDepthBuffer.emptyDepthTextureArray(0, number, w, h);
+        }
+
+        // Les textures ont la même taille
+        mW = w;
+        mH = h;
+
+        glFramebufferDrawBuffersEXT(mId, mNumber, attachments);
+    }
+
+    void FrameBuffer::createCubeMap(u32 w, u32 h, vector<FormatType> const &internalFormat, bool depth)
     {
         if(mId == 0)
             throw Except("FrameBuffer is not create");
@@ -122,10 +145,32 @@ static GLenum attachments[] = {GL_COLOR_ATTACHMENT0,
         if(depth == true)
         {
             mDepthBuffer.create(1);
-            mDepthBuffer.emptyDepthTexture(0, w, h);
+            mDepthBuffer.emptyDepthCubeMap(0, w, h);
+        }
 
-            glNamedFramebufferTexture2DEXT(mId, GL_DEPTH_ATTACHMENT, GL_TEXTURE_2D,
-                                           mDepthBuffer.mId[0], 0);
+        // Les textures ont la même taille
+        mW = w;
+        mH = h;
+
+        glFramebufferDrawBuffersEXT(mId, mNumber, attachments);
+    }
+
+    void FrameBuffer::createCubeMapArray(u32 number, u32 w, u32 h, const std::vector<FormatType> &internalFormat, bool depth)
+    {
+        if(mId == 0)
+            throw Except("FrameBuffer is not create");
+
+        mNumber = internalFormat.size();
+
+        mColorBuffer.create(mNumber);
+
+        for(u32 i = 0; i < mNumber; ++i)
+            mColorBuffer.emptyCubeMapArray(i, number, w, h, internalFormat[i]);
+
+        if(depth == true)
+        {
+            mDepthBuffer.create(1);
+            mDepthBuffer.emptyDepthCubeMapArray(0, number, w, h);
         }
 
         // Les textures ont la même taille

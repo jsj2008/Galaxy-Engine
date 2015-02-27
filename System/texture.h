@@ -109,9 +109,9 @@ namespace GXY
 
         void emptyDepthTextureArray(u32 index, u32 number, u32 w, u32 h);
 
-        void emptyCubeMapArray(u32 number, u32 index, u32 w, u32 h, FormatType internalFormat);
+        void emptyCubeMapArray(u32 index, u32 number, u32 w, u32 h, FormatType internalFormat);
 
-        void emptyDepthCubeMapArray(u32 number, u32 index, u32 w, u32 h);
+        void emptyDepthCubeMapArray(u32 index, u32 number, u32 w, u32 h);
 
         /**
          * @brief Load image (path)
