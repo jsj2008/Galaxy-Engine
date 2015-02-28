@@ -22,8 +22,9 @@ namespace GXY
         mGeometryFrameBuffer->create();
         mDirectLightFrameBuffer->create();
 
+        // Diffuse, Position, Normal, Tangente, Bitangente, ShininessAlbedo
         mGeometryFrameBuffer->createTexture(powerOf2(global->device->width()), powerOf2(global->device->height()),
-                                            {RGB8_UNORM, RGB32F, RGB32F, RG32F}, true);
+                                            {RGB8_UNORM, RGB32F, RGB32F, RGB32F, RGB32F, RG32F}, true);
 
         mDirectLightFrameBuffer->createTexture(powerOf2(global->device->width()), powerOf2(global->device->height()), {RGB16F}, false);
 
@@ -150,7 +151,7 @@ namespace GXY
         global->Lighting.vaoPointLight->bind();
         global->Lighting.commandPointLights->bind(DRAW_INDIRECT);
         mGeometryFrameBuffer->bindTextures(1, 0, 2);
-        mGeometryFrameBuffer->bindTextures(3, 2, 1);
+        mGeometryFrameBuffer->bindTextures(5, 2, 1);
         global->Lighting.pointLightShadowMaps->bindTextures(0, 3, 1);
 
         glEnable(GL_BLEND);

@@ -36,6 +36,7 @@ namespace GXY
         {
             std::shared_ptr<Buffer<Context>> contextBuffer; //!< A pointer on Buffer which manage Context
             std::shared_ptr<Buffer<FrustrumUniform>> frustrumBuffer; //!< A pointer on Buffer which manage Frustrum
+            std::shared_ptr<Buffer<glm::vec4>> randomNormal; //!< A pointer on Buffer which manage random normal
         }Uniform;
 
         struct

@@ -140,6 +140,8 @@ namespace GXY
     {
         glm::vec3 position; //!< Position for vertex
         glm::vec3 normal; //!< Normal for Vertex
+        glm::vec3 tangent;
+        glm::vec3 biTangent;
         glm::vec2 texCoord; //!< Texture Coordinate for this Vertex
         u32 materialIndex; //!< Index of material for this Vertex
     };

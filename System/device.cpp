@@ -139,14 +139,24 @@ namespace GXY
 
     void createGlobalUniform(void)
     {
+        default_random_engine gen;
+        uniform_real_distribution<float> z(0.0, 1.0);
+        uniform_real_distribution<float> xy(-1.0, 1.0);
+
         global->Uniform.contextBuffer = make_shared<Buffer<Context>>();
         global->Uniform.frustrumBuffer = make_shared<Buffer<FrustrumUniform>>();
+        global->Uniform.randomNormal = make_shared<Buffer<vec4>>();
 
         global->Uniform.contextBuffer->allocate(1);
         global->Uniform.frustrumBuffer->allocate(1);
+        global->Uniform.randomNormal->allocate(16);
 
         global->Uniform.contextBuffer->bindBase(UNIFORM, 0);
         global->Uniform.frustrumBuffer->bindBase(UNIFORM, 1);
+        global->Uniform.randomNormal->bindBase(UNIFORM, 2);
+
+        for(u32 i = 0; i < 16; ++i)
+            global->Uniform.randomNormal->map()[i] = vec4(normalize(vec3(xy(gen), xy(gen), z(gen))), 0.0);
     }
 
     void createGlobal(Device *device)

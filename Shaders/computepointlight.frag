@@ -60,16 +60,14 @@ void main(void)
     float radiusSquare = positionLightRadius.w * positionLightRadius.w;
 
     vec3 vertexToLight = positionLightRadius.xyz - position;
-    float distanceLightVertexSquare = dot(vertexToLight, vertexToLight);
+    float distanceLightVertex = length(vertexToLight);
     vec3 vertexToLightNormalized = normalize(vertexToLight);
 
-    float attenuationQuadratic = (64.0 * colorIntensity.w - 1.0) / radiusSquare;
-
-    float attenuation = colorIntensity.w / (1.0 + attenuationQuadratic * distanceLightVertexSquare);
+    float attenuation = max(0.0, 1.0 - distanceLightVertex / positionLightRadius.w);
 
     float lambertCoeff = dot(normal, vertexToLightNormalized);
 
-    if(lambertCoeff > 0.0)
+    if(lambertCoeff > 0.0 && attenuation > 0.0)
     {
         vec3 dirEye = normalize(posCamera.xyz - position);
 
@@ -79,9 +77,9 @@ void main(void)
         if(shadowMap > -1)
         {
             float z = texture(samplerPointLightShadowMaps, vec4(-vertexToLight, shadowMap)).x;
-            float d = sqrt(distanceLightVertexSquare) / positionLightRadius.w;
+            float d = distanceLightVertex / positionLightRadius.w;
 
-            color *= min(0.5 + exp(-100.0 * (d - z)), 1.0);
+            color *= min(0.5 + exp(-10.0 * (d - z)), 1.0);
         }
     }
 

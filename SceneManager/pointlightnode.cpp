@@ -84,30 +84,30 @@ namespace GXY
             global->Lighting.quadsPointLights->bindBase(SHADER_STORAGE, 5);
             global->Lighting.pointLight->bindBase(SHADER_STORAGE, 6);
             global->Lighting.toWorldSpace->bindBase(SHADER_STORAGE, 7);
-            global->Lighting.commandPointLights->bindBase(SHADER_STORAGE, 8);
         }
 
         if(mShadowMap > -1)
         {
+            global->device->setClearColor(1.0, 1.0, 1.0);
+
             for(u32 i = 0; i < 6; ++i)
             {
                 mPov[i]->set(mPosition.xyz(), mPosition.xyz() + look[i], up[i], radians(90.0f), 1.0f, 1.0f, light.positionRadius.w);
 
                 global->Lighting.pointLightShadowMaps->attachCubeMapArray(CubeMap(POS_X + i), 0);
                 global->Lighting.pointLightShadowMaps->bind();
-                global->device->setClearColor(1.0, 1.0, 1.0);
                 global->device->clearDepthColorBuffer();
 
                 global->sceneManager->pushModelsInPipeline(mPov[i]);
+                global->Shaders.depth->use();
+                    global->sceneManager->renderDepthPass();
 
                 global->Shaders.depthPointLight->use();
-
-                global->sceneManager->renderDepthPass();
-                global->sceneManager->renderModels();
-                global->device->setClearColor(0, 0, 0);
+                    global->sceneManager->renderModels();
 
                 synchronize();
             }
+            global->device->setClearColor(0, 0, 0);
         }
     }
 

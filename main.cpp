@@ -30,7 +30,7 @@ int main(int argc, char *argv[])
 
         light1->setColor(vec3(1.0, 1.0, 1.0));
         light1->setPosition(vec3(0.0, 500.0, 0.0));
-        light1->setRadius(5000);
+        light1->setRadius(1000);
         light1->setIntensity(1.0);
         light1->enableShadow();
 
@@ -38,7 +38,20 @@ int main(int argc, char *argv[])
         {
             device.begin(); // Clear Window
 
+            u64 t = 0;
+            u32 query;
+
+            glGenQueries(1, &query);
+            glBeginQuery(GL_TIME_ELAPSED, query);
             sceneManager.render(); // Render Scene
+            glEndQuery(GL_TIME_ELAPSED);
+
+            while(t == 0)
+                glGetQueryObjectui64v(query, GL_QUERY_RESULT_AVAILABLE, &t);
+
+            glGetQueryObjectui64v(query, GL_QUERY_RESULT, &t);
+
+            cout << (float)t / 1000000 << std::endl;
 
             device.end(); // Swap Buffer
         }

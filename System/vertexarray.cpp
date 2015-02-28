@@ -93,16 +93,22 @@ namespace GXY
             glEnableVertexAttribArray(1);
             glEnableVertexAttribArray(2);
             glEnableVertexAttribArray(3);
+            glEnableVertexAttribArray(4);
+            glEnableVertexAttribArray(5);
 
             glVertexAttribBinding(0, 0);
             glVertexAttribBinding(1, 0);
             glVertexAttribBinding(2, 0);
             glVertexAttribBinding(3, 0);
+            glVertexAttribBinding(4, 0);
+            glVertexAttribBinding(5, 0);
 
             glVertexAttribFormat(0, 3, GL_FLOAT, false, offsetof(Vertex, position));
             glVertexAttribFormat(1, 3, GL_FLOAT, false, offsetof(Vertex, normal));
-            glVertexAttribFormat(2, 2, GL_FLOAT, false, offsetof(Vertex, texCoord));
-            glVertexAttribIFormat(3, 1, GL_UNSIGNED_INT, offsetof(Vertex, materialIndex));
+            glVertexAttribFormat(2, 3, GL_FLOAT, false, offsetof(Vertex, tangent));
+            glVertexAttribFormat(3, 3, GL_FLOAT, false, offsetof(Vertex, biTangent));
+            glVertexAttribFormat(4, 2, GL_FLOAT, false, offsetof(Vertex, texCoord));
+            glVertexAttribIFormat(5, 1, GL_UNSIGNED_INT, offsetof(Vertex, materialIndex));
 
             glBindVertexBuffer(0, buffer.mId, 0, sizeof(Vertex));
     }

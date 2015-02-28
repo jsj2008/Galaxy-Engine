@@ -16,15 +16,14 @@
 #define WORLD_POINT_LIGHT 7
 
 layout(location = 0) in vec3 inPos;
-layout(location = 1) in vec3 inNormal;
-layout(location = 2) in vec2 inTexCoord;
-layout(location = 3) flat in int inMaterialIndex;
 
-out vec3 position;
-out vec3 normal;
-out vec2 texCoord;
-flat out int materialIndex;
-flat out int ID;
+layout(location = 1) in vec3 inNormal;
+layout(location = 2) in vec3 inTangent;
+layout(location = 3) in vec3 inBiTangent;
+
+layout(location = 4) in vec2 inTexCoord;
+
+layout(location = 5) flat in int inMaterialIndex;
 
 layout(binding = CLIP, shared) readonly buffer ClipSpaceBuffer
 {
@@ -36,12 +35,28 @@ layout(binding = WORLD, shared) readonly buffer WorldSpaceBuffer
     mat4 toWorldSpace[];
 };
 
+
+out vec3 position;
+
+out vec3 normal;
+out vec3 tangent;
+out vec3 biTangent;
+
+out vec2 texCoord;
+
+flat out int materialIndex;
+flat out int ID;
+
 void main(void)
 {
     ID = gl_DrawIDARB;
     materialIndex = inMaterialIndex;
     texCoord = inTexCoord;
-    normal = mat3(toWorldSpace[ID]) * inNormal;
+    mat3 normalMatrix = transpose(inverse(mat3(toWorldSpace[ID])));
+    normal = normalMatrix * inNormal;
+    tangent = normalMatrix * inTangent;
+    biTangent = normalMatrix * inBiTangent;
+
     position = (toWorldSpace[ID] * vec4(inPos, 1.0)).xyz;
     gl_Position = toClipSpace[ID] * vec4(inPos, 1.0);
 }
