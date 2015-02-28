@@ -14,7 +14,6 @@
 #define PROJECT_LIGHT 5
 #define POINT_LIGHT 6
 #define WORLD_POINT_LIGHT 7
-#define COMMAND_POINT_LIGHT 8
 
 in vec3 position;
 in vec3 normal;

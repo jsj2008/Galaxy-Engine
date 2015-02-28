@@ -14,7 +14,6 @@
 #define PROJECT_LIGHT 5
 #define POINT_LIGHT 6
 #define WORLD_POINT_LIGHT 7
-#define COMMAND_POINT_LIGHT 8
 
 layout(location = 0) in vec3 inPos;
 layout(location = 1) in vec3 inNormal;

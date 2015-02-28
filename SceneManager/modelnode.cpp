@@ -44,8 +44,9 @@ namespace GXY
         mParent->mActualizeBoundingBoxes();
     }
 
-    void ModelNode::pushInPipeline()
+    void ModelNode::pushInPipeline(Frustrum const &frustrum)
     {
-        mModel->pushInPipeline(mParent->mGlobalMatrix * mMatrix);
+        if(frustrum.boxInside(mAABB))
+            mModel->pushInPipeline(mParent->mGlobalMatrix * mMatrix);
     }
 }

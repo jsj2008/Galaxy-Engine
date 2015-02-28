@@ -69,7 +69,7 @@ namespace GXY
         /**
          * @brief Push in a command Buffer news value to be render
          */
-        void pushInPipeline(void);
+        void pushInPipeline(Frustrum const &frustrum);
 
     private:
         std::shared_ptr<Node> mParent; //!< Node Parent

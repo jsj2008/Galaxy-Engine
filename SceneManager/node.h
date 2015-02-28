@@ -82,7 +82,7 @@ namespace GXY
          */
         void pushModelsInPipeline(Frustrum const &frustrum);
 
-        void pushPointLightsInPipeline(void);
+        void pushPointLightsInPipeline(Frustrum const &frustrum);
 
     private:
         std::shared_ptr<Node> mParent; //!< Parent Node

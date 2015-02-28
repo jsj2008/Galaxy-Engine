@@ -15,7 +15,6 @@ layout(local_size_x = 64)in;
 #define PROJECT_LIGHT 5
 #define POINT_LIGHT 6
 #define WORLD_POINT_LIGHT 7
-#define COMMAND_POINT_LIGHT 8
 
 struct Quad
 {
@@ -30,17 +29,6 @@ struct PointLight
     vec4 positionRadius; //!< .xyz = position, w = radius
     vec4 colorIntensity; //!< .rgb = color, a = intensity
     ivec4 shadowInformation; //!< .x = index of Cube Shadow Map
-};
-
-/**
- * @brief It is a struct for glDrawArraysIndirect
- */
-struct DrawArrayCommand
-{
-    uint count; //!< Number of vertex taken on the VertexBuffer
-    uint instanceCount; //!< Number of instance
-    uint first; //!< first vertex taken on the VertexBuffer
-    uint baseInstance; //!< first Instance if several Instances
 };
 
 layout(binding = FRUSTRUM, shared) uniform FrustrumBuffer
@@ -66,11 +54,6 @@ layout(binding = WORLD_POINT_LIGHT) buffer MatrixBuffer
     mat4 worldMatrix[];
 };
 
-layout(binding = COMMAND_POINT_LIGHT) buffer CommandBuffer
-{
-    DrawArrayCommand command[];
-};
-
 const vec4 CUBE[] =
 {
     vec4(-1.0, -1.0, -1.0, 1.0),
@@ -91,17 +74,7 @@ void main(void)
         vec2 mini = vec2(2, 2);
         vec2 maxi = vec2(-2, -2);
 
-        /** If light doesn't appear on the screen **/
-        for(uint i = 0; i < 6; ++i)
-        {
-            if(dot(planesFrustrum[i], vec4(pointLights[gl_GlobalInvocationID.x].positionRadius.xyz, 1.0)) < -pointLights[gl_GlobalInvocationID.x].positionRadius.w)
-            {
-                command[gl_GlobalInvocationID.x].instanceCount = 0;
-                return;
-            }
-        }
-
-        /** We render all the cube **/
+        /** We render the cube **/
         for(uint i = 0; i < 8; ++i)
         {
             vec4 clipPoint = toClipSpace * CUBE[i];
@@ -128,7 +101,5 @@ void main(void)
         quad[gl_GlobalInvocationID.x].quad[1] = vec2(mini.x, maxi.y);
         quad[gl_GlobalInvocationID.x].quad[2] = vec2(maxi.x, mini.y);
         quad[gl_GlobalInvocationID.x].quad[3] = vec2(maxi.x, maxi.y);
-
-        command[gl_GlobalInvocationID.x].instanceCount = 1;
     }
 }

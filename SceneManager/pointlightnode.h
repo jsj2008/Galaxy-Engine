@@ -18,7 +18,7 @@ namespace GXY
 
         void updateMatrix(void);
 
-        void pushInPipeline(void);
+        void pushInPipeline(Frustrum const &frustrum);
 
         void enableShadow(void){mShadowMap = 0;}
 

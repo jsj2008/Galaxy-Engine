@@ -53,6 +53,8 @@ namespace GXY
         global->device->clearDepthColorBuffer();
             pushModelsInPipeline(mCamera);
 
+            if(global->Model.command->numElements() == 0)
+                return;
             global->Shaders.depth->use();
                 renderDepthPass();
             global->Shaders.model->use();
@@ -124,7 +126,10 @@ namespace GXY
         global->Lighting.pointLight->setToZeroElement();
         global->Lighting.toWorldSpace->setToZeroElement();
 
-        mRootNode->pushPointLightsInPipeline();
+        mRootNode->pushPointLightsInPipeline(mCamera->frustrum());
+
+        mDirectLightFrameBuffer->bind();
+        global->device->clearColorBuffer();
 
         global->Uniform.frustrumBuffer->map()->frustrumMatrix = mCamera->toClipSpace();
         global->Uniform.frustrumBuffer->map()->posCamera = mCamera->position();
@@ -132,6 +137,9 @@ namespace GXY
             global->Uniform.frustrumBuffer->map()->planesFrustrum[i] = mCamera->frustrum().mPlanes[i].plane;
 
         global->Uniform.frustrumBuffer->map()->numberMeshesPointLights.y = global->Lighting.commandPointLights->numElements();
+
+        if(global->Lighting.commandPointLights->numElements() == 0)
+            return;
 
         global->Shaders.projectPointLights->use();
         glMemoryBarrier(GL_SHADER_STORAGE_BARRIER_BIT | GL_UNIFORM_BARRIER_BIT);
@@ -145,8 +153,6 @@ namespace GXY
         mGeometryFrameBuffer->bindTextures(3, 2, 1);
         global->Lighting.pointLightShadowMaps->bindTextures(0, 3, 1);
 
-        mDirectLightFrameBuffer->bind();
-        global->device->clearColorBuffer();
         glEnable(GL_BLEND);
         glBlendEquation(GL_FUNC_ADD);
         glBlendFunc(GL_ONE, GL_ONE);

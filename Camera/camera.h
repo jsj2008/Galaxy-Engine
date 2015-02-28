@@ -28,6 +28,7 @@ namespace GXY
         Frustrum(void);
 
         bool boxInside(AABB3D const &box) const;
+        bool sphereInside(Sphere const &sphere) const;
 
         /**
          * @brief Extract Planes from a "Perspective View Matrix"

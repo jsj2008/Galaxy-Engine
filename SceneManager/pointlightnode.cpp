@@ -31,7 +31,7 @@ namespace GXY
         mMatrix = scale(translate(mParent->mGlobalMatrix, mPosition), vec3(mRadius));
     }
 
-    void PointLightNode::pushInPipeline(void)
+    void PointLightNode::pushInPipeline(Frustrum const &frustrum)
     {
         static vec3 const look[] = {vec3(1.0, 0.0, 0.0),
                                     vec3(-1.0, 0.0, 0.0),
@@ -49,15 +49,23 @@ namespace GXY
 
         DrawArrayCommand command;
         PointLight light;
+        Sphere sphere;
         bool reallocate = false;
 
         command.baseInstance = 0;
+        command.instanceCount = 1;
         command.count = 4;
         command.first = global->Lighting.commandPointLights->numElements() * 4;
 
         light.colorIntensity = vec4(mColor, mIntensity);
         light.positionRadius = vec4((mMatrix * vec4(0, 0, 0, 1)).xyz(), mRadius * mParent->mGlobalScaleFactor);
         light.shadowInformation.x = mShadowMap;
+
+        sphere.position = light.positionRadius.xyz();
+        sphere.radius = light.positionRadius.w;
+
+        if(!frustrum.sphereInside(sphere))
+            return;
 
         global->Lighting.commandPointLights->push(command, reallocate);
         global->Lighting.pointLight->push(light, reallocate);
@@ -83,7 +91,7 @@ namespace GXY
         {
             for(u32 i = 0; i < 6; ++i)
             {
-                mPov[i]->set(vec3(0.0, 500.0, 0.0), vec3(0.0, 500.0, 0.0) + look[i], up[i], radians(90.0f), 1.0f, 1.0f, light.positionRadius.w);
+                mPov[i]->set(mPosition.xyz(), mPosition.xyz() + look[i], up[i], radians(90.0f), 1.0f, 1.0f, light.positionRadius.w);
 
                 global->Lighting.pointLightShadowMaps->attachCubeMapArray(CubeMap(POS_X + i), 0);
                 global->Lighting.pointLightShadowMaps->bind();

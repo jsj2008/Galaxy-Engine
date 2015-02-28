@@ -76,6 +76,15 @@ namespace GXY
         return true;
     }
 
+    bool Frustrum::sphereInside(const Sphere &sphere) const
+    {
+        for(u32 i = 0; i < 6; ++i)
+            if(distancePlane(mPlanes[i], sphere.position) < -sphere.radius)
+                return false;
+
+        return true;
+    }
+
     AbstractCamera::AbstractCamera(vec3 const &pos, vec3 const &look, CameraUp up, float angle, float ratio, float near, float far) :
         mPos(pos, far), mLook(look), mUpType(up), mAngle(angle), mRatio(ratio), mNear(near), mFar(far)
     {

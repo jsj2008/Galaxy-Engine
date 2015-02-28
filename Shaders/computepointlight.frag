@@ -13,7 +13,6 @@
 #define PROJECT_LIGHT 5
 #define POINT_LIGHT 6
 #define WORLD_POINT_LIGHT 7
-#define COMMAND_POINT_LIGHT 8
 
 flat in int ID;
 in vec2 texCoord;

@@ -167,18 +167,18 @@ namespace GXY
             return;
 
         for(auto model : mModels)
-            model->pushInPipeline();
+            model->pushInPipeline(frustrum);
 
         for(auto child : mChildren)
             child->pushModelsInPipeline(frustrum);
     }
 
-    void Node::pushPointLightsInPipeline(void)
+    void Node::pushPointLightsInPipeline(Frustrum const &frustrum)
     {
         for(auto pointLight : mPointLights)
-            pointLight->pushInPipeline();
+            pointLight->pushInPipeline(frustrum);
 
         for(auto child : mChildren)
-            child->pushPointLightsInPipeline();
+            child->pushPointLightsInPipeline(frustrum);
     }
 }
