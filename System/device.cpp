@@ -99,7 +99,7 @@ namespace GXY
 
         u32 size = powerOf2(std::max(global->device->width(), global->device->height())) / 2;
         global->Lighting.pointLightShadowMaps->create();
-        global->Lighting.pointLightShadowMaps->createCubeMapArray(1, size, size, {R32F}, true);
+        global->Lighting.pointLightShadowMaps->createCubeMapArray(MAX_POINT_LIGHT_SHADOW, size, size, {R32F}, true);
     }
 
     void createGlobalShader(void)

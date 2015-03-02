@@ -20,7 +20,7 @@ namespace GXY
 
         void pushInPipeline(Frustrum const &frustrum);
 
-        void enableShadow(void){mShadowMap = 0;}
+        void enableShadowMaps(s32 index);
 
         ~PointLightNode(void);
 
@@ -31,8 +31,9 @@ namespace GXY
         float mRadius;
         glm::vec3 mColor;
         float mIntensity;
-        s32 mShadowMap;
-        std::shared_ptr<CameraStatic> mPov[6];
+
+        std::tuple<bool, bool, s32> mShadows;
+        void mRenderShadowMaps(void);
     };
 }
 

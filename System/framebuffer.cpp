@@ -7,6 +7,7 @@
 
 #include "framebuffer.h"
 #include "device.h"
+#include "../SceneManager/scenemanager.h"
 
 namespace GXY
 {
@@ -28,6 +29,7 @@ static GLenum attachments[] = {GL_COLOR_ATTACHMENT0,
                                GL_COLOR_ATTACHMENT15
                               };
     using namespace std;
+    using namespace glm;
 
     FrameBuffer::FrameBuffer(void) : mId(0), mNumber(0), mW(0), mH(0)
     {
@@ -246,5 +248,44 @@ static GLenum attachments[] = {GL_COLOR_ATTACHMENT0,
     FrameBuffer::~FrameBuffer(void)
     {
         destroy();
+    }
+
+    void renderIntoCubeMapArray(shared_ptr<FrameBuffer> const &frameBuffer,
+                                u32 index, vec4 const &posFar, shared_ptr<Shader> const &shader)
+    {
+        static vec3 const look[] = {vec3(1.0, 0.0, 0.0),
+                                    vec3(-1.0, 0.0, 0.0),
+                                    vec3(0.0, 1.0, 0.0),
+                                    vec3(0.0, -1.0, 0.0),
+                                    vec3(0.0, 0.0, 1.0),
+                                    vec3(0.0, 0.0, -1.0)};
+
+        static CameraUp const up[] = {CAM_DOWN_Y,
+                                      CAM_DOWN_Y,
+                                      CAM_UP_Z,
+                                      CAM_DOWN_Z,
+                                      CAM_DOWN_Y,
+                                      CAM_DOWN_Y};
+
+        shared_ptr<CameraStatic> camera[6];
+
+        for(u32 i = 0; i < 6; ++i)
+        {
+            camera[i] = make_shared<CameraStatic>(posFar.xyz(), posFar.xyz() + look[i], up[i], radians(90.0f), 1.0f, 1.0f, posFar.w);
+
+            frameBuffer->attachCubeMapArray(CubeMap(POS_X + i), index);
+            frameBuffer->bind();
+            global->device->clearDepthColorBuffer();
+
+            global->sceneManager->pushModelsInPipeline(camera[i]);
+            global->Shaders.depth->use();
+                global->sceneManager->renderDepthPass();
+
+            shader->use();
+                global->sceneManager->renderModels();
+
+            synchronize();
+            glFlush();
+        }
     }
 }

@@ -45,18 +45,16 @@ out vec3 biTangent;
 out vec2 texCoord;
 
 flat out int materialIndex;
-flat out int ID;
 
 void main(void)
 {
-    ID = gl_DrawIDARB;
     materialIndex = inMaterialIndex;
     texCoord = inTexCoord;
-    mat3 normalMatrix = transpose(inverse(mat3(toWorldSpace[ID])));
+    mat3 normalMatrix = transpose(inverse(mat3(toWorldSpace[gl_DrawIDARB])));
     normal = normalMatrix * inNormal;
     tangent = normalMatrix * inTangent;
     biTangent = normalMatrix * inBiTangent;
 
-    position = (toWorldSpace[ID] * vec4(inPos, 1.0)).xyz;
-    gl_Position = toClipSpace[ID] * vec4(inPos, 1.0);
+    position = (toWorldSpace[gl_DrawIDARB] * vec4(inPos, 1.0)).xyz;
+    gl_Position = toClipSpace[gl_DrawIDARB] * vec4(inPos, 1.0);
 }

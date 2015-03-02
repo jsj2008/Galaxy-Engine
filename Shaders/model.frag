@@ -24,7 +24,6 @@ in vec3 biTangent;
 in vec2 texCoord;
 
 flat in int materialIndex;
-flat in int ID;
 
 struct Material
 {

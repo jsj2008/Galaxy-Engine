@@ -12,6 +12,7 @@
 
 namespace GXY
 {
+    u32 const MAX_POINT_LIGHT_SHADOW = 5;
     /**
       * @brief Describe One Cube of 2 units per side, center in 0, 0, 0
      */

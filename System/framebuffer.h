@@ -147,6 +147,12 @@ namespace GXY
         u32 mW, mH; //!< Size of Textures
         Texture mColorBuffer, mDepthBuffer; //!< Textures
     };
+
+    class CameraStatic;
+    class Shader;
+
+    void renderIntoCubeMapArray(std::shared_ptr<FrameBuffer> const &frameBuffer,
+                                u32 index, glm::vec4 const &posFar, std::shared_ptr<Shader> const &shader);
 }
 
 #endif // FRAMEBUFFER_H

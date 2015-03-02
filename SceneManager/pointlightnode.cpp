@@ -8,10 +8,9 @@ using namespace glm;
 
 namespace GXY
 {
-    PointLightNode::PointLightNode(shared_ptr<Node> const &parent) : mParent(parent), mShadowMap(-1)
+    PointLightNode::PointLightNode(shared_ptr<Node> const &parent) : mParent(parent), mShadows(make_tuple<bool, bool, s32>(false, false, -1))
     {
-        for(auto &pov : mPov)
-            pov = make_shared<CameraStatic>();
+
     }
 
     void PointLightNode::setPosition(const vec3 &position)
@@ -33,20 +32,6 @@ namespace GXY
 
     void PointLightNode::pushInPipeline(Frustrum const &frustrum)
     {
-        static vec3 const look[] = {vec3(1.0, 0.0, 0.0),
-                                    vec3(-1.0, 0.0, 0.0),
-                                    vec3(0.0, 1.0, 0.0),
-                                    vec3(0.0, -1.0, 0.0),
-                                    vec3(0.0, 0.0, 1.0),
-                                    vec3(0.0, 0.0, -1.0)};
-
-        static CameraUp const up[] = {CAM_DOWN_Y,
-                                 CAM_DOWN_Y,
-                                 CAM_UP_Z,
-                                 CAM_DOWN_Z,
-                                 CAM_DOWN_Y,
-                                 CAM_DOWN_Y};
-
         DrawArrayCommand command;
         PointLight light;
         Sphere sphere;
@@ -58,8 +43,8 @@ namespace GXY
         command.first = global->Lighting.commandPointLights->numElements() * 4;
 
         light.colorIntensity = vec4(mColor, mIntensity);
-        light.positionRadius = vec4((mMatrix * vec4(0, 0, 0, 1)).xyz(), mRadius * mParent->mGlobalScaleFactor);
-        light.shadowInformation.x = mShadowMap;
+        light.positionRadius = vec4(mMatrix[3].xyz(), mRadius * mParent->mGlobalScaleFactor);
+        light.shadowInformation.x = get<2>(mShadows);
 
         sphere.position = light.positionRadius.xyz();
         sphere.radius = light.positionRadius.w;
@@ -86,29 +71,25 @@ namespace GXY
             global->Lighting.toWorldSpace->bindBase(SHADER_STORAGE, 7);
         }
 
-        if(mShadowMap > -1)
-        {
-            global->device->setClearColor(1.0, 1.0, 1.0);
+        if(get<0>(mShadows) == true)
+            if(get<1>(mShadows) == false)
+                mRenderShadowMaps();
+    }
 
-            for(u32 i = 0; i < 6; ++i)
-            {
-                mPov[i]->set(mPosition.xyz(), mPosition.xyz() + look[i], up[i], radians(90.0f), 1.0f, 1.0f, light.positionRadius.w);
+    void PointLightNode::enableShadowMaps(s32 index)
+    {
+        get<0>(mShadows) = true;
+        get<1>(mShadows) = false;
+        get<2>(mShadows) = index;
+    }
 
-                global->Lighting.pointLightShadowMaps->attachCubeMapArray(CubeMap(POS_X + i), 0);
-                global->Lighting.pointLightShadowMaps->bind();
-                global->device->clearDepthColorBuffer();
+    void PointLightNode::mRenderShadowMaps(void)
+    {
+        get<1>(mShadows) = true;
 
-                global->sceneManager->pushModelsInPipeline(mPov[i]);
-                global->Shaders.depth->use();
-                    global->sceneManager->renderDepthPass();
-
-                global->Shaders.depthPointLight->use();
-                    global->sceneManager->renderModels();
-
-                synchronize();
-            }
-            global->device->setClearColor(0, 0, 0);
-        }
+        global->device->setClearColor(1.0, 1.0, 1.0);
+            renderIntoCubeMapArray(global->Lighting.pointLightShadowMaps, get<2>(mShadows), vec4(mMatrix[3].xyz(), mRadius * mParent->mGlobalScaleFactor), global->Shaders.depthPointLight);
+        global->device->setClearColor(0.0, 0.0, 0.0);
     }
 
     PointLightNode::~PointLightNode()
