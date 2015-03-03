@@ -20,17 +20,18 @@ int main(int argc, char *argv[])
 
         SceneManager sceneManager; // Create a Scene Manager
 
-        sceneManager.createCameraFPS(vec3(0.1, 500.0, .0), 300, 0.5); // Create a FPS Camera
+        sceneManager.createCameraFPS(vec3(0.1, 200.0, .0), 300, 0.5); // Create a FPS Camera
 
         shared_ptr<Node> rootNode = sceneManager.getRootNode(); // Get the Root Node
 
-        shared_ptr<PointLightNode> light = addPointLight(rootNode);
+        shared_ptr<PointLightNode> light = addPointLight(rootNode); // Add a PointLight on RootNode
 
         shared_ptr<ModelNode> model = addModel(rootNode, "models/OBJ/crytek-sponza/sponza.obj"); // Add a Model Sponza Atrium
 
+        // Configure the light
         light->setColor(vec3(1.0, 1.0, 1.0));
-        light->setPosition(vec3(0.0, 500.0, .0));
-        light->setRadius(1000);
+        light->setPosition(vec3(0.0, 200.0, .0));
+        light->setRadius(10000);
         light->setIntensity(1.0);
         light->enableShadowMaps(0);
 

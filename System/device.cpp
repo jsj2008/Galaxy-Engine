@@ -20,7 +20,22 @@ namespace GXY
 
     u32 powerOf2(u32 number)
     {
-        if(number <= 128)
+        if(number <= 4)
+            return 4;
+
+        else if(number <= 8)
+            return 8;
+
+        else if(number <= 16)
+            return 16;
+
+        else if(number <= 32)
+            return 32;
+
+        else if(number <= 64)
+            return 64;
+
+        else if(number <= 128)
             return 128;
 
         else if(number <= 256)

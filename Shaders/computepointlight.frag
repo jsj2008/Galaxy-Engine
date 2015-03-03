@@ -79,7 +79,7 @@ void main(void)
             float z = texture(samplerPointLightShadowMaps, vec4(-vertexToLight, shadowMap)).x;
             float d = distanceLightVertex / positionLightRadius.w;
 
-            color *= min(0.5 + exp(-30.0 * (d - z)), 1.0);
+            color *= min(0.5 + exp(-positionLightRadius.w * 0.0625 * (d - z)), 1.0);
         }
     }
 

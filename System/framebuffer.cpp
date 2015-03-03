@@ -11,6 +11,9 @@
 
 namespace GXY
 {
+using namespace std;
+using namespace glm;
+
 static GLenum attachments[] = {GL_COLOR_ATTACHMENT0,
                                GL_COLOR_ATTACHMENT1,
                                GL_COLOR_ATTACHMENT2,
@@ -28,8 +31,20 @@ static GLenum attachments[] = {GL_COLOR_ATTACHMENT0,
                                GL_COLOR_ATTACHMENT14,
                                GL_COLOR_ATTACHMENT15
                               };
-    using namespace std;
-    using namespace glm;
+
+static vec3 const look[] = {vec3(1.0, 0.0, 0.0),
+                            vec3(-1.0, 0.0, 0.0),
+                            vec3(0.0, 1.0, 0.0),
+                            vec3(0.0, -1.0, 0.0),
+                            vec3(0.0, 0.0, 1.0),
+                            vec3(0.0, 0.0, -1.0)};
+
+static CameraUp const up[] = {CAM_DOWN_Y,
+                              CAM_DOWN_Y,
+                              CAM_UP_Z,
+                              CAM_DOWN_Z,
+                              CAM_DOWN_Y,
+                              CAM_DOWN_Y};
 
     FrameBuffer::FrameBuffer(void) : mId(0), mNumber(0), mW(0), mH(0)
     {
@@ -253,31 +268,18 @@ static GLenum attachments[] = {GL_COLOR_ATTACHMENT0,
     void renderIntoCubeMapArray(shared_ptr<FrameBuffer> const &frameBuffer,
                                 u32 index, vec4 const &posFar, shared_ptr<Shader> const &shader)
     {
-        static vec3 const look[] = {vec3(1.0, 0.0, 0.0),
-                                    vec3(-1.0, 0.0, 0.0),
-                                    vec3(0.0, 1.0, 0.0),
-                                    vec3(0.0, -1.0, 0.0),
-                                    vec3(0.0, 0.0, 1.0),
-                                    vec3(0.0, 0.0, -1.0)};
+        shared_ptr<CameraStatic> camera;
 
-        static CameraUp const up[] = {CAM_DOWN_Y,
-                                      CAM_DOWN_Y,
-                                      CAM_UP_Z,
-                                      CAM_DOWN_Z,
-                                      CAM_DOWN_Y,
-                                      CAM_DOWN_Y};
-
-        shared_ptr<CameraStatic> camera[6];
+        frameBuffer->bind();
 
         for(u32 i = 0; i < 6; ++i)
         {
-            camera[i] = make_shared<CameraStatic>(posFar.xyz(), posFar.xyz() + look[i], up[i], radians(90.0f), 1.0f, 1.0f, posFar.w);
+            camera = make_shared<CameraStatic>(posFar.xyz(), posFar.xyz() + look[i], up[i], radians(90.0f), 1.0f, 1.0f, posFar.w);
 
             frameBuffer->attachCubeMapArray(CubeMap(POS_X + i), index);
-            frameBuffer->bind();
             global->device->clearDepthColorBuffer();
 
-            global->sceneManager->pushModelsInPipeline(camera[i]);
+            global->sceneManager->pushModelsInPipeline(camera);
             global->Shaders.depth->use();
                 global->sceneManager->renderDepthPass();
 

@@ -21,6 +21,7 @@ namespace GXY
         void pushInPipeline(Frustrum const &frustrum);
 
         void enableShadowMaps(s32 index);
+        void enableVirtualLight(void);
 
         ~PointLightNode(void);
 
@@ -33,7 +34,10 @@ namespace GXY
         float mIntensity;
 
         std::tuple<bool, bool, s32> mShadows;
+        std::tuple<bool, bool> mVirtualLight;
+
         void mRenderShadowMaps(void);
+        void mCreateVirtualLights(void);
     };
 }
 

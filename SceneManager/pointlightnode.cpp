@@ -8,7 +8,8 @@ using namespace glm;
 
 namespace GXY
 {
-    PointLightNode::PointLightNode(shared_ptr<Node> const &parent) : mParent(parent), mShadows(make_tuple<bool, bool, s32>(false, false, -1))
+    PointLightNode::PointLightNode(shared_ptr<Node> const &parent) :
+        mParent(parent), mShadows(false, false, -1), mVirtualLight(false, false)
     {
 
     }
@@ -74,6 +75,10 @@ namespace GXY
         if(get<0>(mShadows) == true)
             if(get<1>(mShadows) == false)
                 mRenderShadowMaps();
+
+        if(get<0>(mVirtualLight) == true)
+            if(get<1>(mVirtualLight) == false)
+                mCreateVirtualLights();
     }
 
     void PointLightNode::enableShadowMaps(s32 index)
@@ -83,6 +88,12 @@ namespace GXY
         get<2>(mShadows) = index;
     }
 
+    void PointLightNode::enableVirtualLight(void)
+    {
+        get<0>(mVirtualLight) = true;
+        get<1>(mVirtualLight) = false;
+    }
+
     void PointLightNode::mRenderShadowMaps(void)
     {
         get<1>(mShadows) = true;
@@ -90,6 +101,13 @@ namespace GXY
         global->device->setClearColor(1.0, 1.0, 1.0);
             renderIntoCubeMapArray(global->Lighting.pointLightShadowMaps, get<2>(mShadows), vec4(mMatrix[3].xyz(), mRadius * mParent->mGlobalScaleFactor), global->Shaders.depthPointLight);
         global->device->setClearColor(0.0, 0.0, 0.0);
+    }
+
+    void PointLightNode::mCreateVirtualLights(void)
+    {
+        get<1>(mVirtualLight) = true;
+
+
     }
 
     PointLightNode::~PointLightNode()
