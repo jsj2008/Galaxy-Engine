@@ -246,6 +246,16 @@ namespace GXY
         glm::vec4 colorIntensity; //!< .rgb = color, a = intensity
         glm::ivec4 shadowInformation; //!< .x = index of Cube Shadow Map
     };
+
+    /**
+     * @brief Describe some informations to give at Shader for Indirect PointLight Lighting
+     */
+    struct PointLightVPL
+    {
+        glm::vec4 positionRadius; //*< .xyz = position, w = radius
+        glm::vec4 colorIntensity; //*< .rgb = color, a = intensity
+        glm::vec4 normal; //*< .xyz : Normal oriented Hemisphere for diffuse indirect lighting
+    };
 }
 
 #endif // INCLUDE_H

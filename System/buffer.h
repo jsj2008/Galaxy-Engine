@@ -176,7 +176,7 @@ namespace GXY
 
         /**
          * @brief Bind the Buffer to one indexed Buffer target
-         * @param type : BufferType of this Buffer : UNIFORM SHADER_STORAGE
+         * @param type : BufferType of this Buffer : UNIFORM SHADER_STORAGE ATOMIC
          * @param binding : index of this Buffer (binding point)
          */
         inline void bindBase(BufferType type, u32 binding)
@@ -221,7 +221,7 @@ namespace GXY
 
         /** Bind the buffer range
          * @brief Bind the Buffer to one indexed Buffer target
-         * @param type : BufferType of this Buffer : UNIFORM SHADER_STORAGE
+         * @param type : BufferType of this Buffer : UNIFORM SHADER_STORAGE ATOMIC
          * @param binding : index of this Buffer (binding point)
          * @param offset : offset in number of elements in Buffer
          * @param nElements : number of elements

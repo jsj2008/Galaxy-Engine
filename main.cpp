@@ -24,22 +24,15 @@ int main(int argc, char *argv[])
 
         shared_ptr<Node> rootNode = sceneManager.getRootNode(); // Get the Root Node
 
-        shared_ptr<PointLightNode> light1 = addPointLight(rootNode);
-        shared_ptr<PointLightNode> light2 = addPointLight(rootNode);
+        shared_ptr<PointLightNode> light = addPointLight(rootNode);
 
         shared_ptr<ModelNode> model = addModel(rootNode, "models/OBJ/crytek-sponza/sponza.obj"); // Add a Model Sponza Atrium
 
-        light1->setColor(vec3(1.0, 1.0, 1.0));
-        light1->setPosition(vec3(0.0, 500.0, .0));
-        light1->setRadius(1000);
-        light1->setIntensity(1.0);
-        light1->enableShadowMaps(1);
-
-        light2->setColor(vec3(.0, 0.0, 1.0));
-        light2->setPosition(vec3(500.0, 200.0, 500.0));
-        light2->setRadius(1000.0);
-        light2->setIntensity(1.0);
-        light2->enableShadowMaps(0);
+        light->setColor(vec3(1.0, 1.0, 1.0));
+        light->setPosition(vec3(0.0, 500.0, .0));
+        light->setRadius(1000);
+        light->setIntensity(1.0);
+        light->enableShadowMaps(0);
 
         while(device.run())
         {

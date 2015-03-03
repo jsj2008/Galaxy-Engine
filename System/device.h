@@ -69,6 +69,9 @@ namespace GXY
             std::shared_ptr<Buffer<glm::mat4>> toWorldSpace; //!< A pointer on matrixWorldSpace buffer
 
             std::shared_ptr<FrameBuffer> pointLightShadowMaps; //!< A Pointer on FrameBuffer which contains Cube_Map_Array
+            std::shared_ptr<FrameBuffer> vplPointLightCreation; //!< Used to create and to initialize PointLightVPL
+
+            std::shared_ptr<Buffer<u32>> vplCounter; //!< Atomic Buffer to count the number of VPL
         }Lighting;
 
         struct

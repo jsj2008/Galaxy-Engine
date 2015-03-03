@@ -92,14 +92,24 @@ namespace GXY
         global->Lighting.pointLight = make_shared<Buffer<PointLight>>();
         global->Lighting.quadsPointLights = make_shared<Buffer<vec2>>();
         global->Lighting.toWorldSpace = make_shared<Buffer<mat4>>();
+        global->Lighting.vplCounter = make_shared<Buffer<u32>>();
 
         global->Lighting.vaoPointLight = make_shared<VertexArray>();
 
         global->Lighting.pointLightShadowMaps = make_shared<FrameBuffer>();
+        global->Lighting.vplPointLightCreation = make_shared<FrameBuffer>();
 
         u32 size = powerOf2(std::max(global->device->width(), global->device->height())) / 2;
         global->Lighting.pointLightShadowMaps->create();
         global->Lighting.pointLightShadowMaps->createCubeMapArray(MAX_POINT_LIGHT_SHADOW, size, size, {R32F}, true);
+
+        global->Lighting.vplCounter->allocate(1);
+        global->Lighting.vplCounter->map()[0] = 0;
+        global->Lighting.vplCounter->bindBase(ATOMIC, 0);
+        glMemoryBarrier(GL_ATOMIC_COUNTER_BARRIER_BIT);
+
+        global->Lighting.vplPointLightCreation->create();
+        global->Lighting.vplPointLightCreation->createCubeMap(16, 16, {R16F}, true);
     }
 
     void createGlobalShader(void)

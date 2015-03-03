@@ -12,7 +12,7 @@
 
 namespace GXY
 {
-    u32 const MAX_POINT_LIGHT_SHADOW = 5;
+    u32 const MAX_POINT_LIGHT_SHADOW = 10;
     /**
       * @brief Describe One Cube of 2 units per side, center in 0, 0, 0
      */
@@ -53,7 +53,8 @@ namespace GXY
                     DRAW_INDIRECT = GL_DRAW_INDIRECT_BUFFER, //!< glDraw*Indirect
                     DISPATCH_INDIRECT = GL_DISPATCH_INDIRECT_BUFFER, //!< glComputeDispatchIndirect
                     UNIFORM = GL_UNIFORM_BUFFER, //!< Uniform Buffer : Generally in L1 cache
-                    SHADER_STORAGE = GL_SHADER_STORAGE_BUFFER //!< Shader Storage Buffer : Global Memory
+                    SHADER_STORAGE = GL_SHADER_STORAGE_BUFFER, //!< Shader Storage Buffer : Global Memory
+                    ATOMIC = GL_ATOMIC_COUNTER_BUFFER //!< Atomic Counter Buffer
                    };
 
     enum CubeMap{POS_X = GL_TEXTURE_CUBE_MAP_POSITIVE_X, //!< Right Side
