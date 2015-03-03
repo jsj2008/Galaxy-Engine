@@ -12,7 +12,7 @@ int main(int argc, char *argv[])
 {
     try
     {
-        Device device(800, 600); // Create a Device
+        Device device(1920, 1080, true); // Create a Device
 
         // Capture and hide cursor
         device.mouse()->captureCursor(true);
@@ -29,7 +29,7 @@ int main(int argc, char *argv[])
         shared_ptr<ModelNode> model = addModel(rootNode, "models/OBJ/crytek-sponza/sponza.obj"); // Add a Model Sponza Atrium
 
         // Configure the light
-        light->setColor(vec3(1.0, 1.0, 1.0));
+        light->setColor(vec3(1.0, 1.0, 1.0)); // white
         light->setPosition(vec3(0.0, 200.0, .0));
         light->setRadius(10000);
         light->setIntensity(1.0);
