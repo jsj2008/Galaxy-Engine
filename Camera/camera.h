@@ -27,18 +27,29 @@ namespace GXY
          */
         Frustrum(void);
 
+        /**
+         * @brief To know if a box is inside the frustrum or not
+         * @param[in] : The box
+         * @return true if it is inside and false else
+         */
         bool boxInside(AABB3D const &box) const;
+
+        /**
+         * @brief To know if a sphere is inside the frustrum or not
+         * @param[in][in] sphere : The sphere
+         * @return true if it is inside and false else
+         */
         bool sphereInside(Sphere const &sphere) const;
 
         /**
          * @brief Extract Planes from a "Perspective View Matrix"
-         * @param angle : Focale y
-         * @param ratio : Width / Height of this same Frustrum
-         * @param nearD : Near plane
-         * @param farD : Far plane
-         * @param p : position
-         * @param l : look
-         * @param up : up vector
+         * @param[in] angle : Focale y
+         * @param[in] ratio : Width / Height of this same Frustrum
+         * @param[in] nearD : Near plane
+         * @param[in] farD : Far plane
+         * @param[in] p : position
+         * @param[in] l : look
+         * @param[in] up : up vector
          */
         void extractPlane(float angle, float ratio, float nearD, float farD,
                           glm::vec3 const &p, glm::vec3 const &l, glm::vec3 const &up);
@@ -57,13 +68,13 @@ namespace GXY
     public :
         /**
          * @brief AbstractCamera Constructor
-         * @param pos : Position of Camera
-         * @param look : Point looked by Camera
-         * @param up : Up Vector
-         * @param angle : Focale y
-         * @param ratio : Width / Height of Frustrum
-         * @param near : Near plane
-         * @param far : Far plane
+         * @param[in] pos : Position of Camera
+         * @param[in] look : Point looked by Camera
+         * @param[in] up : Up Vector
+         * @param[in] angle : Focale y
+         * @param[in] ratio : Width / Height of Frustrum
+         * @param[in] near : Near plane
+         * @param[in] far : Far plane
          */
         AbstractCamera(glm::vec3 const &pos, glm::vec3 const &look, CameraUp up,
                        float angle, float ratio, float near, float far);
@@ -133,13 +144,13 @@ namespace GXY
     public:
         /**
          * @brief CameraStatic Constructor
-         * @param pos : Position
-         * @param look : Point Looked by camera
-         * @param up : Up Vector
-         * @param angle : Focale y
-         * @param ratio : Width / Height of Frustrum
-         * @param near : Near plane
-         * @param far : Far plane
+         * @param[in] pos : Position
+         * @param[in] look : Point Looked by camera
+         * @param[in] up : Up Vector
+         * @param[in] angle : Focale y
+         * @param[in] ratio : Width / Height of Frustrum
+         * @param[in] near : Near plane
+         * @param[in] far : Far plane
          */
         CameraStatic(glm::vec3 const &pos, glm::vec3 const &look, CameraUp up,
                      float angle, float ratio, float near, float far) :
@@ -164,14 +175,14 @@ namespace GXY
     public:
         /**
          * @brief CameraFPS
-         * @param pos : Position
-         * @param up : Up Vector
-         * @param speed : Speed for movements
-         * @param sensitivity : Speed for looking (mouse)
-         * @param angle : Focale y
-         * @param ratio : Width / Height of Frustrum
-         * @param near : Near plane
-         * @param far : Far plane
+         * @param[in] pos : Position
+         * @param[in] up : Up Vector
+         * @param[in] speed : Speed for movements
+         * @param[in] sensitivity : Speed for looking (mouse)
+         * @param[in] angle : Focale y
+         * @param[in] ratio : Width / Height of Frustrum
+         * @param[in] near : Near plane
+         * @param[in] far : Far plane
          */
         CameraFPS(glm::vec3 const &pos, CameraUp up,
                   float speed, float sensitivity,
@@ -179,19 +190,19 @@ namespace GXY
 
         /**
          * @brief Set the Key Mapping configuration
-         * @param conf : New configuration
+         * @param[in] conf : New configuration
          */
         void setKeyMap(std::map<CameraKeyMap, SDL_Keycode> const &conf);
 
         /**
          * @brief Change the speed of Camera
-         * @param speed in unit / seconds
+         * @param[in] speed in unit / seconds
          */
         inline void setSpeed(float speed) {mSpeed = speed;};
 
         /**
          * @brief Change the sensitivity of Camera for Mouse
-         * @param sensitivity
+         * @param[in] sensitivity
          */
         inline void setSensitivity(float sensitivity) {mSensitivity = sensitivity;}
 

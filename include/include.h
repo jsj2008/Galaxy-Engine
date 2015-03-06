@@ -200,8 +200,8 @@ namespace GXY
 
     /**
      * @brief Transform the pos on the AABB3D on the new space describe by transform
-     * @param box : A AABB3D "basic"
-     * @param transform : The landmark of your future AABB3D
+     * @param[in] box : A AABB3D "basic"
+     * @param[in] transform : The landmark of your future AABB3D
      * @return A new
      */
     inline AABB3D computeAABB3D(AABB3D const &box, glm::mat4 const &transform)

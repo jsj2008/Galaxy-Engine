@@ -13,37 +13,37 @@
 
 /**
  * @brief print vec4
- * @param stream
- * @param vec
+ * @param[in] stream
+ * @param[in] vec
  * @return stream
  */
 inline std::ostream &operator<<(std::ostream &stream, glm::vec4 const &vec)
 {
-    stream << vec.x << " " << vec.y << " " << vec.z << " " << vec.w << std::endl;
+    stream << vec.x << " " << vec.y << " " << vec.z << " " << vec.w;
     return stream;
 }
 
 /**
  * @brief print vec3
- * @param stream
- * @param vec
+ * @param[in] stream
+ * @param[in] vec
  * @return stream
  */
 inline std::ostream &operator<<(std::ostream &stream, glm::vec3 const &vec)
 {
-    stream << vec.x << " " << vec.y << " " << vec.z << std::endl;
+    stream << vec.x << " " << vec.y << " " << vec.z;
     return stream;
 }
 
 /**
  * @brief print vec2
- * @param stream
- * @param vec
+ * @param[in] stream
+ * @param[in] vec
  * @return stream
  */
 inline std::ostream &operator<<(std::ostream &stream, glm::vec2 const &vec)
 {
-    stream << vec.x << " " << vec.y << std::endl;
+    stream << vec.x << " " << vec.y;
     return stream;
 }
 
@@ -52,8 +52,8 @@ namespace GXY
     template<typename func, typename ...Args>
     /**
      * @brief function which return time taken by function
-     * @param function : the function send to "time"
-     * @param args : argument for function
+     * @param[in] function : the function send to "time"
+     * @param[in] args : argument for function
      */
     inline void time(func &function, Args&& ...args)
     {
@@ -86,7 +86,7 @@ namespace GXY
 
         /**
          * @brief Except Constructor
-         * @param error : string with error
+         * @param[in] error : string with error
          */
         Except(std::string const &error) : mError(error){}
 

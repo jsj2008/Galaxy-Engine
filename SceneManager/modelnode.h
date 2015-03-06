@@ -25,27 +25,27 @@ namespace GXY
     public:
         /**
          * @brief ModelNode Constructor
-         * @param path : Path to find Asset
-         * @param parent : Node Parent
+         * @param[in] path : Path to find Asset
+         * @param[in] parent : Node Parent
          */
         ModelNode(std::string const &path, std::shared_ptr<Node> const &parent);
 
         /**
          * @brief Perform a rotation of a Model inside a Node
-         * @param angle : Angle of the rotation
-         * @param axe : Axe of rotation
+         * @param[in] angle : Angle of the rotation
+         * @param[in] axe : Axe of rotation
          */
         void rotate(float angle, glm::vec3 const &axe);
 
         /**
          * @brief Perform a translation of a Model inside a Node
-         * @param vec : Vector of translation
+         * @param[in] vec : Vector of translation
          */
         void translate(glm::vec3 const &vec);
 
         /**
          * @brief Perform a Homothetic transformation of a Model inside a Node
-         * @param factor : Factor of Homothetic transformation
+         * @param[in] factor : Factor of Homothetic transformation
          */
         void scale(float factor);
 
@@ -56,7 +56,7 @@ namespace GXY
 
         /**
          * @brief updateAABB : If Node undergoes a transformation, this function should be call
-         * @param globalMatrix
+         * @param[in] globalMatrix
          */
         inline void updateAABB(void) {mAABB = computeAABB3D(mModel->AABB(), mParent->mGlobalMatrix * mMatrix);}
 
