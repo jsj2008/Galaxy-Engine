@@ -18,15 +18,19 @@ namespace GXY
 
         mGeometryFrameBuffer = make_shared<FrameBuffer>();
         mDirectLightFrameBuffer = make_shared<FrameBuffer>();
+        mIndirectLightFrameBuffer = make_shared<FrameBuffer>();
 
         mGeometryFrameBuffer->create();
         mDirectLightFrameBuffer->create();
+        mIndirectLightFrameBuffer->create();
 
         // Diffuse, Position, Normal, Tangente, Bitangente, ShininessAlbedo
         mGeometryFrameBuffer->createTexture(powerOf2(global->device->width()), powerOf2(global->device->height()),
                                             {RGB8_UNORM, RGB32F, RGB32F, RGB32F, RGB32F, RG32F}, true);
 
         mDirectLightFrameBuffer->createTexture(powerOf2(global->device->width()), powerOf2(global->device->height()), {RGB16F}, false);
+
+        mIndirectLightFrameBuffer->createTexture(powerOf2(global->device->width()) / 4, powerOf2(global->device->height()) / 4, {RGB32F}, false);
 
         mImageAmbientOcclusion = make_shared<Texture>(3);
 
@@ -65,6 +69,8 @@ namespace GXY
 
             renderPointLights();
         glDisable(GL_BLEND);
+
+        renderIndirectPointLight();
 
         renderFinal();
     }
@@ -163,6 +169,19 @@ namespace GXY
         glMultiDrawArraysIndirect(GL_TRIANGLE_STRIP, nullptr, global->Lighting.commandPointLights->numElements(), 0);
     }
 
+    void SceneManager::renderIndirectPointLight(void)
+    {
+        synchronize();
+        mIndirectLightFrameBuffer->bind();
+        global->device->clearColorBuffer();
+
+        global->Shaders.computeIndirectVPLPoint->use();
+        global->Quad.vao->bind();
+        mGeometryFrameBuffer->bindTextures(1, 0, 2);
+
+        glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
+    }
+
     void SceneManager::renderAmbientOcclusion()
     {
         mImageAmbientOcclusion->bindImages(0, 0, 1);
@@ -198,6 +217,7 @@ namespace GXY
         mGeometryFrameBuffer->bindTextures(0, 0, 1);
         mImageAmbientOcclusion->bindTextures(2, 1, 1);
         mDirectLightFrameBuffer->bindTextures(0, 2, 1);
+        mIndirectLightFrameBuffer->bindTextures(0, 3, 1);
         global->device->setViewPort();
 
             synchronize();

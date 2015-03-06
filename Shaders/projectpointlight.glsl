@@ -27,7 +27,7 @@ struct Quad
 struct PointLight
 {
     vec4 positionRadius; //!< .xyz = position, w = radius
-    vec4 colorIntensity; //!< .rgb = color, a = intensity
+    vec4 color; //!< .rgb = color
     ivec4 shadowInformation; //!< .x = index of Cube Shadow Map
 };
 

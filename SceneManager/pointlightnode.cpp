@@ -43,7 +43,7 @@ namespace GXY
         command.count = 4;
         command.first = global->Lighting.commandPointLights->numElements() * 4;
 
-        light.colorIntensity = vec4(mColor, mIntensity);
+        light.color = vec4(mColor * mIntensity, 0.0);
         light.positionRadius = vec4(mMatrix[3].xyz(), mRadius * mParent->mGlobalScaleFactor);
         light.shadowInformation.x = get<2>(mShadows);
 
@@ -99,7 +99,7 @@ namespace GXY
         get<1>(mShadows) = true;
 
         global->device->setClearColor(1.0, 1.0, 1.0);
-            renderIntoCubeMapArray(global->Lighting.pointLightShadowMaps, get<2>(mShadows), vec4(mMatrix[3].xyz(), mRadius * mParent->mGlobalScaleFactor), global->Shaders.depthPointLight);
+            renderIntoCubeMapArray(global->Lighting.pointLightShadowMaps, get<2>(mShadows), mMatrix[3].xyz(), mRadius * mParent->mGlobalScaleFactor, global->Shaders.depthPointLight);
         global->device->setClearColor(0.0, 0.0, 0.0);
     }
 
@@ -107,7 +107,7 @@ namespace GXY
     {
         get<1>(mVirtualLight) = true;
 
-
+        renderIntoCubeMap(global->Lighting.vplPointLightCreation, mMatrix[3].xyz(), mRadius * mParent->mGlobalScaleFactor, global->Shaders.createVPLPoint);
     }
 
     PointLightNode::~PointLightNode()

@@ -36,13 +36,8 @@ layout(binding = WORLD, shared) readonly buffer WorldSpaceBuffer
 };
 
 out vec3 position;
-
 out vec3 normal;
-out vec3 tangent;
-out vec3 biTangent;
-
 out vec2 texCoord;
-
 flat out int materialIndex;
 
 void main(void)
@@ -51,8 +46,6 @@ void main(void)
     texCoord = inTexCoord;
     mat3 normalMatrix = transpose(inverse(mat3(toWorldSpace[gl_DrawIDARB])));
     normal = normalMatrix * inNormal;
-    tangent = normalMatrix * inTangent;
-    biTangent = normalMatrix * inBiTangent;
 
     position = (toWorldSpace[gl_DrawIDARB] * vec4(inPos, 1.0)).xyz;
     gl_Position = toClipSpace[gl_DrawIDARB] * vec4(inPos, 1.0);

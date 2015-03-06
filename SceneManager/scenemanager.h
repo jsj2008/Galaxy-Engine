@@ -60,6 +60,8 @@ namespace  GXY
          */
         void renderPointLights(void);
 
+        void renderIndirectPointLight(void);
+
         /**
          * @brief Render the Quad with Post Processing
          */
@@ -92,6 +94,7 @@ namespace  GXY
 
         std::shared_ptr<FrameBuffer> mGeometryFrameBuffer; //*< The FrameBuffer used to render Geometry
         std::shared_ptr<FrameBuffer> mDirectLightFrameBuffer; //*< The FrameBuffer used to render DirectLighting
+        std::shared_ptr<FrameBuffer> mIndirectLightFrameBuffer; //*< The FrameBuffer used to render IndirectLighting
         std::shared_ptr<Texture> mImageAmbientOcclusion; //*< AO, Horizontal Pass, Vertical Pass
     };
 }

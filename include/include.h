@@ -243,7 +243,7 @@ namespace GXY
     struct PointLight
     {
         glm::vec4 positionRadius; //!< .xyz = position, w = radius
-        glm::vec4 colorIntensity; //!< .rgb = color, a = intensity
+        glm::vec4 color; //!< .rgb = color
         glm::ivec4 shadowInformation; //!< .x = index of Cube Shadow Map
     };
 
@@ -253,7 +253,7 @@ namespace GXY
     struct PointLightVPL
     {
         glm::vec4 positionRadius; //*< .xyz = position, w = radius
-        glm::vec4 colorIntensity; //*< .rgb = color, a = intensity
+        glm::vec4 color; //*< .rgb = color
         glm::vec4 normal; //*< .xyz : Normal oriented Hemisphere for diffuse indirect lighting
     };
 }

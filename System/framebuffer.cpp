@@ -265,8 +265,7 @@ static CameraUp const up[] = {CAM_DOWN_Y,
         destroy();
     }
 
-    void renderIntoCubeMapArray(shared_ptr<FrameBuffer> const &frameBuffer,
-                                u32 index, vec4 const &posFar, shared_ptr<Shader> const &shader)
+    void renderIntoCubeMap(const std::shared_ptr<FrameBuffer> &frameBuffer, const vec3 &pos, float far, const std::shared_ptr<Shader> &shader)
     {
         shared_ptr<CameraStatic> camera;
 
@@ -274,7 +273,33 @@ static CameraUp const up[] = {CAM_DOWN_Y,
 
         for(u32 i = 0; i < 6; ++i)
         {
-            camera = make_shared<CameraStatic>(posFar.xyz(), posFar.xyz() + look[i], up[i], radians(90.0f), 1.0f, 1.0f, posFar.w);
+            camera = make_shared<CameraStatic>(pos, pos + look[i], up[i], radians(90.0f), 1.0f, 1.0f, far);
+
+            frameBuffer->attachCubeMap(CubeMap(POS_X + i));
+            global->device->clearDepthColorBuffer();
+            global->device->clearStencilBuffer();
+
+            global->sceneManager->pushModelsInPipeline(camera);
+            global->Shaders.depth->use();
+                global->sceneManager->renderDepthPass();
+
+            shader->use();
+                global->sceneManager->renderModels();
+
+            synchronize();
+        }
+    }
+
+    void renderIntoCubeMapArray(shared_ptr<FrameBuffer> const &frameBuffer,
+                                u32 index, vec3 const &pos, float far, shared_ptr<Shader> const &shader)
+    {
+        shared_ptr<CameraStatic> camera;
+
+        frameBuffer->bind();
+
+        for(u32 i = 0; i < 6; ++i)
+        {
+            camera = make_shared<CameraStatic>(pos, pos + look[i], up[i], radians(90.0f), 1.0f, 1.0f, far);
 
             frameBuffer->attachCubeMapArray(CubeMap(POS_X + i), index);
             global->device->clearDepthColorBuffer();
@@ -287,7 +312,6 @@ static CameraUp const up[] = {CAM_DOWN_Y,
                 global->sceneManager->renderModels();
 
             synchronize();
-            glFlush();
         }
     }
 }

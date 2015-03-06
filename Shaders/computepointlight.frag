@@ -29,7 +29,7 @@ layout(binding = 3) uniform samplerCubeArray samplerPointLightShadowMaps;
 struct PointLight
 {
     vec4 positionRadius; //!< .xyz = position, w = radius
-    vec4 colorIntensity; //!< .rgb = color, a = intensity
+    vec4 color; //!< .rgb = color, a = intensity
     ivec4 shadowInformation; //!< .x = index of Cube Shadow Map
 };
 
@@ -55,7 +55,7 @@ void main(void)
     float shininess = texture(samplerShininessAlbedo, texCoord).x;
 
     vec4 positionLightRadius = pointLights[ID].positionRadius;
-    vec4 colorIntensity = pointLights[ID].colorIntensity;
+    vec3 colorLight = pointLights[ID].color.rgb;
     int shadowMap = pointLights[ID].shadowInformation.x;
     float radiusSquare = positionLightRadius.w * positionLightRadius.w;
 
@@ -65,21 +65,21 @@ void main(void)
 
     float attenuation = max(0.0, 1.0 - distanceLightVertex / positionLightRadius.w);
 
-    float lambertCoeff = dot(normal, vertexToLightNormalized);
+    float lambertCoeff = dot(normal, vertexToLightNormalized) * attenuation;
 
-    if(lambertCoeff > 0.0 && attenuation > 0.0)
+    if(lambertCoeff > 0.0)
     {
         vec3 dirEye = normalize(posCamera.xyz - position);
 
         float shine = max(0.0, pow(dot(dirEye, reflect(-vertexToLightNormalized, normal)), shininess));
-        color = attenuation * colorIntensity.xyz * (shine + lambertCoeff);
+        color = colorLight.rgb * (lambertCoeff);
 
         if(shadowMap > -1)
         {
             float z = texture(samplerPointLightShadowMaps, vec4(-vertexToLight, shadowMap)).x;
             float d = distanceLightVertex / positionLightRadius.w;
 
-            color *= min(0.5 + exp(-positionLightRadius.w * 0.0625 * (d - z)), 1.0);
+            color *= min(exp(-positionLightRadius.w * 0.0625 * (d - z)), 1.0);
         }
     }
 

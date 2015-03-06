@@ -72,6 +72,7 @@ namespace GXY
             std::shared_ptr<FrameBuffer> vplPointLightCreation; //!< Used to create and to initialize PointLightVPL
 
             std::shared_ptr<Buffer<u32>> vplCounter; //!< Atomic Buffer to count the number of VPL
+            std::shared_ptr<Buffer<PointLightVPL>> vplPointLight; //!<
         }Lighting;
 
         struct
@@ -100,6 +101,8 @@ namespace GXY
             std::shared_ptr<Shader> projectPointLights;
             std::shared_ptr<Shader> computePointLights;
             std::shared_ptr<Shader> depthPointLight;
+            std::shared_ptr<Shader> createVPLPoint;
+            std::shared_ptr<Shader> computeIndirectVPLPoint;
 
             std::shared_ptr<Shader> final; //!< A pointer on the Shader used to render final Quad
         }Shaders;

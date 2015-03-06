@@ -151,8 +151,11 @@ namespace GXY
     class CameraStatic;
     class Shader;
 
+    void renderIntoCubeMap(std::shared_ptr<FrameBuffer> const &frameBuffer,
+                           glm::vec3 const &pos, float far, std::shared_ptr<Shader> const &shader);
+
     void renderIntoCubeMapArray(std::shared_ptr<FrameBuffer> const &frameBuffer,
-                                u32 index, glm::vec4 const &posFar, std::shared_ptr<Shader> const &shader);
+                                u32 index, glm::vec3 const &pos, float far, std::shared_ptr<Shader> const &shader);
 }
 
 #endif // FRAMEBUFFER_H

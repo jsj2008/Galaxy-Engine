@@ -20,7 +20,13 @@ namespace GXY
 
     u32 powerOf2(u32 number)
     {
-        if(number <= 4)
+        if(number <= 1)
+            return 1;
+
+        else if(number <= 2)
+            return 2;
+
+        else if(number <= 4)
             return 4;
 
         else if(number <= 8)
@@ -108,6 +114,7 @@ namespace GXY
         global->Lighting.quadsPointLights = make_shared<Buffer<vec2>>();
         global->Lighting.toWorldSpace = make_shared<Buffer<mat4>>();
         global->Lighting.vplCounter = make_shared<Buffer<u32>>();
+        global->Lighting.vplPointLight = make_shared<Buffer<PointLightVPL>>();
 
         global->Lighting.vaoPointLight = make_shared<VertexArray>();
 
@@ -123,8 +130,11 @@ namespace GXY
         global->Lighting.vplCounter->bindBase(ATOMIC, 0);
         glMemoryBarrier(GL_ATOMIC_COUNTER_BARRIER_BIT);
 
+        global->Lighting.vplPointLight->allocate(65536);
+        global->Lighting.vplPointLight->bindBase(SHADER_STORAGE, 8);
+
         global->Lighting.vplPointLightCreation->create();
-        global->Lighting.vplPointLightCreation->createCubeMap(16, 16, {R16F}, true);
+        global->Lighting.vplPointLightCreation->createCubeMap(8, 8, {}, true);
     }
 
     void createGlobalShader(void)
@@ -140,6 +150,8 @@ namespace GXY
         global->Shaders.projectPointLights = make_shared<Shader>();
         global->Shaders.computePointLights = make_shared<Shader>("Shaders/computepointlight.vert", "Shaders/computepointlight.frag");
         global->Shaders.depthPointLight = make_shared<Shader>("Shaders/pointlightdepth.vert", "Shaders/pointlightdepth.frag");
+        global->Shaders.createVPLPoint = make_shared<Shader>("Shaders/createvplpoint.vert", "Shaders/createvplpoint.frag");
+        global->Shaders.computeIndirectVPLPoint = make_shared<Shader>("Shaders/final.vert", "Shaders/testindirect.frag");
 
         global->Shaders.final = make_shared<Shader>("Shaders/final.vert", "Shaders/final.frag");
 

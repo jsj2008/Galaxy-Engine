@@ -62,5 +62,6 @@ DISTFILES += \
     Shaders/pointlightdepth.vert \
     Shaders/pointlightdepth.frag \
     Shaders/createvplpoint.vert \
-    Shaders/createvplpoint.frag
+    Shaders/createvplpoint.frag \
+    Shaders/testindirect.frag
 
