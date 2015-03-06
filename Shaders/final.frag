@@ -33,5 +33,5 @@ void main(void)
     //color = diffuseColor;
     //color = vec3(ao);
     color = ao * diffuseColor * (directLightColor + indirectLightColor);
-    color = indirectLightColor;
+    //color = indirectLightColor;
 }
