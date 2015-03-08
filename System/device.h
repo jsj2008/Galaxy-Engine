@@ -128,7 +128,7 @@ namespace GXY
 
         /**
          * @brief Ask if one key is pressed
-         * @param k : The key that you want know if it is pressed
+         * @param[in] k : The key that you want know if it is pressed
          * @return true if it's pressed, else false
          */
         inline bool key(SDL_Keycode const &k) {return mKeys[k];}
@@ -176,20 +176,20 @@ namespace GXY
 
         /**
          * @brief Ask if one button is pressed
-         * @param button : The button that you want know if it is pressed
+         * @param[in] button : The button that you want know if it is pressed
          * @return true if it's pressed, else false
          */
         inline bool button(u32 button) {return mButtons[button];}
 
         /**
          * @brief Let to show or not the cursor of Mouse
-         * @param show : Enable or disable the showing of Cursor
+         * @param[in] show : Enable or disable the showing of Cursor
          */
         inline void showCursor(bool show) const {SDL_ShowCursor(show);}
 
         /**
          * @brief Let to capture in the center of Window the cursor
-         * @param capture : capture or not
+         * @param[in] capture : capture or not
          */
         inline void captureCursor(bool capture) const{SDL_SetRelativeMouseMode(capture ? SDL_TRUE : SDL_FALSE);}
 
@@ -210,12 +210,12 @@ namespace GXY
     public :
         /**
          * @brief Device Constructor
-         * @param width : Width of Window
-         * @param height : Height of Window
-         * @param fullScreen : It's in full screen (true), or not (false)
-         * @param title : Title of Window (Galaxy-Engine by Default)
-         * @param clearColor : The color used to clear screen (black by default)
-         * @param pathIcon : A path to one icon
+         * @param[in] width : Width of Window
+         * @param[in] height : Height of Window
+         * @param[in] fullScreen : It's in full screen (true), or not (false)
+         * @param[in] title : Title of Window (Galaxy-Engine by Default)
+         * @param[in] clearColor : The color used to clear screen (black by default)
+         * @param[in] pathIcon : A path to one icon
          */
         Device(s32 width, s32 height,
                bool fullScreen = false,
@@ -235,21 +235,21 @@ namespace GXY
 
         /**
          * @brief Change the clear Color
-         * @param r : Value for red
-         * @param g : Value for green
-         * @param b : Value for blue
+         * @param[in] r : Value for red
+         * @param[in] g : Value for green
+         * @param[in] b : Value for blue
          */
         void setClearColor(float r, float g, float b);
 
         /**
          * @brief Change the clear Color
-         * @param color : The new color
+         * @param[in] color : The new color
          */
         void setClearColor(glm::vec3 const &color);
 
         /**
          * @brief Change the title of Window
-         * @param title : The new title
+         * @param[in] title : The new title
          */
         void setTitle(std::string const &title);
 
@@ -288,7 +288,7 @@ namespace GXY
 
         /**
          * @brief Let to enable the control of FPS
-         * @param enable : Enable or Disable the control of FPS
+         * @param[in] enable : Enable or Disable the control of FPS
          */
         inline void setControlFps(bool enable) {mControlFps = enable;}
 
@@ -348,7 +348,7 @@ namespace GXY
 
     /**
      * @brief Get the first power of 2 bigger than number
-     * @param number
+     * @param[in] number
      * @return the first power of 2 bigger than number
      */
     u32 powerOf2(u32 number);

@@ -31,14 +31,14 @@ namespace GXY
 
         /**
          * @brief VertexArray Constructor Move semantic
-         * @param va
+         * @param[in] va
          */
         VertexArray(VertexArray &&va);
         VertexArray(VertexArray const &va) = delete;
 
         /**
          * @brief VertexArray move semantic
-         * @param va
+         * @param[in] va
          * @return
          */
         VertexArray &operator=(VertexArray &&va);
@@ -56,31 +56,31 @@ namespace GXY
 
         /**
          * @brief Configure VertexArray for Vertex
-         * @param buffer : Buffer<Vertex>
+         * @param[in] buffer : Buffer<Vertex>
          */
         void configure(Buffer<Vertex> const &buffer);
 
         /**
          * @brief Configure VertexArray for vec2
-         * @param buffer : Buffer<vec2>
+         * @param[in] buffer : Buffer<vec2>
          */
         void configure(Buffer<glm::vec2> const &buffer);
 
         /**
          * @brief Configure VertexArray for vec3
-         * @param buffer : Buffer<vec3>
+         * @param[in] buffer : Buffer<vec3>
          */
         void configure(Buffer<glm::vec3> const &buffer);
 
         /**
          * @brief Configure VertexArray for vec4
-         * @param buffer : Buffer<vec4>
+         * @param[in] buffer : Buffer<vec4>
          */
         void configure(Buffer<glm::vec4> const &buffer);
 
         /**
          * @brief Bind one Element Buffer to this VertexArray
-         * @param buffer
+         * @param[in] buffer
          */
         void bindElementBuffer(Buffer<u32> const &buffer);
 

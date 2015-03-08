@@ -78,7 +78,7 @@ namespace GXY
 
         /**
          * @brief Buffer Constructor move semantic
-         * @param buffer
+         * @param[in] buffer
          */
         Buffer(Buffer<T> &&buffer)
         {
@@ -93,7 +93,7 @@ namespace GXY
 
         /**
          * @brief Buffer move semantic
-         * @param buffer
+         * @param[in] buffer
          * @return newBuffer
          */
         inline Buffer<T> &operator=(Buffer<T> &&buffer)
@@ -114,7 +114,7 @@ namespace GXY
 
         /**
          * @brief Allocate nElements in video Memory
-         * @param nElements : Number of elements
+         * @param[in] nElements : Number of elements
          */
         inline void allocate(size_t nElements)
         {
@@ -155,10 +155,10 @@ namespace GXY
 
         /**
          * @brief Copy one Buffer in another one
-         * @param buffer : Source Buffer
-         * @param readOffset : offset in Source Buffer
-         * @param writeOffset : offset in this Buffer
-         * @param nElements : number of elements to copy
+         * @param[in] buffer : Source Buffer
+         * @param[in] readOffset : offset in Source Buffer
+         * @param[in] writeOffset : offset in this Buffer
+         * @param[in] nElements : number of elements to copy
          */
         inline void copy(Buffer<T> const &buffer, u32 readOffset, u32 writeOffset, size_t nElements)
         {
@@ -167,7 +167,7 @@ namespace GXY
 
         /**
          * @brief Bind the Buffer for rendering command
-         * @param type : BufferType of this Buffer : ELEMENT DRAW_INDIRECT DISPATCH_INDIRECT
+         * @param[in] type : BufferType of this Buffer : ELEMENT DRAW_INDIRECT DISPATCH_INDIRECT
          */
         inline void bind(BufferType type)
         {
@@ -176,8 +176,8 @@ namespace GXY
 
         /**
          * @brief Bind the Buffer to one indexed Buffer target
-         * @param type : BufferType of this Buffer : UNIFORM SHADER_STORAGE ATOMIC
-         * @param binding : index of this Buffer (binding point)
+         * @param[in] type : BufferType of this Buffer : UNIFORM SHADER_STORAGE ATOMIC
+         * @param[in] binding : index of this Buffer (binding point)
          */
         inline void bindBase(BufferType type, u32 binding)
         {
@@ -210,7 +210,7 @@ namespace GXY
 
         /**
          * @brief operator [] like array
-         * @param index
+         * @param[in] index
          * @return reference on this element
          */
         inline T &operator[](u32 index)
@@ -221,10 +221,10 @@ namespace GXY
 
         /** Bind the buffer range
          * @brief Bind the Buffer to one indexed Buffer target
-         * @param type : BufferType of this Buffer : UNIFORM SHADER_STORAGE ATOMIC
-         * @param binding : index of this Buffer (binding point)
-         * @param offset : offset in number of elements in Buffer
-         * @param nElements : number of elements
+         * @param[in] type : BufferType of this Buffer : UNIFORM SHADER_STORAGE ATOMIC
+         * @param[in] binding : index of this Buffer (binding point)
+         * @param[in] offset : offset in number of elements in Buffer
+         * @param[in] nElements : number of elements
         */
         inline void bindRange(BufferType type, u32 binding, u32 offset, u32 nElements)
         {

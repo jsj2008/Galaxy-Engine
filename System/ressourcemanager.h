@@ -27,14 +27,14 @@ namespace GXY
 
         /**
          * @brief Get a Pointer on a Texture asked to be load
-         * @param path : Path to find a Texture
+         * @param[in] path : Path to find a Texture
          * @return a pointer on a Texture
          */
         std::shared_ptr<Texture> getTexture(std::string const &path);
 
         /**
          * @brief Get a Pointer on a Model asked to be load
-         * @param path : Path to find a Model
+         * @param[in] path : Path to find a Model
          * @return a pointer on a Model
          */
         std::shared_ptr<Model> getModel(std::string const &path);
