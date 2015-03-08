@@ -151,7 +151,7 @@ namespace GXY
         global->Shaders.computePointLights = make_shared<Shader>("Shaders/computepointlight.vert", "Shaders/computepointlight.frag");
         global->Shaders.depthPointLight = make_shared<Shader>("Shaders/pointlightdepth.vert", "Shaders/pointlightdepth.frag");
         global->Shaders.createVPLPoint = make_shared<Shader>("Shaders/createvplpoint.vert", "Shaders/createvplpoint.frag");
-        global->Shaders.computeIndirectVPLPoint = make_shared<Shader>("Shaders/final.vert", "Shaders/testindirect.frag");
+        global->Shaders.computeIndirectVPLPoint = make_shared<Shader>("Shaders/final.vert", "Shaders/injectindirect.frag");
 
         global->Shaders.final = make_shared<Shader>("Shaders/final.vert", "Shaders/final.frag");
 

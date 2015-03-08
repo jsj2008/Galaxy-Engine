@@ -16,21 +16,27 @@
   *
   * @section Features
   * @subsection Sceneries
-  *     This Engine works with Nodes, so all members depend on
+  * This Engine works with Nodes, so all members depend on
   * one other member, for example, glasses in a storage cupboard
   * depend of this storage cupboard.
   *
   * @subsection Ambient Occlusion
-  * Ambient Occlusion is in development
+  * Ambient Occlusion is one analytical ambient occlusion with
+  * Poisson Sampling.
+  * Ray marched analytical ambient occlusion is in developpment
   *
   * @subsection Lighting
-  * Direct Lighting is in development
+  * Direct Lighting is performed by computing the rendering equation
+  * and blending over color frame buffer
   *
   * @subsection Shadows
-  * Shadows are in develoment
+  * Shadows are computed by Exponential Shadow Maps without kernel.
+  * Kernel is in development
   *
   * @subsection Global Illumination
-  * Global Illumination is in development
+  * Global Illumination is performed by implemented Instant radiosity
+  * with virtual point light
+  * Reflective Shadow Maps is in developpment
   *
   * @subsection EnvironmentMap
   * Reflections, Refractions, Caustics are in development

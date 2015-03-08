@@ -12,7 +12,11 @@
 
 namespace GXY
 {
+    /**
+     * @brief The number of Shadow Maps for point light
+     */
     u32 const MAX_POINT_LIGHT_SHADOW = 10;
+
     /**
       * @brief Describe One Cube of 2 units per side, center in 0, 0, 0
      */
