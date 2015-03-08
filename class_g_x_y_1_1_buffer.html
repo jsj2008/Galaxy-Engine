@@ -228,7 +228,7 @@ template&lt;typename T&gt; </div>
 <p><a class="el" href="class_g_x_y_1_1_buffer.html" title="The Buffer Object. ">Buffer</a> Constructor move semantic. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">buffer</td><td></td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">buffer</td><td></td></tr>
   </table>
   </dd>
 </dl>
@@ -321,7 +321,7 @@ template&lt;typename T&gt; </div>
 <p>Allocate nElements in video Memory. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">nElements</td><td>: Number of elements </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">nElements</td><td>: Number of elements </td></tr>
   </table>
   </dd>
 </dl>
@@ -357,7 +357,7 @@ template&lt;typename T&gt; </div>
 <p>Bind the <a class="el" href="class_g_x_y_1_1_buffer.html" title="The Buffer Object. ">Buffer</a> for rendering command. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">type</td><td>: BufferType of this <a class="el" href="class_g_x_y_1_1_buffer.html" title="The Buffer Object. ">Buffer</a> : ELEMENT DRAW_INDIRECT DISPATCH_INDIRECT </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">type</td><td>: BufferType of this <a class="el" href="class_g_x_y_1_1_buffer.html" title="The Buffer Object. ">Buffer</a> : ELEMENT DRAW_INDIRECT DISPATCH_INDIRECT </td></tr>
   </table>
   </dd>
 </dl>
@@ -403,8 +403,8 @@ template&lt;typename T&gt; </div>
 <p>Bind the <a class="el" href="class_g_x_y_1_1_buffer.html" title="The Buffer Object. ">Buffer</a> to one indexed <a class="el" href="class_g_x_y_1_1_buffer.html" title="The Buffer Object. ">Buffer</a> target. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">type</td><td>: BufferType of this <a class="el" href="class_g_x_y_1_1_buffer.html" title="The Buffer Object. ">Buffer</a> : UNIFORM SHADER_STORAGE ATOMIC </td></tr>
-    <tr><td class="paramname">binding</td><td>: index of this <a class="el" href="class_g_x_y_1_1_buffer.html" title="The Buffer Object. ">Buffer</a> (binding point) </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">type</td><td>: BufferType of this <a class="el" href="class_g_x_y_1_1_buffer.html" title="The Buffer Object. ">Buffer</a> : UNIFORM SHADER_STORAGE ATOMIC </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">binding</td><td>: index of this <a class="el" href="class_g_x_y_1_1_buffer.html" title="The Buffer Object. ">Buffer</a> (binding point) </td></tr>
   </table>
   </dd>
 </dl>
@@ -463,10 +463,10 @@ template&lt;typename T&gt; </div>
 <p>Bind the buffer range </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">type</td><td>: BufferType of this <a class="el" href="class_g_x_y_1_1_buffer.html" title="The Buffer Object. ">Buffer</a> : UNIFORM SHADER_STORAGE ATOMIC </td></tr>
-    <tr><td class="paramname">binding</td><td>: index of this <a class="el" href="class_g_x_y_1_1_buffer.html" title="The Buffer Object. ">Buffer</a> (binding point) </td></tr>
-    <tr><td class="paramname">offset</td><td>: offset in number of elements in <a class="el" href="class_g_x_y_1_1_buffer.html" title="The Buffer Object. ">Buffer</a> </td></tr>
-    <tr><td class="paramname">nElements</td><td>: number of elements </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">type</td><td>: BufferType of this <a class="el" href="class_g_x_y_1_1_buffer.html" title="The Buffer Object. ">Buffer</a> : UNIFORM SHADER_STORAGE ATOMIC </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">binding</td><td>: index of this <a class="el" href="class_g_x_y_1_1_buffer.html" title="The Buffer Object. ">Buffer</a> (binding point) </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">offset</td><td>: offset in number of elements in <a class="el" href="class_g_x_y_1_1_buffer.html" title="The Buffer Object. ">Buffer</a> </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">nElements</td><td>: number of elements </td></tr>
   </table>
   </dd>
 </dl>
@@ -524,10 +524,10 @@ template&lt;typename T&gt; </div>
 <p>Copy one <a class="el" href="class_g_x_y_1_1_buffer.html" title="The Buffer Object. ">Buffer</a> in another one. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">buffer</td><td>: Source <a class="el" href="class_g_x_y_1_1_buffer.html" title="The Buffer Object. ">Buffer</a> </td></tr>
-    <tr><td class="paramname">readOffset</td><td>: offset in Source <a class="el" href="class_g_x_y_1_1_buffer.html" title="The Buffer Object. ">Buffer</a> </td></tr>
-    <tr><td class="paramname">writeOffset</td><td>: offset in this <a class="el" href="class_g_x_y_1_1_buffer.html" title="The Buffer Object. ">Buffer</a> </td></tr>
-    <tr><td class="paramname">nElements</td><td>: number of elements to copy </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">buffer</td><td>: Source <a class="el" href="class_g_x_y_1_1_buffer.html" title="The Buffer Object. ">Buffer</a> </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">readOffset</td><td>: offset in Source <a class="el" href="class_g_x_y_1_1_buffer.html" title="The Buffer Object. ">Buffer</a> </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">writeOffset</td><td>: offset in this <a class="el" href="class_g_x_y_1_1_buffer.html" title="The Buffer Object. ">Buffer</a> </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">nElements</td><td>: number of elements to copy </td></tr>
   </table>
   </dd>
 </dl>
@@ -686,7 +686,7 @@ template&lt;typename T&gt; </div>
 <p><a class="el" href="class_g_x_y_1_1_buffer.html" title="The Buffer Object. ">Buffer</a> move semantic. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">buffer</td><td></td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">buffer</td><td></td></tr>
   </table>
   </dd>
 </dl>
@@ -749,7 +749,7 @@ template&lt;typename T&gt; </div>
 <p>operator [] like array </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">index</td><td></td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">index</td><td></td></tr>
   </table>
   </dd>
 </dl>
@@ -872,7 +872,7 @@ template&lt;typename T&gt; </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Mar 8 2015 03:00:57 for Galaxy by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Mar 8 2015 04:15:00 for Galaxy by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

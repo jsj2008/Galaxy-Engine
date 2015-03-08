@@ -203,7 +203,7 @@ Public Member Functions</h2></td></tr>
 <p><a class="el" href="class_g_x_y_1_1_frame_buffer.html" title="The FrameBuffer Object. ">FrameBuffer</a> Constructor move semantic. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">frameBuffer</td><td></td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">frameBuffer</td><td></td></tr>
   </table>
   </dd>
 </dl>
@@ -274,7 +274,7 @@ Public Member Functions</h2></td></tr>
 <p>Let to attach the Good <a class="el" href="class_g_x_y_1_1_texture.html" title="Provide an array of Texture, they can be empty or loaded from images. ">Texture</a> (6 faces) at the <a class="el" href="class_g_x_y_1_1_frame_buffer.html" title="The FrameBuffer Object. ">FrameBuffer</a>. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">target</td><td>: X Positive to Z Negative </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">target</td><td>: X Positive to Z Negative </td></tr>
   </table>
   </dd>
 </dl>
@@ -310,8 +310,8 @@ Public Member Functions</h2></td></tr>
 <p>Fusion of attachCubeMap and attachTextureArray for CubeMapArray. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">target</td><td>: X Positive to Z Negative </td></tr>
-    <tr><td class="paramname">index</td><td>: Index of Array </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">target</td><td>: X Positive to Z Negative </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">index</td><td>: Index of Array </td></tr>
   </table>
   </dd>
 </dl>
@@ -337,7 +337,7 @@ Public Member Functions</h2></td></tr>
 <p>Let to attache the good <a class="el" href="class_g_x_y_1_1_texture.html" title="Provide an array of Texture, they can be empty or loaded from images. ">Texture</a> on the Array at the <a class="el" href="class_g_x_y_1_1_frame_buffer.html" title="The FrameBuffer Object. ">FrameBuffer</a>. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">index</td><td>: Index of Array </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">index</td><td>: Index of Array </td></tr>
   </table>
   </dd>
 </dl>
@@ -384,7 +384,7 @@ Public Member Functions</h2></td></tr>
 <p>Bind <a class="el" href="class_g_x_y_1_1_texture.html" title="Provide an array of Texture, they can be empty or loaded from images. ">Texture</a> DepthBuffer on <a class="el" href="class_g_x_y_1_1_frame_buffer.html" title="The FrameBuffer Object. ">FrameBuffer</a> to OpenGL Sampler. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">firstUnit</td><td>: first Sampler unit binding </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">firstUnit</td><td>: first Sampler unit binding </td></tr>
   </table>
   </dd>
 </dl>
@@ -426,9 +426,9 @@ Public Member Functions</h2></td></tr>
 <p>Bind images on <a class="el" href="class_g_x_y_1_1_frame_buffer.html" title="The FrameBuffer Object. ">FrameBuffer</a> to OpenGL Image. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">indexFirstImage</td><td>: If you don't want to bind all image </td></tr>
-    <tr><td class="paramname">firstUnit</td><td>: First Sampler2D / SamplerCube unit binding </td></tr>
-    <tr><td class="paramname">count</td><td>: Number of images to bind </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">indexFirstImage</td><td>: If you don't want to bind all image </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">firstUnit</td><td>: First Sampler2D / SamplerCube unit binding </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">count</td><td>: Number of images to bind </td></tr>
   </table>
   </dd>
 </dl>
@@ -470,9 +470,9 @@ Public Member Functions</h2></td></tr>
 <p>Bind Textures on <a class="el" href="class_g_x_y_1_1_frame_buffer.html" title="The FrameBuffer Object. ">FrameBuffer</a> to OpenGL Sampler. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">indexFirstTexture</td><td>: If you don't want to bind all textures </td></tr>
-    <tr><td class="paramname">firstUnit</td><td>: First Sampler2D / SamplerCube unit binding </td></tr>
-    <tr><td class="paramname">count</td><td>: Number of textures to bind </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">indexFirstTexture</td><td>: If you don't want to bind all textures </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">firstUnit</td><td>: First Sampler2D / SamplerCube unit binding </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">count</td><td>: Number of textures to bind </td></tr>
   </table>
   </dd>
 </dl>
@@ -542,10 +542,10 @@ Public Member Functions</h2></td></tr>
 <p>Create one or several empty Cube Map Textures. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">w</td><td>: Width of each <a class="el" href="class_g_x_y_1_1_texture.html" title="Provide an array of Texture, they can be empty or loaded from images. ">Texture</a> in CubeMap </td></tr>
-    <tr><td class="paramname">h</td><td>: Height of each <a class="el" href="class_g_x_y_1_1_texture.html" title="Provide an array of Texture, they can be empty or loaded from images. ">Texture</a> in CubeMap </td></tr>
-    <tr><td class="paramname">internalFormat</td><td>: vector of FormatType for each ColorAttachment </td></tr>
-    <tr><td class="paramname">depth</td><td>: Add a depth <a class="el" href="class_g_x_y_1_1_texture.html" title="Provide an array of Texture, they can be empty or loaded from images. ">Texture</a> </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">w</td><td>: Width of each <a class="el" href="class_g_x_y_1_1_texture.html" title="Provide an array of Texture, they can be empty or loaded from images. ">Texture</a> in CubeMap </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">h</td><td>: Height of each <a class="el" href="class_g_x_y_1_1_texture.html" title="Provide an array of Texture, they can be empty or loaded from images. ">Texture</a> in CubeMap </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">internalFormat</td><td>: vector of FormatType for each ColorAttachment </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">depth</td><td>: Add a depth <a class="el" href="class_g_x_y_1_1_texture.html" title="Provide an array of Texture, they can be empty or loaded from images. ">Texture</a> </td></tr>
   </table>
   </dd>
 </dl>
@@ -639,10 +639,10 @@ Public Member Functions</h2></td></tr>
 <p>Create one or several empty <a class="el" href="class_g_x_y_1_1_texture.html" title="Provide an array of Texture, they can be empty or loaded from images. ">Texture</a> (color, depth, and stencil) </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">w</td><td>: Width of each <a class="el" href="class_g_x_y_1_1_texture.html" title="Provide an array of Texture, they can be empty or loaded from images. ">Texture</a> </td></tr>
-    <tr><td class="paramname">h</td><td>: Height of each <a class="el" href="class_g_x_y_1_1_texture.html" title="Provide an array of Texture, they can be empty or loaded from images. ">Texture</a> </td></tr>
-    <tr><td class="paramname">internalFormat</td><td>: vector of FormatType for each ColorAttachment </td></tr>
-    <tr><td class="paramname">depth</td><td>: add a depth <a class="el" href="class_g_x_y_1_1_texture.html" title="Provide an array of Texture, they can be empty or loaded from images. ">Texture</a> (aka depthBuffer) </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">w</td><td>: Width of each <a class="el" href="class_g_x_y_1_1_texture.html" title="Provide an array of Texture, they can be empty or loaded from images. ">Texture</a> </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">h</td><td>: Height of each <a class="el" href="class_g_x_y_1_1_texture.html" title="Provide an array of Texture, they can be empty or loaded from images. ">Texture</a> </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">internalFormat</td><td>: vector of FormatType for each ColorAttachment </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">depth</td><td>: add a depth <a class="el" href="class_g_x_y_1_1_texture.html" title="Provide an array of Texture, they can be empty or loaded from images. ">Texture</a> (aka depthBuffer) </td></tr>
   </table>
   </dd>
 </dl>
@@ -735,7 +735,7 @@ Public Member Functions</h2></td></tr>
 <p><a class="el" href="class_g_x_y_1_1_frame_buffer.html" title="The FrameBuffer Object. ">FrameBuffer</a> move semantic. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">frameBuffer</td><td></td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">frameBuffer</td><td></td></tr>
   </table>
   </dd>
 </dl>
@@ -776,7 +776,7 @@ Public Member Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Mar 8 2015 03:00:57 for Galaxy by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Mar 8 2015 04:15:00 for Galaxy by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

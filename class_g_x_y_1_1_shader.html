@@ -220,7 +220,7 @@ Protected Member Functions</h2></td></tr>
 <p><a class="el" href="class_g_x_y_1_1_shader.html" title="Provide a Shader Interface. ">Shader</a> Constructor. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">shaders</td><td>pair&lt;Path, TypeOfShader&gt; the type can be VERTEX, FRAGMENT, GEOMETRY or COMPUTE </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">shaders</td><td>pair&lt;Path, TypeOfShader&gt; the type can be VERTEX, FRAGMENT, GEOMETRY or COMPUTE </td></tr>
   </table>
   </dd>
 </dl>
@@ -254,8 +254,8 @@ Protected Member Functions</h2></td></tr>
 <p><a class="el" href="class_g_x_y_1_1_shader.html" title="Provide a Shader Interface. ">Shader</a> Constructor. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">vert</td><td>: path to vertex <a class="el" href="class_g_x_y_1_1_shader.html" title="Provide a Shader Interface. ">Shader</a> </td></tr>
-    <tr><td class="paramname">fragment</td><td>: path to fragment <a class="el" href="class_g_x_y_1_1_shader.html" title="Provide a Shader Interface. ">Shader</a> </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">vert</td><td>: path to vertex <a class="el" href="class_g_x_y_1_1_shader.html" title="Provide a Shader Interface. ">Shader</a> </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">fragment</td><td>: path to fragment <a class="el" href="class_g_x_y_1_1_shader.html" title="Provide a Shader Interface. ">Shader</a> </td></tr>
   </table>
   </dd>
 </dl>
@@ -295,9 +295,9 @@ Protected Member Functions</h2></td></tr>
 <p><a class="el" href="class_g_x_y_1_1_shader.html" title="Provide a Shader Interface. ">Shader</a> Constructor. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">vert</td><td>: path to vertex <a class="el" href="class_g_x_y_1_1_shader.html" title="Provide a Shader Interface. ">Shader</a> </td></tr>
-    <tr><td class="paramname">geometry</td><td>: path to geometry <a class="el" href="class_g_x_y_1_1_shader.html" title="Provide a Shader Interface. ">Shader</a> </td></tr>
-    <tr><td class="paramname">fragment</td><td>: path to fragment <a class="el" href="class_g_x_y_1_1_shader.html" title="Provide a Shader Interface. ">Shader</a> </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">vert</td><td>: path to vertex <a class="el" href="class_g_x_y_1_1_shader.html" title="Provide a Shader Interface. ">Shader</a> </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">geometry</td><td>: path to geometry <a class="el" href="class_g_x_y_1_1_shader.html" title="Provide a Shader Interface. ">Shader</a> </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">fragment</td><td>: path to fragment <a class="el" href="class_g_x_y_1_1_shader.html" title="Provide a Shader Interface. ">Shader</a> </td></tr>
   </table>
   </dd>
 </dl>
@@ -321,7 +321,7 @@ Protected Member Functions</h2></td></tr>
 <p><a class="el" href="class_g_x_y_1_1_shader.html" title="Provide a Shader Interface. ">Shader</a> Constructor copy move semantic. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">shader</td><td></td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">shader</td><td></td></tr>
   </table>
   </dd>
 </dl>
@@ -402,8 +402,8 @@ Protected Member Functions</h2></td></tr>
 <p>Compile a file. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">path</td><td>: Path to a file to compile </td></tr>
-    <tr><td class="paramname">type</td><td>: ShaderType of <a class="el" href="class_g_x_y_1_1_shader.html" title="Provide a Shader Interface. ">Shader</a> </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">path</td><td>: Path to a file to compile </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">type</td><td>: ShaderType of <a class="el" href="class_g_x_y_1_1_shader.html" title="Provide a Shader Interface. ">Shader</a> </td></tr>
   </table>
   </dd>
 </dl>
@@ -439,8 +439,8 @@ Protected Member Functions</h2></td></tr>
 <p>Compile a source. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">src</td><td>: source in GLSL </td></tr>
-    <tr><td class="paramname">type</td><td>: ShaderType of <a class="el" href="class_g_x_y_1_1_shader.html" title="Provide a Shader Interface. ">Shader</a> </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">src</td><td>: source in GLSL </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">type</td><td>: ShaderType of <a class="el" href="class_g_x_y_1_1_shader.html" title="Provide a Shader Interface. ">Shader</a> </td></tr>
   </table>
   </dd>
 </dl>
@@ -514,7 +514,7 @@ Protected Member Functions</h2></td></tr>
 <p>Get the localisation of uniform name. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">name</td><td>: name of the uniform variable </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">name</td><td>: name of the uniform variable </td></tr>
   </table>
   </dd>
 </dl>
@@ -541,7 +541,7 @@ Protected Member Functions</h2></td></tr>
 <p>operator = Move Semantic </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">shader</td><td></td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">shader</td><td></td></tr>
   </table>
   </dd>
 </dl>
@@ -602,8 +602,8 @@ Protected Member Functions</h2></td></tr>
 <p>Send one float in uniform "name". </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">value</td><td>: 1 float </td></tr>
-    <tr><td class="paramname">name</td><td>: name of uniform variable </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">value</td><td>: 1 float </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">name</td><td>: name of uniform variable </td></tr>
   </table>
   </dd>
 </dl>
@@ -639,8 +639,8 @@ Protected Member Functions</h2></td></tr>
 <p>Send 1 integer in uniform "name". </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">value</td><td>: 1 integer </td></tr>
-    <tr><td class="paramname">name</td><td>: name of uniform variable </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">value</td><td>: 1 integer </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">name</td><td>: name of uniform variable </td></tr>
   </table>
   </dd>
 </dl>
@@ -676,8 +676,8 @@ Protected Member Functions</h2></td></tr>
 <p>Send 2 floats in uniform "name". </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">vec</td><td>: 2 floats </td></tr>
-    <tr><td class="paramname">name</td><td>: name of uniform variable </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">vec</td><td>: 2 floats </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">name</td><td>: name of uniform variable </td></tr>
   </table>
   </dd>
 </dl>
@@ -713,8 +713,8 @@ Protected Member Functions</h2></td></tr>
 <p>Send 2 integers in uniform "name". </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">vec</td><td>: 2 integers </td></tr>
-    <tr><td class="paramname">name</td><td>: name of uniform variable </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">vec</td><td>: 2 integers </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">name</td><td>: name of uniform variable </td></tr>
   </table>
   </dd>
 </dl>
@@ -750,8 +750,8 @@ Protected Member Functions</h2></td></tr>
 <p>Send 3 floats in uniform "name". </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">vec</td><td>: 3 floats </td></tr>
-    <tr><td class="paramname">name</td><td>: name of uniform variable </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">vec</td><td>: 3 floats </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">name</td><td>: name of uniform variable </td></tr>
   </table>
   </dd>
 </dl>
@@ -787,8 +787,8 @@ Protected Member Functions</h2></td></tr>
 <p>Send 3 integers in uniform "name". </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">vec</td><td>: 3 integers </td></tr>
-    <tr><td class="paramname">name</td><td>: name of uniform variable </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">vec</td><td>: 3 integers </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">name</td><td>: name of uniform variable </td></tr>
   </table>
   </dd>
 </dl>
@@ -824,8 +824,8 @@ Protected Member Functions</h2></td></tr>
 <p>Send 4 floats in uniform "name". </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">vec</td><td>: 4 floats </td></tr>
-    <tr><td class="paramname">name</td><td>: name of uniform variable </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">vec</td><td>: 4 floats </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">name</td><td>: name of uniform variable </td></tr>
   </table>
   </dd>
 </dl>
@@ -861,8 +861,8 @@ Protected Member Functions</h2></td></tr>
 <p>Send 4 integers in uniform "name". </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">vec</td><td>: 4 integers </td></tr>
-    <tr><td class="paramname">name</td><td>: name of uniform variable </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">vec</td><td>: 4 integers </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">name</td><td>: name of uniform variable </td></tr>
   </table>
   </dd>
 </dl>
@@ -897,7 +897,7 @@ Protected Member Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Mar 8 2015 03:00:57 for Galaxy by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Mar 8 2015 04:15:00 for Galaxy by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>
