@@ -98,35 +98,88 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 
-<p>Describe a <a class="el" href="class_g_x_y_1_1_frustrum.html" title="The Frustrum class. ">Frustrum</a> by 6 <a class="el" href="struct_g_x_y_1_1_plane.html" title="Describe a plane by its equation. ">Plane</a> for <a class="el" href="class_g_x_y_1_1_shader.html" title="Provide a Shader Interface. ">Shader</a>.  
- <a href="struct_g_x_y_1_1_frustrum_uniform.html#details">More...</a></p>
-
 <p><code>#include &lt;<a class="el" href="include_8h_source.html">include.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:aab6457c55aa1a7022245e2b303e9a763"><td class="memItemLeft" align="right" valign="top">glm::vec4&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_g_x_y_1_1_frustrum_uniform.html#aab6457c55aa1a7022245e2b303e9a763">planes</a> [6]</td></tr>
-<tr class="memdesc:aab6457c55aa1a7022245e2b303e9a763"><td class="mdescLeft">&#160;</td><td class="mdescRight">The <a class="el" href="class_g_x_y_1_1_frustrum.html" title="The Frustrum class. ">Frustrum</a> is formed by 6 planes.  <a href="#aab6457c55aa1a7022245e2b303e9a763">More...</a><br/></td></tr>
-<tr class="separator:aab6457c55aa1a7022245e2b303e9a763"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae4ac9010a41df4fccade83430fce55ee"><td class="memItemLeft" align="right" valign="top">glm::mat4&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_g_x_y_1_1_frustrum_uniform.html#ae4ac9010a41df4fccade83430fce55ee">frustrumMatrix</a></td></tr>
+<tr class="memdesc:ae4ac9010a41df4fccade83430fce55ee"><td class="mdescLeft">&#160;</td><td class="mdescRight">Is the projectionMatrix product viewMatrix.  <a href="#ae4ac9010a41df4fccade83430fce55ee">More...</a><br/></td></tr>
+<tr class="separator:ae4ac9010a41df4fccade83430fce55ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa78fd5999c65dc5f0a41878feaaee429"><td class="memItemLeft" align="right" valign="top">glm::vec4&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_g_x_y_1_1_frustrum_uniform.html#aa78fd5999c65dc5f0a41878feaaee429">posCamera</a></td></tr>
+<tr class="memdesc:aa78fd5999c65dc5f0a41878feaaee429"><td class="mdescLeft">&#160;</td><td class="mdescRight">.xyz = posCamera or PosLight for shadowMaps for example  <a href="#aa78fd5999c65dc5f0a41878feaaee429">More...</a><br/></td></tr>
+<tr class="separator:aa78fd5999c65dc5f0a41878feaaee429"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5c9a690ce3c5173f19f7e3e76ee28606"><td class="memItemLeft" align="right" valign="top">glm::vec4&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_g_x_y_1_1_frustrum_uniform.html#a5c9a690ce3c5173f19f7e3e76ee28606">planesFrustrum</a> [6]</td></tr>
+<tr class="memdesc:a5c9a690ce3c5173f19f7e3e76ee28606"><td class="mdescLeft">&#160;</td><td class="mdescRight">A frustrum is formed by 6 planes.  <a href="#a5c9a690ce3c5173f19f7e3e76ee28606">More...</a><br/></td></tr>
+<tr class="separator:a5c9a690ce3c5173f19f7e3e76ee28606"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa70c41dc18c0b58cde3c8d45365c1fc5"><td class="memItemLeft" align="right" valign="top">glm::uvec4&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_g_x_y_1_1_frustrum_uniform.html#aa70c41dc18c0b58cde3c8d45365c1fc5">numberMeshesPointLights</a></td></tr>
+<tr class="memdesc:aa70c41dc18c0b58cde3c8d45365c1fc5"><td class="mdescLeft">&#160;</td><td class="mdescRight">NumberMeshed : .x, numberPointLights.y.  <a href="#aa70c41dc18c0b58cde3c8d45365c1fc5">More...</a><br/></td></tr>
+<tr class="separator:aa70c41dc18c0b58cde3c8d45365c1fc5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Describe a <a class="el" href="class_g_x_y_1_1_frustrum.html" title="The Frustrum class. ">Frustrum</a> by 6 <a class="el" href="struct_g_x_y_1_1_plane.html" title="Describe a plane by its equation. ">Plane</a> for <a class="el" href="class_g_x_y_1_1_shader.html" title="Provide a Shader Interface. ">Shader</a>. </p>
-
-<p>Definition at line <a class="el" href="include_8h_source.html#l00234">234</a> of file <a class="el" href="include_8h_source.html">include.h</a>.</p>
+<div class="textblock">
+<p>Definition at line <a class="el" href="include_8h_source.html#l00238">238</a> of file <a class="el" href="include_8h_source.html">include.h</a>.</p>
 </div><h2 class="groupheader">Member Data Documentation</h2>
-<a class="anchor" id="aab6457c55aa1a7022245e2b303e9a763"></a>
+<a class="anchor" id="ae4ac9010a41df4fccade83430fce55ee"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">glm::vec4 GXY::FrustrumUniform::planes[6]</td>
+          <td class="memname">glm::mat4 GXY::FrustrumUniform::frustrumMatrix</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>The <a class="el" href="class_g_x_y_1_1_frustrum.html" title="The Frustrum class. ">Frustrum</a> is formed by 6 planes. </p>
+<p>Is the projectionMatrix product viewMatrix. </p>
 
-<p>Definition at line <a class="el" href="include_8h_source.html#l00236">236</a> of file <a class="el" href="include_8h_source.html">include.h</a>.</p>
+<p>Definition at line <a class="el" href="include_8h_source.html#l00240">240</a> of file <a class="el" href="include_8h_source.html">include.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aa70c41dc18c0b58cde3c8d45365c1fc5"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">glm::uvec4 GXY::FrustrumUniform::numberMeshesPointLights</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>NumberMeshed : .x, numberPointLights.y. </p>
+
+<p>Definition at line <a class="el" href="include_8h_source.html#l00243">243</a> of file <a class="el" href="include_8h_source.html">include.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a5c9a690ce3c5173f19f7e3e76ee28606"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">glm::vec4 GXY::FrustrumUniform::planesFrustrum[6]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>A frustrum is formed by 6 planes. </p>
+
+<p>Definition at line <a class="el" href="include_8h_source.html#l00242">242</a> of file <a class="el" href="include_8h_source.html">include.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aa78fd5999c65dc5f0a41878feaaee429"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">glm::vec4 GXY::FrustrumUniform::posCamera</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>.xyz = posCamera or PosLight for shadowMaps for example </p>
+
+<p>Definition at line <a class="el" href="include_8h_source.html#l00241">241</a> of file <a class="el" href="include_8h_source.html">include.h</a>.</p>
 
 </div>
 </div>
@@ -136,7 +189,7 @@ Public Attributes</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Feb 15 2015 16:53:01 for Galaxy by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Mar 8 2015 03:00:57 for Galaxy by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

@@ -147,17 +147,30 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>clearStencilBuffer()
 : <a class="el" href="class_g_x_y_1_1_device.html#ac4cc15eb4ac2bfabd8651ffcdcdef2fa">GXY::Device</a>
 </li>
+<li>color
+: <a class="el" href="struct_g_x_y_1_1_point_light.html#a39564c885de23153cbd2ec523d4bee43">GXY::PointLight</a>
+, <a class="el" href="struct_g_x_y_1_1_point_light_v_p_l.html#ae8a0b3c9fcc7e820b15998007ab02a3f">GXY::PointLightVPL</a>
+</li>
 <li>colorDiffuse
 : <a class="el" href="struct_g_x_y_1_1_material.html#a197ddb2db5299216167f46f6109e18b7">GXY::Material</a>
 </li>
 <li>command
 : <a class="el" href="struct_g_x_y_1_1_global.html#acab35f65fa4cf4169bc890563bf06b4a">GXY::Global</a>
 </li>
+<li>commandPointLights
+: <a class="el" href="struct_g_x_y_1_1_global.html#a9318aaf7c2ce122dd35ce641719fec4f">GXY::Global</a>
+</li>
 <li>compileFile()
 : <a class="el" href="class_g_x_y_1_1_shader.html#af464ef70a645db7482570b955582a186">GXY::Shader</a>
 </li>
 <li>compileSource()
 : <a class="el" href="class_g_x_y_1_1_shader.html#afcb21667b54fe5083b8ce1edd6d3c1de">GXY::Shader</a>
+</li>
+<li>computeIndirectVPLPoint
+: <a class="el" href="struct_g_x_y_1_1_global.html#a9cbcf9a1cabda0135da260aa29462fea">GXY::Global</a>
+</li>
+<li>computePointLights
+: <a class="el" href="struct_g_x_y_1_1_global.html#a5fcbee18b83e89660d3d1855a2f71a3d">GXY::Global</a>
 </li>
 <li>configure()
 : <a class="el" href="class_g_x_y_1_1_vertex_array.html#a536595751b988eebc09fc5d96fedb045">GXY::VertexArray</a>
@@ -176,8 +189,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 , <a class="el" href="struct_g_x_y_1_1_draw_element_command.html#a9e8be06bee65155ddff4c9939bb7e329">GXY::DrawElementCommand</a>
 </li>
 <li>create()
-: <a class="el" href="class_g_x_y_1_1_buffer.html#a1b0cd5636ffcdba3407274ef56fc85b5">GXY::Buffer&lt; T &gt;</a>
-, <a class="el" href="class_g_x_y_1_1_frame_buffer.html#ad887c512a75ba7f0fb2150f0bec652d0">GXY::FrameBuffer</a>
+: <a class="el" href="class_g_x_y_1_1_frame_buffer.html#ad887c512a75ba7f0fb2150f0bec652d0">GXY::FrameBuffer</a>
 , <a class="el" href="class_g_x_y_1_1_texture.html#a3e55b72572fa335441ebc39df25bf51e">GXY::Texture</a>
 , <a class="el" href="class_g_x_y_1_1_vertex_array.html#ae0fcc5cc4839194b0dda5f20f4e03a2b">GXY::VertexArray</a>
 </li>
@@ -187,20 +199,29 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>createCameraStatic()
 : <a class="el" href="class_g_x_y_1_1_scene_manager.html#a53b4a38a09b3b7609c5ff8846fcc7534">GXY::SceneManager</a>
 </li>
-<li>createCubeMapTexture()
-: <a class="el" href="class_g_x_y_1_1_frame_buffer.html#acb7f76b4b898e21dc901792f530e7486">GXY::FrameBuffer</a>
+<li>createCubeMap()
+: <a class="el" href="class_g_x_y_1_1_frame_buffer.html#a7dfa69e45509b7d4ea34d3521ddd02c3">GXY::FrameBuffer</a>
+</li>
+<li>createCubeMapArray()
+: <a class="el" href="class_g_x_y_1_1_frame_buffer.html#a445d15c2a8d84c1c9e968c5f170340f6">GXY::FrameBuffer</a>
 </li>
 <li>createTexture()
-: <a class="el" href="class_g_x_y_1_1_frame_buffer.html#adccd70e4349e26576c4b367746af4807">GXY::FrameBuffer</a>
+: <a class="el" href="class_g_x_y_1_1_frame_buffer.html#a70d96337b7e9ed6991ae695dc9bc748a">GXY::FrameBuffer</a>
+</li>
+<li>createTextureArray()
+: <a class="el" href="class_g_x_y_1_1_frame_buffer.html#a55c697bd41eba6d9241a22b48f8118f7">GXY::FrameBuffer</a>
+</li>
+<li>createVPLPoint
+: <a class="el" href="struct_g_x_y_1_1_global.html#a2d292ce91ab8e8757e7537ebbe696962">GXY::Global</a>
 </li>
 <li>Cube
-: <a class="el" href="struct_g_x_y_1_1_global.html#ac1964ca8c200c6054e94e1fb5f3a5f59">GXY::Global</a>
+: <a class="el" href="struct_g_x_y_1_1_global.html#a18747f8ca7ea5fd2598ef5b34aaf448f">GXY::Global</a>
 </li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Feb 15 2015 20:43:10 for Galaxy by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Mar 8 2015 03:00:57 for Galaxy by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

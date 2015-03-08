@@ -1,7 +1,7 @@
 var searchData=
 [
-  ['texcoord',['texCoord',['../struct_g_x_y_1_1_vertex.html#a09a52343497b69e4b2dd42c6431701f8',1,'GXY::Vertex']]],
-  ['texturehandleusetexture',['textureHandleUseTexture',['../struct_g_x_y_1_1_material.html#a0f025d571630ada7a9eee5ccb0c1d6f1',1,'GXY::Material']]],
-  ['toclipspace',['toClipSpace',['../struct_g_x_y_1_1_global.html#ab4852bd0a4e05d5b03d01ed794c1a06a',1,'GXY::Global']]],
-  ['toworldspace',['toWorldSpace',['../struct_g_x_y_1_1_global.html#ace9856050925e894e4bca2dd3e747381',1,'GXY::Global']]]
+  ['scenemanager',['sceneManager',['../struct_g_x_y_1_1_global.html#a5fa922fbb5989947cf383b04be56b5aa',1,'GXY::Global']]],
+  ['shaders',['Shaders',['../struct_g_x_y_1_1_global.html#ad8bf20a19aa025f86852629e8d8c9787',1,'GXY::Global']]],
+  ['shadowinformation',['shadowInformation',['../struct_g_x_y_1_1_point_light.html#af8e76a96fe6f857f37df33ad150e9ed1',1,'GXY::PointLight']]],
+  ['shininessalbedo',['shininessAlbedo',['../struct_g_x_y_1_1_material.html#ae6ba917debb87e94a004737f0f0c87a4',1,'GXY::Material']]]
 ];

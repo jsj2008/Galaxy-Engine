@@ -1,7 +1,7 @@
 var searchData=
 [
   ['getdir',['getDir',['../namespace_g_x_y.html#a5213d66424e5134d08c37cd9e70f906c',1,'GXY']]],
-  ['getformattypefilterfrominternal',['getFormatTypeFilterFromInternal',['../namespace_g_x_y.html#a9d0f492c4569ffe98329b6de9b704d67',1,'GXY']]],
+  ['getfilterfrominternal',['getFilterFromInternal',['../namespace_g_x_y.html#a6f066446fa0df0ef1a13cbf45d1011aa',1,'GXY']]],
   ['getfps',['getFPS',['../class_g_x_y_1_1_device.html#a4f113769c955e257b41783eef067533d',1,'GXY::Device']]],
   ['gethandle',['getHandle',['../class_g_x_y_1_1_texture.html#a55e4bad3d54eba2a723967ed1793fe32',1,'GXY::Texture']]],
   ['getheight',['getHeight',['../class_g_x_y_1_1_texture.html#ac36aaa9cd2ac99c9e1147560e2bb67ed',1,'GXY::Texture']]],

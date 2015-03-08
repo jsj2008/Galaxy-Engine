@@ -1,5 +1,6 @@
 var searchData=
 [
+  ['tangent',['tangent',['../struct_g_x_y_1_1_vertex.html#ad2c6a9087d00a24d66d061d07bfa7716',1,'GXY::Vertex']]],
   ['texcoord',['texCoord',['../struct_g_x_y_1_1_vertex.html#a09a52343497b69e4b2dd42c6431701f8',1,'GXY::Vertex']]],
   ['texture',['Texture',['../class_g_x_y_1_1_texture.html',1,'GXY']]],
   ['texture',['Texture',['../class_g_x_y_1_1_texture.html#a52a7435e5ff87ed8e6c9e86dc89362f2',1,'GXY::Texture::Texture(void)'],['../class_g_x_y_1_1_texture.html#a1c13c524f61f034ea58f16231bc1701a',1,'GXY::Texture::Texture(Texture &amp;&amp;texture)'],['../class_g_x_y_1_1_texture.html#a509ed358777192c13a481a34fca68da7',1,'GXY::Texture::Texture(Texture const &amp;texture)=delete'],['../class_g_x_y_1_1_texture.html#aa0427e390160e5c6153b700a160a9b13',1,'GXY::Texture::Texture(u32 number)']]],

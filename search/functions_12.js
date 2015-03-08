@@ -11,5 +11,6 @@ var searchData=
   ['up',['up',['../class_g_x_y_1_1_abstract_camera.html#af6b852f058fcf26f87552374c0a923ff',1,'GXY::AbstractCamera']]],
   ['update',['update',['../class_g_x_y_1_1_abstract_camera.html#a3c3e552fab0cc5fdf9133dc3721d63c0',1,'GXY::AbstractCamera::update()'],['../class_g_x_y_1_1_camera_static.html#a7d3b41746aa7febfca5a66a04ec55be7',1,'GXY::CameraStatic::update()'],['../class_g_x_y_1_1_camera_f_p_s.html#a896aeae8610e0b5fd203b268117a94b9',1,'GXY::CameraFPS::update()']]],
   ['updateaabb',['updateAABB',['../class_g_x_y_1_1_model_node.html#ade779340434893ee00efe27b13359e1c',1,'GXY::ModelNode']]],
+  ['updatematrix',['updateMatrix',['../class_g_x_y_1_1_point_light_node.html#af3abf240be47fbabd322ca810205e9fc',1,'GXY::PointLightNode']]],
   ['use',['use',['../class_g_x_y_1_1_shader.html#a1b238a7532f36665b0917e8142f0ecf0',1,'GXY::Shader']]]
 ];

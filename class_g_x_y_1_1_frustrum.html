@@ -110,7 +110,11 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a76eb7f0e50fa0ffaaa7db08d9bfc2892"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="class_g_x_y_1_1_frustrum.html" title="The Frustrum class. ">Frustrum</a> Constructor.  <a href="#a76eb7f0e50fa0ffaaa7db08d9bfc2892">More...</a><br/></td></tr>
 <tr class="separator:a76eb7f0e50fa0ffaaa7db08d9bfc2892"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8e924772356fb59a6442a8c2492eacc4"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_g_x_y_1_1_frustrum.html#a8e924772356fb59a6442a8c2492eacc4">boxInside</a> (<a class="el" href="struct_g_x_y_1_1_a_a_b_b3_d.html">AABB3D</a> const &amp;box) const </td></tr>
+<tr class="memdesc:a8e924772356fb59a6442a8c2492eacc4"><td class="mdescLeft">&#160;</td><td class="mdescRight">To know if a box is inside the frustrum or not.  <a href="#a8e924772356fb59a6442a8c2492eacc4">More...</a><br/></td></tr>
 <tr class="separator:a8e924772356fb59a6442a8c2492eacc4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a98f69f01e29cb4e59083d33ffa50f5dc"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_g_x_y_1_1_frustrum.html#a98f69f01e29cb4e59083d33ffa50f5dc">sphereInside</a> (<a class="el" href="struct_g_x_y_1_1_sphere.html">Sphere</a> const &amp;sphere) const </td></tr>
+<tr class="memdesc:a98f69f01e29cb4e59083d33ffa50f5dc"><td class="mdescLeft">&#160;</td><td class="mdescRight">To know if a sphere is inside the frustrum or not.  <a href="#a98f69f01e29cb4e59083d33ffa50f5dc">More...</a><br/></td></tr>
+<tr class="separator:a98f69f01e29cb4e59083d33ffa50f5dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a60506d867a41c3ef05b343fb2d67d5db"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_g_x_y_1_1_frustrum.html#a60506d867a41c3ef05b343fb2d67d5db">extractPlane</a> (float angle, float ratio, float nearD, float farD, glm::vec3 const &amp;p, glm::vec3 const &amp;l, glm::vec3 const &amp;up)</td></tr>
 <tr class="memdesc:a60506d867a41c3ef05b343fb2d67d5db"><td class="mdescLeft">&#160;</td><td class="mdescRight">Extract Planes from a "Perspective View Matrix".  <a href="#a60506d867a41c3ef05b343fb2d67d5db">More...</a><br/></td></tr>
 <tr class="separator:a60506d867a41c3ef05b343fb2d67d5db"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -161,6 +165,15 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>To know if a box is inside the frustrum or not. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname"></td><td>The box </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true if it is inside and false else </dd></dl>
 
 <p>Definition at line <a class="el" href="camera_8cpp_source.html#l00058">58</a> of file <a class="el" href="camera_8cpp_source.html">camera.cpp</a>.</p>
 
@@ -223,18 +236,45 @@ Public Attributes</h2></td></tr>
 <p>Extract Planes from a "Perspective View Matrix". </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">angle</td><td>: Focale y </td></tr>
-    <tr><td class="paramname">ratio</td><td>: Width / Height of this same <a class="el" href="class_g_x_y_1_1_frustrum.html" title="The Frustrum class. ">Frustrum</a> </td></tr>
-    <tr><td class="paramname">nearD</td><td>: Near plane </td></tr>
-    <tr><td class="paramname">farD</td><td>: Far plane </td></tr>
-    <tr><td class="paramname">p</td><td>: position </td></tr>
-    <tr><td class="paramname">l</td><td>: look </td></tr>
-    <tr><td class="paramname">up</td><td>: up vector </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">angle</td><td>: Focale y </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">ratio</td><td>: Width / Height of this same <a class="el" href="class_g_x_y_1_1_frustrum.html" title="The Frustrum class. ">Frustrum</a> </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">nearD</td><td>: Near plane </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">farD</td><td>: Far plane </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">p</td><td>: position </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">l</td><td>: look </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">up</td><td>: up vector </td></tr>
   </table>
   </dd>
 </dl>
 
 <p>Definition at line <a class="el" href="camera_8cpp_source.html#l00019">19</a> of file <a class="el" href="camera_8cpp_source.html">camera.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a98f69f01e29cb4e59083d33ffa50f5dc"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool GXY::Frustrum::sphereInside </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_g_x_y_1_1_sphere.html">Sphere</a> const &amp;&#160;</td>
+          <td class="paramname"><em>sphere</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>To know if a sphere is inside the frustrum or not. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">in]</td><td>sphere : The sphere </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true if it is inside and false else </dd></dl>
+
+<p>Definition at line <a class="el" href="camera_8cpp_source.html#l00079">79</a> of file <a class="el" href="camera_8cpp_source.html">camera.cpp</a>.</p>
 
 </div>
 </div>
@@ -251,7 +291,7 @@ Public Attributes</h2></td></tr>
 
 <p>TOP, BOTTOM, RIGHT, LEFT, NEAR, PLANE. </p>
 
-<p>Definition at line <a class="el" href="camera_8h_source.html#l00046">46</a> of file <a class="el" href="camera_8h_source.html">camera.h</a>.</p>
+<p>Definition at line <a class="el" href="camera_8h_source.html#l00058">58</a> of file <a class="el" href="camera_8h_source.html">camera.h</a>.</p>
 
 </div>
 </div>
@@ -262,7 +302,7 @@ Public Attributes</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Feb 15 2015 20:43:09 for Galaxy by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Mar 8 2015 03:00:56 for Galaxy by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

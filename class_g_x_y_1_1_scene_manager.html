@@ -114,9 +114,21 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ade06f1959eabe2bcaeb966278d17f9c3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_g_x_y_1_1_scene_manager.html#ade06f1959eabe2bcaeb966278d17f9c3">initialize</a> (void)</td></tr>
 <tr class="memdesc:ade06f1959eabe2bcaeb966278d17f9c3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize Rendering.  <a href="#ade06f1959eabe2bcaeb966278d17f9c3">More...</a><br/></td></tr>
 <tr class="separator:ade06f1959eabe2bcaeb966278d17f9c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a90a2cd2ddf27d258a6f63ad4a92d9d0d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_g_x_y_1_1_scene_manager.html#a90a2cd2ddf27d258a6f63ad4a92d9d0d">pushModelsInPipeline</a> (std::shared_ptr&lt; <a class="el" href="class_g_x_y_1_1_abstract_camera.html">AbstractCamera</a> &gt; const &amp;camera)</td></tr>
+<tr class="separator:a90a2cd2ddf27d258a6f63ad4a92d9d0d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a46bc3f3e61bac15b534cff2738569912"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_g_x_y_1_1_scene_manager.html#a46bc3f3e61bac15b534cff2738569912">renderDepthPass</a> (void)</td></tr>
+<tr class="separator:a46bc3f3e61bac15b534cff2738569912"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af7ad2816ec981541cdbfee89f77e8bcb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_g_x_y_1_1_scene_manager.html#af7ad2816ec981541cdbfee89f77e8bcb">renderModels</a> (void)</td></tr>
-<tr class="memdesc:af7ad2816ec981541cdbfee89f77e8bcb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Render all Models.  <a href="#af7ad2816ec981541cdbfee89f77e8bcb">More...</a><br/></td></tr>
+<tr class="memdesc:af7ad2816ec981541cdbfee89f77e8bcb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Render all Models on equal Depth.  <a href="#af7ad2816ec981541cdbfee89f77e8bcb">More...</a><br/></td></tr>
 <tr class="separator:af7ad2816ec981541cdbfee89f77e8bcb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acaf959f852f46c2a1298382789742b1e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_g_x_y_1_1_scene_manager.html#acaf959f852f46c2a1298382789742b1e">renderAmbientOcclusion</a> (void)</td></tr>
+<tr class="memdesc:acaf959f852f46c2a1298382789742b1e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Render the Ambient Occlusion.  <a href="#acaf959f852f46c2a1298382789742b1e">More...</a><br/></td></tr>
+<tr class="separator:acaf959f852f46c2a1298382789742b1e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a74b16dc7c9b40ea3820fad4bc71bd823"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_g_x_y_1_1_scene_manager.html#a74b16dc7c9b40ea3820fad4bc71bd823">renderPointLights</a> (void)</td></tr>
+<tr class="memdesc:a74b16dc7c9b40ea3820fad4bc71bd823"><td class="mdescLeft">&#160;</td><td class="mdescRight">renderPointLights  <a href="#a74b16dc7c9b40ea3820fad4bc71bd823">More...</a><br/></td></tr>
+<tr class="separator:a74b16dc7c9b40ea3820fad4bc71bd823"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a832bdd865538b26241594d90a44dd58f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_g_x_y_1_1_scene_manager.html#a832bdd865538b26241594d90a44dd58f">renderIndirectPointLight</a> (void)</td></tr>
+<tr class="separator:a832bdd865538b26241594d90a44dd58f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4db70b256d02e89f9932fa4278ef98ee"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_g_x_y_1_1_scene_manager.html#a4db70b256d02e89f9932fa4278ef98ee">renderFinal</a> (void)</td></tr>
 <tr class="memdesc:a4db70b256d02e89f9932fa4278ef98ee"><td class="mdescLeft">&#160;</td><td class="mdescRight">Render the Quad with Post Processing.  <a href="#a4db70b256d02e89f9932fa4278ef98ee">More...</a><br/></td></tr>
 <tr class="separator:a4db70b256d02e89f9932fa4278ef98ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -197,7 +209,7 @@ Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="scenemanager_8cpp_source.html#l00031">31</a> of file <a class="el" href="scenemanager_8cpp_source.html">scenemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="scenemanager_8cpp_source.html#l00047">47</a> of file <a class="el" href="scenemanager_8cpp_source.html">scenemanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -234,7 +246,7 @@ Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="scenemanager_8cpp_source.html#l00025">25</a> of file <a class="el" href="scenemanager_8cpp_source.html">scenemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="scenemanager_8cpp_source.html#l00041">41</a> of file <a class="el" href="scenemanager_8cpp_source.html">scenemanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -263,7 +275,7 @@ Public Member Functions</h2></td></tr>
 <p>Get the Root <a class="el" href="class_g_x_y_1_1_node.html" title="The Node class. ">Node</a>. </p>
 <dl class="section return"><dt>Returns</dt><dd>A pointer on the Root <a class="el" href="class_g_x_y_1_1_node.html" title="The Node class. ">Node</a> </dd></dl>
 
-<p>Definition at line <a class="el" href="scenemanager_8h_source.html#l00073">73</a> of file <a class="el" href="scenemanager_8h_source.html">scenemanager.h</a>.</p>
+<p>Definition at line <a class="el" href="scenemanager_8h_source.html#l00089">89</a> of file <a class="el" href="scenemanager_8h_source.html">scenemanager.h</a>.</p>
 
 </div>
 </div>
@@ -283,7 +295,25 @@ Public Member Functions</h2></td></tr>
 
 <p>Initialize Rendering. </p>
 
-<p>Definition at line <a class="el" href="scenemanager_8cpp_source.html#l00046">46</a> of file <a class="el" href="scenemanager_8cpp_source.html">scenemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="scenemanager_8cpp_source.html#l00078">78</a> of file <a class="el" href="scenemanager_8cpp_source.html">scenemanager.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a90a2cd2ddf27d258a6f63ad4a92d9d0d"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void GXY::SceneManager::pushModelsInPipeline </td>
+          <td>(</td>
+          <td class="paramtype">std::shared_ptr&lt; <a class="el" href="class_g_x_y_1_1_abstract_camera.html">AbstractCamera</a> &gt; const &amp;&#160;</td>
+          <td class="paramname"><em>camera</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="scenemanager_8cpp_source.html#l00086">86</a> of file <a class="el" href="scenemanager_8cpp_source.html">scenemanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -303,7 +333,45 @@ Public Member Functions</h2></td></tr>
 
 <p>Render all. </p>
 
-<p>Definition at line <a class="el" href="scenemanager_8cpp_source.html#l00037">37</a> of file <a class="el" href="scenemanager_8cpp_source.html">scenemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="scenemanager_8cpp_source.html#l00053">53</a> of file <a class="el" href="scenemanager_8cpp_source.html">scenemanager.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="acaf959f852f46c2a1298382789742b1e"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void GXY::SceneManager::renderAmbientOcclusion </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Render the Ambient Occlusion. </p>
+
+<p>Definition at line <a class="el" href="scenemanager_8cpp_source.html#l00185">185</a> of file <a class="el" href="scenemanager_8cpp_source.html">scenemanager.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a46bc3f3e61bac15b534cff2738569912"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void GXY::SceneManager::renderDepthPass </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="scenemanager_8cpp_source.html#l00105">105</a> of file <a class="el" href="scenemanager_8cpp_source.html">scenemanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -323,7 +391,25 @@ Public Member Functions</h2></td></tr>
 
 <p>Render the Quad with Post Processing. </p>
 
-<p>Definition at line <a class="el" href="scenemanager_8cpp_source.html#l00093">93</a> of file <a class="el" href="scenemanager_8cpp_source.html">scenemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="scenemanager_8cpp_source.html#l00211">211</a> of file <a class="el" href="scenemanager_8cpp_source.html">scenemanager.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a832bdd865538b26241594d90a44dd58f"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void GXY::SceneManager::renderIndirectPointLight </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="scenemanager_8cpp_source.html#l00172">172</a> of file <a class="el" href="scenemanager_8cpp_source.html">scenemanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -341,9 +427,29 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Render all Models. </p>
+<p>Render all Models on equal Depth. </p>
 
-<p>Definition at line <a class="el" href="scenemanager_8cpp_source.html#l00059">59</a> of file <a class="el" href="scenemanager_8cpp_source.html">scenemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="scenemanager_8cpp_source.html#l00117">117</a> of file <a class="el" href="scenemanager_8cpp_source.html">scenemanager.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a74b16dc7c9b40ea3820fad4bc71bd823"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void GXY::SceneManager::renderPointLights </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>renderPointLights </p>
+
+<p>Definition at line <a class="el" href="scenemanager_8cpp_source.html#l00130">130</a> of file <a class="el" href="scenemanager_8cpp_source.html">scenemanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -354,7 +460,7 @@ Public Member Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Feb 15 2015 20:43:10 for Galaxy by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Mar 8 2015 03:00:57 for Galaxy by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

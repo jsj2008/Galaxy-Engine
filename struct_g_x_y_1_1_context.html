@@ -105,66 +105,28 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:a297f92fc40c1ecd0af695b9110479301"><td class="memItemLeft" align="right" valign="top">glm::mat4&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_g_x_y_1_1_context.html#a297f92fc40c1ecd0af695b9110479301">frustrumMatrix</a></td></tr>
-<tr class="memdesc:a297f92fc40c1ecd0af695b9110479301"><td class="mdescLeft">&#160;</td><td class="mdescRight">Is the projectionMatrix product viewMatrix.  <a href="#a297f92fc40c1ecd0af695b9110479301">More...</a><br/></td></tr>
-<tr class="separator:a297f92fc40c1ecd0af695b9110479301"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac1638a34793be91d2aae7cb47ad2d73c"><td class="memItemLeft" align="right" valign="top">glm::uvec4&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_g_x_y_1_1_context.html#ac1638a34793be91d2aae7cb47ad2d73c">mNumberMeshes</a></td></tr>
-<tr class="memdesc:ac1638a34793be91d2aae7cb47ad2d73c"><td class="mdescLeft">&#160;</td><td class="mdescRight">NumberMeshed : .x.  <a href="#ac1638a34793be91d2aae7cb47ad2d73c">More...</a><br/></td></tr>
-<tr class="separator:ac1638a34793be91d2aae7cb47ad2d73c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a66c76f8ff55f42fffe23883ece9d9827"><td class="memItemLeft" align="right" valign="top">glm::vec4&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_g_x_y_1_1_context.html#a66c76f8ff55f42fffe23883ece9d9827">planesFrustrum</a> [6]</td></tr>
-<tr class="memdesc:a66c76f8ff55f42fffe23883ece9d9827"><td class="mdescLeft">&#160;</td><td class="mdescRight">A frustrum is formed by 6 planes.  <a href="#a66c76f8ff55f42fffe23883ece9d9827">More...</a><br/></td></tr>
-<tr class="separator:a66c76f8ff55f42fffe23883ece9d9827"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5cc02fcaa276b9d7b6efc771e3582ffa"><td class="memItemLeft" align="right" valign="top">glm::vec4&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_g_x_y_1_1_context.html#a5cc02fcaa276b9d7b6efc771e3582ffa">inverseSizeFrameBufferAO</a></td></tr>
+<tr class="memdesc:a5cc02fcaa276b9d7b6efc771e3582ffa"><td class="mdescLeft">&#160;</td><td class="mdescRight">.xy = 1 / sizeScreen, .zw = 1 / sizeAO;  <a href="#a5cc02fcaa276b9d7b6efc771e3582ffa">More...</a><br/></td></tr>
+<tr class="separator:a5cc02fcaa276b9d7b6efc771e3582ffa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Describe some informations to give at <a class="el" href="class_g_x_y_1_1_shader.html" title="Provide a Shader Interface. ">Shader</a>. </p>
 
-<p>Definition at line <a class="el" href="include_8h_source.html#l00225">225</a> of file <a class="el" href="include_8h_source.html">include.h</a>.</p>
+<p>Definition at line <a class="el" href="include_8h_source.html#l00233">233</a> of file <a class="el" href="include_8h_source.html">include.h</a>.</p>
 </div><h2 class="groupheader">Member Data Documentation</h2>
-<a class="anchor" id="a297f92fc40c1ecd0af695b9110479301"></a>
+<a class="anchor" id="a5cc02fcaa276b9d7b6efc771e3582ffa"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">glm::mat4 GXY::Context::frustrumMatrix</td>
+          <td class="memname">glm::vec4 GXY::Context::inverseSizeFrameBufferAO</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Is the projectionMatrix product viewMatrix. </p>
+<p>.xy = 1 / sizeScreen, .zw = 1 / sizeAO; </p>
 
-<p>Definition at line <a class="el" href="include_8h_source.html#l00227">227</a> of file <a class="el" href="include_8h_source.html">include.h</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="ac1638a34793be91d2aae7cb47ad2d73c"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">glm::uvec4 GXY::Context::mNumberMeshes</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>NumberMeshed : .x. </p>
-
-<p>Definition at line <a class="el" href="include_8h_source.html#l00228">228</a> of file <a class="el" href="include_8h_source.html">include.h</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a66c76f8ff55f42fffe23883ece9d9827"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">glm::vec4 GXY::Context::planesFrustrum[6]</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>A frustrum is formed by 6 planes. </p>
-
-<p>Definition at line <a class="el" href="include_8h_source.html#l00229">229</a> of file <a class="el" href="include_8h_source.html">include.h</a>.</p>
+<p>Definition at line <a class="el" href="include_8h_source.html#l00235">235</a> of file <a class="el" href="include_8h_source.html">include.h</a>.</p>
 
 </div>
 </div>
@@ -174,7 +136,7 @@ Public Attributes</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Feb 15 2015 20:43:10 for Galaxy by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Mar 8 2015 03:00:57 for Galaxy by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

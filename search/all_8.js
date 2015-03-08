@@ -5,5 +5,7 @@ var searchData=
   ['include_2eh',['include.h',['../include_8h.html',1,'']]],
   ['index',['index',['../struct_g_x_y_1_1_global.html#a7760ded18afe3c82b522014df110462d',1,'GXY::Global']]],
   ['initialize',['initialize',['../class_g_x_y_1_1_scene_manager.html#ade06f1959eabe2bcaeb966278d17f9c3',1,'GXY::SceneManager']]],
-  ['instancecount',['instanceCount',['../struct_g_x_y_1_1_draw_array_command.html#aeab5cc9e01b140617b497d0140620e86',1,'GXY::DrawArrayCommand']]]
+  ['instancecount',['instanceCount',['../struct_g_x_y_1_1_draw_array_command.html#aeab5cc9e01b140617b497d0140620e86',1,'GXY::DrawArrayCommand']]],
+  ['inversesizeframebufferao',['inverseSizeFrameBufferAO',['../struct_g_x_y_1_1_context.html#a5cc02fcaa276b9d7b6efc771e3582ffa',1,'GXY::Context']]],
+  ['iscreate',['isCreate',['../class_g_x_y_1_1_texture.html#a692a3ce5f79db1a4ff86f6327e6c741a',1,'GXY::Texture']]]
 ];

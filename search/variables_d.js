@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['shaders',['Shaders',['../struct_g_x_y_1_1_global.html#ad0e4a08caefa4aa890bb341203663b39',1,'GXY::Global']]],
-  ['shininessalbedo',['shininessAlbedo',['../struct_g_x_y_1_1_material.html#ae6ba917debb87e94a004737f0f0c87a4',1,'GXY::Material']]]
+  ['radius',['radius',['../struct_g_x_y_1_1_sphere.html#af488e7156d9253b8f4eec0305eabdc60',1,'GXY::Sphere']]],
+  ['randomnormal',['randomNormal',['../struct_g_x_y_1_1_global.html#a6f8e24464caee4b92365f293ba52957b',1,'GXY::Global']]],
+  ['ressourcemanager',['ressourceManager',['../struct_g_x_y_1_1_global.html#a7def1ef76c94cfe8a4b9690b9da553f3',1,'GXY::Global']]]
 ];

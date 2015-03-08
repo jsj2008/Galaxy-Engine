@@ -87,30 +87,30 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a class="code" href="class_g_x_y_1_1_buffer.html">GXY::Buffer&lt;u32&gt;</a> indexBuffer;</div>
 <div class="line"><a name="_a1"></a><a class="code" href="class_g_x_y_1_1_vertex_array.html">GXY::VertexArray</a> vertexArray;</div>
 <div class="line"></div>
-<div class="line">buffer.<a name="a2"></a><a class="code" href="class_g_x_y_1_1_buffer.html#a1b0cd5636ffcdba3407274ef56fc85b5">create</a>();</div>
-<div class="line">indexBuffer.<a name="a3"></a><a class="code" href="class_g_x_y_1_1_buffer.html#a1b0cd5636ffcdba3407274ef56fc85b5">create</a>();</div>
-<div class="line">vertexArray.<a name="a4"></a><a class="code" href="class_g_x_y_1_1_vertex_array.html#ae0fcc5cc4839194b0dda5f20f4e03a2b">create</a>();</div>
+<div class="line">buffer.create();</div>
+<div class="line">indexBuffer.create();</div>
+<div class="line">vertexArray.<a name="a2"></a><a class="code" href="class_g_x_y_1_1_vertex_array.html#ae0fcc5cc4839194b0dda5f20f4e03a2b">create</a>();</div>
 <div class="line"></div>
-<div class="line">buffer.<a name="a5"></a><a class="code" href="class_g_x_y_1_1_buffer.html#a1f632a9f180f20c2cae05e6d78a177e0">allocate</a>(3);</div>
-<div class="line">indexBuffer.<a name="a6"></a><a class="code" href="class_g_x_y_1_1_buffer.html#a1f632a9f180f20c2cae05e6d78a177e0">allocate</a>(3);</div>
+<div class="line">buffer.<a name="a3"></a><a class="code" href="class_g_x_y_1_1_buffer.html#a1f632a9f180f20c2cae05e6d78a177e0">allocate</a>(3);</div>
+<div class="line">indexBuffer.<a name="a4"></a><a class="code" href="class_g_x_y_1_1_buffer.html#a1f632a9f180f20c2cae05e6d78a177e0">allocate</a>(3);</div>
 <div class="line"></div>
 <div class="line">buffer[0] = glm::vec2(-1.0, -1.0);</div>
 <div class="line">buffer[1] = glm::vec2(1.0, -1.0);</div>
 <div class="line">buffer[2] = glm::vec2(0.0, 1.0);</div>
-<div class="line">indexBuffer.<a name="a7"></a><a class="code" href="class_g_x_y_1_1_buffer.html#a7576f24d7aa4c915e377166ed9954f35">push</a>(0);</div>
+<div class="line">indexBuffer.<a name="a5"></a><a class="code" href="class_g_x_y_1_1_buffer.html#a7576f24d7aa4c915e377166ed9954f35">push</a>(0);</div>
 <div class="line">indexBuffer.<a class="code" href="class_g_x_y_1_1_buffer.html#a7576f24d7aa4c915e377166ed9954f35">push</a>(1);</div>
 <div class="line">indexBuffer.<a class="code" href="class_g_x_y_1_1_buffer.html#a7576f24d7aa4c915e377166ed9954f35">push</a>(2);</div>
 <div class="line"></div>
-<div class="line">vertexArray.<a name="a8"></a><a class="code" href="class_g_x_y_1_1_vertex_array.html#a536595751b988eebc09fc5d96fedb045">configure</a>(buffer);</div>
-<div class="line">vertexArray.<a name="a9"></a><a class="code" href="class_g_x_y_1_1_vertex_array.html#a6f99cc7e2c79161fa79801d7678c8da2">bindElementBuffer</a>(indexBuffer);</div>
+<div class="line">vertexArray.<a name="a6"></a><a class="code" href="class_g_x_y_1_1_vertex_array.html#a536595751b988eebc09fc5d96fedb045">configure</a>(buffer);</div>
+<div class="line">vertexArray.<a name="a7"></a><a class="code" href="class_g_x_y_1_1_vertex_array.html#a6f99cc7e2c79161fa79801d7678c8da2">bindElementBuffer</a>(indexBuffer);</div>
 <div class="line"></div>
-<div class="line">vertexArray.<a name="a10"></a><a class="code" href="class_g_x_y_1_1_vertex_array.html#a421331ad4b60608a5f947846efad45b1">bind</a>();</div>
+<div class="line">vertexArray.<a name="a8"></a><a class="code" href="class_g_x_y_1_1_vertex_array.html#a421331ad4b60608a5f947846efad45b1">bind</a>();</div>
 <div class="line">glDrawElements(GL_TRIANGLES, 3, GL_UNSIGNED_INT, <span class="keyword">nullptr</span>);</div>
-<div class="line"><a name="a11"></a><a class="code" href="namespace_g_x_y.html#afef391c03b447dfaed20bbc87efc3294">GXY::synchronize</a>(); <span class="comment">// Flush</span></div>
+<div class="line"><a name="a9"></a><a class="code" href="namespace_g_x_y.html#afef391c03b447dfaed20bbc87efc3294">GXY::synchronize</a>(); <span class="comment">// Flush</span></div>
 </div><!-- fragment --><div class="fragment"></div><!-- fragment --> </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Feb 15 2015 20:43:09 for Galaxy by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Mar 8 2015 03:00:56 for Galaxy by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>
