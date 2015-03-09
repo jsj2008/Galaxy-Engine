@@ -76,7 +76,7 @@ void main(void)
     else
         light.color.rgb = material[materialIndex].colorDiffuse.xyz;
 
-    light.color /= 32.0;
+    light.color *= 4.0 / (6.0 * 8.0 * 8.0);
     light.positionRadius.xyz = position;
     light.positionRadius.w = posCamera.w;
     light.normal.xyz     = normalize(normal);

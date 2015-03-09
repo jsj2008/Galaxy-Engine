@@ -235,6 +235,9 @@ namespace GXY
         glm::vec4 inverseSizeFrameBufferAO; //!< .xy = 1 / sizeScreen, .zw = 1 / sizeAO;
     };
 
+    /**
+     * @brief The frustrum structure to give at shaders
+     */
     struct FrustrumUniform
     {
         glm::mat4 frustrumMatrix; //!< Is the projectionMatrix product viewMatrix

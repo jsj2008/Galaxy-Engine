@@ -62,6 +62,4 @@ void main(void)
         float lambertCoeff = max(0.0, dot(normal, vertexToLightNormalized)) * attenuation * max(0.0, dot(orientedLight, -vertexToLightNormalized));
         color += colorLight.rgb * (lambertCoeff);
     }
-
-    color /= 3.14;
 }

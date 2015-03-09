@@ -20,7 +20,7 @@ int main(int argc, char *argv[])
 
         SceneManager sceneManager; // Create a Scene Manager
 
-        sceneManager.createCameraFPS(vec3(0.1, 200.0, .0), 300, 0.5); // Create a FPS Camera
+        sceneManager.createCameraFPS(vec3(0.1, 100.0, .0), 300, 0.5); // Create a FPS Camera
 
         shared_ptr<Node> rootNode = sceneManager.getRootNode(); // Get the Root Node
 
@@ -30,7 +30,7 @@ int main(int argc, char *argv[])
 
         // Configure the light
         light->setColor(vec3(1.0, 1.0, 1.0)); // white
-        light->setPosition(vec3(0.0, 200.0, .0));
+        light->setPosition(vec3(0.0, 100.0, .0));
         light->setRadius(1000);
         light->setIntensity(1.0);
         light->enableShadowMaps(0);

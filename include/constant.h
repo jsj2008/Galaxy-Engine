@@ -82,11 +82,11 @@ namespace GXY
      * @brief Forgive some constants for AbstractCamera
      */
     enum CameraUp{CAM_UP_X, //!< 1, 0, 0
-                  CAM_DOWN_X,
+                  CAM_DOWN_X, //!< -1, 0, 0
                   CAM_UP_Y, //!< 0, 1, 0
-                  CAM_DOWN_Y,
+                  CAM_DOWN_Y, //!< 0, -1, 0
                   CAM_UP_Z, //!< 0, 0, 1
-                  CAM_DOWN_Z
+                  CAM_DOWN_Z //!< 0, 0, -1
                  };
 
     /**

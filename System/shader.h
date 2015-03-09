@@ -40,34 +40,34 @@ namespace GXY
 
         /**
          * @brief Shader Constructor
-         * @param shaders pair<Path, TypeOfShader> the type can be VERTEX, FRAGMENT, GEOMETRY or COMPUTE
+         * @param[in] shaders pair<Path, TypeOfShader> the type can be VERTEX, FRAGMENT, GEOMETRY or COMPUTE
          */
         Shader(std::vector<std::pair<std::string, ShaderType>> const &shaders);
 
         /**
          * @brief Shader Constructor
-         * @param vert : path to vertex Shader
-         * @param fragment : path to fragment Shader
+         * @param[in] vert : path to vertex Shader
+         * @param[in] fragment : path to fragment Shader
          */
         Shader(std::string const &vert, std::string const &fragment);
 
         /**
          * @brief Shader Constructor
-         * @param vert : path to vertex Shader
-         * @param geometry : path to geometry Shader
-         * @param fragment : path to fragment Shader
+         * @param[in] vert : path to vertex Shader
+         * @param[in] geometry : path to geometry Shader
+         * @param[in] fragment : path to fragment Shader
          */
         Shader(std::string const &vert, std::string const &geometry, std::string const &fragment);
 
         /**
          * @brief Shader Constructor copy move semantic
-         * @param shader
+         * @param[in] shader
          */
         Shader(Shader &&shader);
 
         /**
          * @brief operator = Move Semantic
-         * @param shader
+         * @param[in] shader
          * @return
          */
         Shader &operator=(Shader &&shader);
@@ -77,15 +77,15 @@ namespace GXY
 
         /**
          * @brief Compile a source
-         * @param src : source in GLSL
-         * @param type : ShaderType of Shader
+         * @param[in] src : source in GLSL
+         * @param[in] type : ShaderType of Shader
          */
         void compileSource(std::string const &src, ShaderType type);
 
         /**
          * @brief Compile a file
-         * @param path : Path to a file to compile
-         * @param type : ShaderType of Shader
+         * @param[in] path : Path to a file to compile
+         * @param[in] type : ShaderType of Shader
          */
         void compileFile(std::string const &path, ShaderType type);
 
@@ -106,57 +106,57 @@ namespace GXY
 
         /**
          * @brief Send 4 floats in uniform "name"
-         * @param vec : 4 floats
-         * @param name : name of uniform variable
+         * @param[in] vec : 4 floats
+         * @param[in] name : name of uniform variable
          */
         void uniform4f(glm::vec4 const &vec, std::string const &name);
 
         /**
          * @brief Send 3 floats in uniform "name"
-         * @param vec : 3 floats
-         * @param name : name of uniform variable
+         * @param[in] vec : 3 floats
+         * @param[in] name : name of uniform variable
          */
         void uniform3f(glm::vec3 const &vec, std::string const &name);
 
         /**
          * @brief Send 2 floats in uniform "name"
-         * @param vec : 2 floats
-         * @param name : name of uniform variable
+         * @param[in] vec : 2 floats
+         * @param[in] name : name of uniform variable
          */
         void uniform2f(glm::vec2 const &vec, std::string const &name);
 
         /**
          * @brief Send one float in uniform "name"
-         * @param value : 1 float
-         * @param name : name of uniform variable
+         * @param[in] value : 1 float
+         * @param[in] name : name of uniform variable
          */
         void uniform1f(float value, std::string const &name);
 
         /**
          * @brief Send 4 integers in uniform "name"
-         * @param vec : 4 integers
-         * @param name : name of uniform variable
+         * @param[in] vec : 4 integers
+         * @param[in] name : name of uniform variable
          */
         void uniform4i(glm::ivec4 const &vec, std::string const &name);
 
         /**
          * @brief Send 3 integers in uniform "name"
-         * @param vec : 3 integers
-         * @param name : name of uniform variable
+         * @param[in] vec : 3 integers
+         * @param[in] name : name of uniform variable
          */
         void uniform3i(glm::ivec3 const &vec, std::string const &name);
 
         /**
          * @brief Send 2 integers in uniform "name"
-         * @param vec : 2 integers
-         * @param name : name of uniform variable
+         * @param[in] vec : 2 integers
+         * @param[in] name : name of uniform variable
          */
         void uniform2i(glm::ivec2 const &vec, std::string const &name);
 
         /**
          * @brief Send 1 integer in uniform "name"
-         * @param value : 1 integer
-         * @param name : name of uniform variable
+         * @param[in] value : 1 integer
+         * @param[in] name : name of uniform variable
          */
         void uniform1i(int value, std::string const &name);
 
@@ -181,7 +181,7 @@ namespace GXY
 
         /**
          * @brief Get the localisation of uniform name
-         * @param name : name of the uniform variable
+         * @param[in] name : name of the uniform variable
          * @return
          */
         s32 mGetUniformLocation(std::string const &name);

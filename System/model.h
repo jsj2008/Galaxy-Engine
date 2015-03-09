@@ -32,7 +32,7 @@ namespace GXY
 
         /**
          * @brief Load one asset
-         * @param path : Path to load the Asset
+         * @param[in] path : Path to load the Asset
          */
         void load(std::string const &path);
         
@@ -44,7 +44,7 @@ namespace GXY
 
         /**
          * @brief Push data in different Buffer
-         * @param transform : World Matrix
+         * @param[in] transform : World Matrix
          */
         void pushInPipeline(glm::mat4 const &transform);
 

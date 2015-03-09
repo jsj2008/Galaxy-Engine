@@ -121,7 +121,7 @@ namespace GXY
         global->Lighting.pointLightShadowMaps = make_shared<FrameBuffer>();
         global->Lighting.vplPointLightCreation = make_shared<FrameBuffer>();
 
-        u32 size = powerOf2(std::max(global->device->width(), global->device->height())) / 2;
+        u32 size = powerOf2(std::max(global->device->width(), global->device->height())) * 2;
         global->Lighting.pointLightShadowMaps->create();
         global->Lighting.pointLightShadowMaps->createCubeMapArray(MAX_POINT_LIGHT_SHADOW, size, size, {R32F}, true);
 

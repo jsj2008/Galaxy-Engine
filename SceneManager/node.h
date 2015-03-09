@@ -27,15 +27,15 @@ namespace GXY
     {
         /**
          * @brief Add one Node in the tree Parent
-         * @param parent
+         * @param[in] parent
          * @return A pointer on this Node
          */
         friend std::shared_ptr<Node> addNode(std::shared_ptr<Node> const &parent);
 
         /**
          * @brief Add one Model in the Node
-         * @param parent
-         * @param path : Path to find Asset
+         * @param[in] parent
+         * @param[in] path : Path to find Asset
          * @return
          */
         friend std::shared_ptr<ModelNode> addModel(std::shared_ptr<Node> const &parent, std::string const &path);
@@ -48,26 +48,26 @@ namespace GXY
     public:
         /**
          * @brief NodeConstructor
-         * @param parent : a Pointer on a Node Parent
+         * @param[in] parent : a Pointer on a Node Parent
          */
         Node(glm::mat4 const &parent);
 
         /**
          * @brief Perform a rotation of a Node : All models and children are affected
-         * @param angle : Angle of the rotation
-         * @param axe : Axe of rotation
+         * @param[in] angle : Angle of the rotation
+         * @param[in] axe : Axe of rotation
          */
         void rotate(float angle, glm::vec3 const &axe);
 
         /**
          * @brief Perform a translation of a Node : All models and children are affected
-         * @param vec : Vector of translation
+         * @param[in] vec : Vector of translation
          */
         void translate(glm::vec3 const &vec);
 
         /**
          * @brief Perform a Homothetic transformation of a Node : All models and children are affected
-         * @param factor : Factor of Homothetic transformation
+         * @param[in] factor : Factor of Homothetic transformation
          */
         void scale(float factor);
 
@@ -78,7 +78,7 @@ namespace GXY
 
         /**
          * @brief Push in a command Buffer news value to be render of all Models in a Node
-         * @param frustrum
+         * @param[in] frustrum
          */
         void pushModelsInPipeline(Frustrum const &frustrum);
 
@@ -97,13 +97,13 @@ namespace GXY
 
         /**
          * @brief Apply scale Factor to all tree
-         * @param factor
+         * @param[in] factor
          */
         void mApplyScaleFactorToChildren(float factor);
 
         /**
          * @brief Apply matrix to all tree
-         * @param matrix
+         * @param[in] matrix
          */
         void mApplyMatrixToChildrenAndModels(glm::mat4 const &matrix);
 
