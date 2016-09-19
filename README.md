@@ -23,7 +23,7 @@ Shadows are computed by Exponential Shadow Maps without kernel. Kernel is in dev
 
 Illumination
 
-Global Illumination is performed by implemented Instant radiosity with virtual point light Reflective Shadow Maps is in developpment
+Global Illumination is performed by implemented Instant radiosity with virtual point light(Idea from Splatting Global Illumination) 
 
 EnvironmentMap
 
