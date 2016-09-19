@@ -1,3 +1,5 @@
+# THIS CODE IS OLD, SOME VERY BAD USE OF SYNCHRONIZATION OR ARB_BUFFER_STORAGE ARE IN. PLEASE, PREFER LOOK OpenGL TOols or Dark-Light
+
 It's a Graphic Engine Created by Antoine MORRIER, student in Télécom SudParis.
 This Engine will be able to render global illumination on real time using OpenGL 4.4+ currently.
 
